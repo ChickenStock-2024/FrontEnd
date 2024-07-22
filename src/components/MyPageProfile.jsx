@@ -6,19 +6,19 @@ const MyPageProfile = () => {
     teer: "플래티넘 5",
   };
   return (
-    <div className="flex flex-col w-52 h-72 border-solid border-2">
-      <p>MyPageProfile입니당~!!</p>
-      <section className="justify-center">
+    <div className="flex flex-col justify-around items-center w-52 h-72 border-solid border-2">
+      <section>
         <img
           className="rounded-full w-40 h-40"
           src="src/assets/userProfileImage_쑤.png"
           alt="userProfileImage"
         />
       </section>
-      <section className="text-3xl font-semibold">
-        {userInfo["nickName"]} 님
-      </section>
+      {/* <section className="flex items-center"> */}
       <section>
+        <div className="text-3xl font-semibold text-center">
+          {userInfo["nickName"]} 님
+        </div>
         <div className="flex items-center">
           <>{userInfo["teer"]}</>
           <>
