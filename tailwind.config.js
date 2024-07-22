@@ -7,8 +7,6 @@ export default {
         yellow1: "#FFD700",
         yellow2: "#FFE86C",
         yellow3: "#FCF5C7",
-        tabOption: "#49454F",
-        tabOptionSelected: "#1D1B20",
       },
     },
   },
