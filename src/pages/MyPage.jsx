@@ -2,28 +2,30 @@ import React from "react";
 import MypageTabs from "../components/MyPageTabs.jsx";
 import MyPageHistory from "../components/MyPageHistory.jsx";
 import MyPageUserSearch from "../components/MyPageUserSearch.jsx";
+import MyPageProfile from "../components/MyPageProfile.jsx";
 import { useState } from "react";
 
 const MyPage = () => {
   const [activeTabOption, setActiveTabOption] = useState("");
-  const getactiveTabOption = (data) => {
+  const getActiveTabOption = (data) => {
     setActiveTabOption(data);
   };
   return (
     <>
       <section>
-        {/* <div className="bg-yellow3 h-32">[h: 128px/백그라운드: 252-245-199]</div>
-        <div className="h-60">[h: 240px 흰색 백그라운드]</div> */}
-        <div className="bg-yellow3 h-28">
-          [h: 112px/백그라운드: 252-245-199]
+        <div>
+          <div className="bg-yellow3 h-28">
+            [h: 112px/백그라운드: 252-245-199]
+          </div>
+          <div className="h-60">[h: 240px 흰색 백그라운드]</div>
         </div>
-        <div className="h-60">[h: 240px 흰색 백그라운드]</div>
+        <MyPageProfile />
       </section>
       <section>
-        <MypageTabs getactiveTabOption={getactiveTabOption} />
+        <MypageTabs getActiveTabOption={getActiveTabOption} />
       </section>
       <section>
-        <p>{console.log(activeTabOption)}</p>
+        {/* <p>{console.log(activeTabOption)}</p> */}
         {activeTabOption === "history" ? (
           <MyPageHistory activeTabOption={activeTabOption} />
         ) : (

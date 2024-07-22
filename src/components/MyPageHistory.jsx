@@ -4,12 +4,10 @@ const tabsData = [
   {
     id: "history",
     label: "대회참여 히스토리",
-    content: "기본 탭 코드에 있던 콘텐트 설명글",
   },
   {
     id: "userSearch",
     label: "유저 검색",
-    content: "기본 탭 코드에 있던 콘텐트 설명글",
   },
 ];
 const competition = {
@@ -39,9 +37,6 @@ const MyPageHistory = ({ activeTabOption }) => {
           >
             <p className=" flex flex-col justify-between">
               <span className="block">
-                <strong className="font-medium text-gray-800">
-                  {tab.label}의 연관된 콘텐츠
-                </strong>
                 <div className="text-xl">{competition.title}</div>
                 <div className="text-xs">
                   기간: {competition.start_at} ~ {competition.end_at}
