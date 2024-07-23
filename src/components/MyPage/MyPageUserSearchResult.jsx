@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyPageUserSearch = () => {
+const MyPageUserSearchResult = () => {
   const userInfo = {
     nickName: "쑤",
     rank: "23",
@@ -10,7 +10,7 @@ const MyPageUserSearch = () => {
   };
   return (
     <>
-      <h1>MyPage의 유저 검색 입니당~!!</h1>;
+      <h1>MyPage의 유저 검색 입니당~!!</h1>
       <section className="flex justify-between px-40">
         <div className="flex-none text-l font-bold">{userInfo["rank"]}위</div>
         <div className="flex pr-80 items-center">
@@ -44,4 +44,4 @@ const MyPageUserSearch = () => {
   );
 };
 
-export default MyPageUserSearch;
+export default MyPageUserSearchResult;
