@@ -5,22 +5,18 @@ const tabsData = [
   {
     id: "history",
     label: "대회참여 히스토리",
-    content:
-      "프로필 탭의 연관된 콘텐츠에 대한 자리 표시자 콘텐츠입니다. 다른 탭을 클릭하면 다음 탭의 가시성이 전환됩니다. 탭 JavaScript는 콘텐츠 가시성과 스타일링을 제어하기 위해 클래스를 전환합니다.",
   },
   {
     id: "userSearch",
     label: "유저 검색",
-    content:
-      "대시보드 탭의 연관된 콘텐츠에 대한 자리 표시자 콘텐츠입니다. 다른 탭을 클릭하면 다음 탭의 가시성이 전환됩니다. 탭 JavaScript는 콘텐츠 가시성과 스타일링을 제어하기 위해 클래스를 전환합니다.",
   },
 ];
 
-const MypageTabs = ({ getactiveTabOption }) => {
-  const [activeTab, setActiveTab] = useState("history");
+const MypageTabs = ({ getActiveTabOption }) => {
+  const [activeTab, setActiveTab] = useState(tabsData[0].id);
 
   useEffect(() => {
-    getactiveTabOption(activeTab);
+    getActiveTabOption(activeTab);
   }, [activeTab]);
 
   return (
