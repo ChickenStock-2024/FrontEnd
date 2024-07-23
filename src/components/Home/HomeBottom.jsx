@@ -3,7 +3,7 @@ import financialImg from "./../../assets/financial_illustration.png";
 
 const HomeBottom = () => {
   return (
-    <div className="flex flex-row justify-between px-20 min-w-min h-full">
+    <div className="bg-gray-100 flex flex-row justify-between px-56 py-10 h-full">
       <div className="w-72">
         <img src={financialImg} alt="financial image" />
       </div>

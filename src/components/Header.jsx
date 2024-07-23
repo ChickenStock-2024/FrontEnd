@@ -1,6 +1,9 @@
 import React from "react";
 import logo from "./../assets/logo.png";
 import { Link } from "react-router-dom";
+import { GoPerson } from "react-icons/go";
+import { CgProfile } from "react-icons/cg";
+import { FiSettings } from "react-icons/fi";
 
 const Header = () => {
   return (
@@ -21,10 +24,12 @@ const Header = () => {
               <span className="mr-5 hover:text-gray-900">랭킹</span>
             </Link>
             <Link to={"#"}>
-              <span className="mr-5 hover:text-gray-900">설정</span>
+              <FiSettings className="mr-5 w-6 h-6 inline-block" />
+              {/* <span className="mr-5 hover:text-gray-900">설정</span> */}
             </Link>
             <Link to={"/mypage"}>
-              <span className="mr-5 hover:text-gray-900">마이페이지</span>
+              <CgProfile className="mr-5 w-6 h-6 inline-block" />
+              {/* <span className="mr-5 hover:text-gray-900">마이페이지</span> */}
             </Link>
           </nav>
         </div>

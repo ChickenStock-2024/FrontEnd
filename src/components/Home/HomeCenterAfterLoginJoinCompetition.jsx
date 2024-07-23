@@ -10,7 +10,7 @@ const HomeCenterAfterLoginJoinCompetition = () => {
   };
 
   return (
-    <div className="px-40 py-20 min-w-min">
+    <div className="px-72 py-20 min-w-min">
       <div className="text-xl font-bold flex items-center">
         <div className="bg-violet-500 w-8 h-8 rounded-full mr-2"></div>
         <h3>유저 닉네임</h3>

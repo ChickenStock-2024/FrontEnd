@@ -15,7 +15,7 @@ const HomeCenter = () => {
   };
 
   return (
-    <div className="px-40 py-20 min-w-min">
+    <div className="px-72 py-20 min-w-min">
       <div className="my-5">
         <div className="text-xl font-bold">{contestInfo.title} 진행 중</div>
         <div>지금 바로 로그인 후 참여하세요.</div>
