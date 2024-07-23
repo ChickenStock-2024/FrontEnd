@@ -1,4 +1,6 @@
 import React from "react";
+// import profileImage from "../../assets/userProfileImage_쑤.png";
+// import userTeerBadge from "../../assets/userTeerBadge.png";
 
 const MyPageUserSearchResult = () => {
   const userInfo = {
@@ -18,13 +20,15 @@ const MyPageUserSearchResult = () => {
             <img
               className="rounded-full w-5 h-5"
               src="src/assets/userProfileImage_쑤.png"
+              // src={profileImage}
               alt="userProfileImage"
             />
           </div>
           <div className="flex-none">
             <img
               className="rounded-full w-5 h-5 ml-1 mr-2"
-              src="src\assets\userTeerBadge.png"
+              src="src/assets/userTeerBadge.png"
+              // src={userTeerBadge}
               alt="userTeerBadge"
             />
           </div>
