@@ -3,7 +3,7 @@ import financialIllustration from "../../assets/financial_illustration.png";
 
 const LoginInfo = () => {
   return (
-    <>
+    <div className="px-16">
       <section>
         <div className="w-1/2 flex items-center justify-center">
           <img
@@ -22,7 +22,7 @@ const LoginInfo = () => {
           서비스 소개 서비스 소개
         </p>
       </section>
-    </>
+    </div>
   );
 };
 

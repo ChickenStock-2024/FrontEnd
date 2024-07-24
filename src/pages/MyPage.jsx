@@ -1,7 +1,10 @@
 import React from "react";
+
 import MypageTabs from "../components/MyPage/MyPageTabs.jsx";
 import MyPageHistory from "../components/MyPage/MyPageHistory.jsx";
-import MyPageUserSearch from "../components/MyPage/MyPageUserSearchResult.jsx";
+
+import MyPageUserSearch from "../components/MyPage/MyPageUserSearch.jsx";
+
 import MyPageProfile from "../components/MyPage/MyPageProfile.jsx";
 import { useState } from "react";
 
