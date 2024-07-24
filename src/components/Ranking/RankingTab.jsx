@@ -1,0 +1,57 @@
+import React from "react";
+import { useState, useEffect } from "react";
+
+const tabsData = [
+  {
+    id: "allRanking",
+    label: "전체 순위",
+  },
+  {
+    id: "rivalRanking",
+    label: "친구 순위",
+  },
+  {
+    id: "nowRanking",
+    label: "실시간 대회 순위",
+  },
+];
+
+const RankingTab = ({ getActiveTabOption }) => {
+  const [activeTab, setActiveTab] = useState(tabsData[0].id);
+  useEffect(() => {
+    getActiveTabOption(activeTab);
+  }, [activeTab]);
+  return (
+    <>
+      <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+        <ul
+          className="flex flex-wrap -mb-px text-sm text-center justify-evenly"
+          id="default-tab"
+          role="tablist"
+        >
+          {tabsData.map((tab) => (
+            <li className="px-2 flex-auto" role="presentation" key={tab.id}>
+              <button
+                className={`inline-block w-full p-4 border-b-2 rounded-t-lg ${
+                  activeTab === tab.id
+                    ? "font-bold text-slate-950 border-slate-950"
+                    : "font-medium text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 "
+                }`}
+                id={`${tab.id}-tab`}
+                type="button"
+                role="tab"
+                aria-controls={tab.id}
+                aria-selected={activeTab === tab.id}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+};
+
+export default RankingTab;
