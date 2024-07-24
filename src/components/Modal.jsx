@@ -29,8 +29,11 @@ const Modal = ({ isOpen, closeModal, children }) => {
           }}
         >
           {children}
-          <button className="absolute top-2 right-4" onClick={closeModal}>
-            X
+          <button
+            className="absolute top-2 right-2 text-2xl px-2 items-center hover:bg-gray-100"
+            onClick={closeModal}
+          >
+            ⨉
           </button>
         </div>
       </div>

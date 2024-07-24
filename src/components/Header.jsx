@@ -8,9 +8,9 @@ import Modal from "./Modal";
 import SettingsModal from "./SettingsModal";
 
 const Header = () => {
-  const [isModalOpen, setIsModalPen] = useState(false);
-  const openModal = () => setIsModalPen(true);
-  const closeModal = () => setIsModalPen(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
     <div>
       <header className="Header sticky inset-x-0 top-0 z-50 left-0 bg-white text-gray-600 body-font border-b border-gray-200">
@@ -32,8 +32,12 @@ const Header = () => {
               <button onClick={openModal}>
                 <FiSettings className="mr-5 w-6 h-6 inline-block" />
               </button>
-              <Modal isOpen={isModalOpen} closeModal={closeModal}>
-                <SettingsModal />
+              <Modal
+                isOpen={isModalOpen}
+                closeModal={closeModal}
+                setIsModalOpen={setIsModalOpen}
+              >
+                <SettingsModal isOpen={isModalOpen} closeModal={closeModal} />
               </Modal>
             </div>
             <Link to={"/mypage"}>
