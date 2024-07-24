@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./../assets/logo.png";
 import { Link } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
+import Modal from "./Modal";
+import SettingsModal from "./SettingsModal";
 
 const Header = () => {
+  const [isModalOpen, setIsModalPen] = useState(false);
+  const openModal = () => setIsModalPen(true);
+  const closeModal = () => setIsModalPen(false);
   return (
     <div>
       <header className="Header sticky inset-x-0 top-0 z-50 left-0 bg-white text-gray-600 body-font border-b border-gray-200">
@@ -23,10 +28,14 @@ const Header = () => {
             <Link to={"/ranking"}>
               <span className="mr-5 hover:text-gray-900">랭킹</span>
             </Link>
-            <Link to={"#"}>
-              <FiSettings className="mr-5 w-6 h-6 inline-block" />
-              {/* <span className="mr-5 hover:text-gray-900">설정</span> */}
-            </Link>
+            <div>
+              <button onClick={openModal}>
+                <FiSettings className="mr-5 w-6 h-6 inline-block" />
+              </button>
+              <Modal isOpen={isModalOpen} closeModal={closeModal}>
+                <SettingsModal />
+              </Modal>
+            </div>
             <Link to={"/mypage"}>
               <CgProfile className="mr-5 w-6 h-6 inline-block" />
               {/* <span className="mr-5 hover:text-gray-900">마이페이지</span> */}

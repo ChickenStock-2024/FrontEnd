@@ -7,22 +7,11 @@ import HomeCenterAfterLoginJoinCompetition from "../components/Home/HomeCenterAf
 import HomeBottom from "../components/Home/HomeBottom";
 import Input from "../components/Input";
 import Modal from "../components/Modal";
+import SettingsModal from "../components/SettingsModal";
 
 const Home = () => {
-  const [isModalOpen, setIsModalPen] = useState(false);
-  const openModal = () => setIsModalPen(true);
-  const closeModal = () => setIsModalPen(false);
-
   return (
     <>
-      {/* 모달 예시 */}
-      <div>
-        <button onClick={openModal}>Open Modal</button>
-        <Modal isOpen={isModalOpen} closeModal={closeModal}>
-          <div className="p-10">안녕하세요</div>
-        </Modal>
-      </div>
-
       <HomeCompetitionInfo />
 
       {/* 인풋 예시 */}
