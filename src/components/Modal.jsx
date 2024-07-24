@@ -19,15 +19,22 @@ const Modal = ({ isOpen, closeModal, children }) => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
+            width: 350,
             maxWidth: "100%",
             maxHeight: "90%",
             overflowY: "auto",
             backgroundColor: "white",
+            borderRadius: 5,
+            color: "black",
           }}
         >
           {children}
-          <button onClick={closeModal}>X</button>
+          <button
+            className="absolute top-2 right-2 text-2xl px-2 items-center hover:bg-gray-100"
+            onClick={closeModal}
+          >
+            ⨉
+          </button>
         </div>
       </div>
     </div>
