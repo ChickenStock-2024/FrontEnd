@@ -42,8 +42,31 @@ const rating = {
 const MyPageHistory = ({ activeTabOption }) => {
   return (
     <>
+      <div className="p-4 mx-36">
+        {/* 하기에서 배열 반복 돌기 */}
+        {competition.map((competitionItem, index) => (
+          <div key={index}>
+            <div className=" flex flex-row justify-between mb-2 ">
+              <div className="block">
+                <div className="text-xl">{competitionItem.title}</div>
+                <div className="text-xs">
+                  기간: {competitionItem.startAt} ~ {competitionItem.endAt}
+                </div>
+              </div>
+              <div className="block text-right">
+                <div>순위: {rating.rank}위</div>
+                <div>레이팅: {rating.latestRating}</div>
+                <div>
+                  수익률: {rating.earningRate}% ({rating.earnings})
+                </div>
+              </div>
+            </div>
+            <hr className="mb-2" />
+          </div>
+        ))}
+      </div>
       {/* <h1>MyPage의 대회 참여 히스토리 입니당~!!</h1> */}
-      <div id="default-tab-content">
+      {/* <div id="default-tab-content">
         {tabsData.map((tab) => (
           <div
             key={tab.id}
@@ -52,30 +75,10 @@ const MyPageHistory = ({ activeTabOption }) => {
             role="tabpanel"
             aria-labelledby={`${tab.id}-tab`}
           >
-            {/* 하기에서 배열 반복 돌기 */}
-            {competition.map((competitionItem, index) => (
-              <div key={index}>
-                <div className=" flex flex-row justify-between mb-2 ">
-                  <div className="block">
-                    <div className="text-xl">{competitionItem.title}</div>
-                    <div className="text-xs">
-                      기간: {competitionItem.startAt} ~ {competitionItem.endAt}
-                    </div>
-                  </div>
-                  <div className="block text-right">
-                    <div>순위: {rating.rank}위</div>
-                    <div>레이팅: {rating.latestRating}</div>
-                    <div>
-                      수익률: {rating.earningRate}% ({rating.earnings})
-                    </div>
-                  </div>
-                </div>
-                <hr className="mb-2" />
-              </div>
-            ))}
+            
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 };
