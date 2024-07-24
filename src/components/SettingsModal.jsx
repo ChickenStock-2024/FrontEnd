@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import Toggle from "./Toggle";
 
 const SettingsModal = ({ closeModal }) => {
   return (
@@ -9,11 +10,11 @@ const SettingsModal = ({ closeModal }) => {
         <div>
           <div className="flex justify-between border-b py-2 mb-2">
             <span>알림</span>
-            <div className="bg-yellow-400">토글버튼</div>
+            <Toggle />
           </div>
           <div className="flex justify-between border-b py-2 mb-2">
             <span>카카오톡 알림</span>
-            <div className="bg-yellow-400">토글버튼</div>
+            <Toggle />
           </div>
           <div className="flex flex-col py-4">
             <label htmlFor="nickname" className="mb-2">
