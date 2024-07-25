@@ -12,14 +12,9 @@ const tabsData = [
 ];
 const competition = [
   {
-    title: "정기 1차 대회",
-    startAt: "24-07-22",
-    endAt: "24-07-26",
-  },
-  {
-    title: "정기 2차 대회",
-    startAt: "24-07-27",
-    endAt: "24-07-30",
+    title: "정기 4차 대회",
+    startAt: "24-08-07",
+    endAt: "24-08-10",
   },
   {
     title: "정기 3차 대회",
@@ -27,9 +22,14 @@ const competition = [
     endAt: "24-08-05",
   },
   {
-    title: "정기 4차 대회",
-    startAt: "24-08-07",
-    endAt: "24-08-10",
+    title: "정기 2차 대회",
+    startAt: "24-07-27",
+    endAt: "24-07-30",
+  },
+  {
+    title: "정기 1차 대회",
+    startAt: "24-07-22",
+    endAt: "24-07-26",
   },
 ];
 const rating = {
@@ -39,7 +39,7 @@ const rating = {
   earnings: "300,000",
 };
 
-const MyPageHistory = ({ activeTabOption }) => {
+const HistoryTab = ({ activeTabOption }) => {
   return (
     <>
       <div className="p-4 mx-36">
@@ -65,7 +65,7 @@ const MyPageHistory = ({ activeTabOption }) => {
           </div>
         ))}
       </div>
-      {/* <h1>MyPage의 대회 참여 히스토리 입니당~!!</h1> */}
+      {/* <h1>Profile의 대회 참여 히스토리 입니당~!!</h1> */}
       {/* <div id="default-tab-content">
         {tabsData.map((tab) => (
           <div
@@ -83,4 +83,4 @@ const MyPageHistory = ({ activeTabOption }) => {
   );
 };
 
-export default MyPageHistory;
+export default HistoryTab;

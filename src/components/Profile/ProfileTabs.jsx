@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./MyPageTabs.css";
+import "./ProfileTabs.css";
 
 const tabsData = [
   {
@@ -12,7 +12,7 @@ const tabsData = [
   },
 ];
 
-const MypageTabs = ({ getActiveTabOption }) => {
+const ProfileTabs = ({ getActiveTabOption }) => {
   const [activeTab, setActiveTab] = useState(tabsData[0].id);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ const MypageTabs = ({ getActiveTabOption }) => {
   );
 };
 
-export default MypageTabs;
+export default ProfileTabs;
