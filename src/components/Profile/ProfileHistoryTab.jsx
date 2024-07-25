@@ -39,7 +39,7 @@ const rating = {
   earnings: "300,000",
 };
 
-const HistoryTab = ({ activeTabOption }) => {
+const ProfileHistoryTab = ({ activeTabOption }) => {
   return (
     <>
       <div className="p-4 mx-36">
@@ -83,4 +83,4 @@ const HistoryTab = ({ activeTabOption }) => {
   );
 };
 
-export default HistoryTab;
+export default ProfileHistoryTab;
