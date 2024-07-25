@@ -26,7 +26,6 @@ const Ranking = () => {
 
   return (
     <div className="mt-10 mx-24">
-      ...랭킹페이지...
       <RankingTabs getActiveTabOption={getActiveTabOption} />
       {SelectedRanking(activeTabOption)}
     </div>
