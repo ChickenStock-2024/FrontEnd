@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "./../assets/logo.png";
 import { Link } from "react-router-dom";
-import { GoPerson } from "react-icons/go";
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 import Modal from "./Modal";
@@ -40,7 +39,7 @@ const Header = () => {
                 <SettingsModal isOpen={isModalOpen} closeModal={closeModal} />
               </Modal>
             </div>
-            <Link to={"/mypage"}>
+            <Link to={"/profile"}>
               <CgProfile className="mr-5 w-6 h-6 inline-block" />
               {/* <span className="mr-5 hover:text-gray-900">마이페이지</span> */}
             </Link>

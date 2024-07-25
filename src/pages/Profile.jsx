@@ -1,14 +1,14 @@
 import React from "react";
 
-import MypageTabs from "../components/MyPage/MyPageTabs.jsx";
-import MyPageHistory from "../components/MyPage/MyPageHistory.jsx";
+import ProfileTabs from "../components/Profile/ProfileTabs.jsx";
+import ProfileHistoryTab from "../components/Profile/ProfileHistoryTab.jsx";
 
-import MyPageUserSearch from "../components/MyPage/MyPageUserSearch.jsx";
+import ProfileUserSearchTab from "../components/Profile/ProfileUserSearchTab.jsx";
 
-import MyPageProfile from "../components/MyPage/MyPageProfile.jsx";
+import ProfileUserInfo from "../components/Profile/ProfileUserInfo.jsx";
 import { useState } from "react";
 
-const MyPage = () => {
+const Profile = () => {
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
@@ -23,24 +23,24 @@ const MyPage = () => {
           </div>
           <div className="h-44">[h: 240px 흰색 백그라운드]</div>
           <div className="absolute top-0 left-24">
-            <MyPageProfile />
+            <ProfileUserInfo />
           </div>
         </div>
       </section>
       <section>
-        <MypageTabs getActiveTabOption={getActiveTabOption} />
+        <ProfileTabs getActiveTabOption={getActiveTabOption} />
       </section>
       <section>
         {/* <p>{console.log(activeTabOption)}</p> */}
         {activeTabOption === "history" ? (
-          <MyPageHistory activeTabOption={activeTabOption} />
+          <ProfileHistoryTab activeTabOption={activeTabOption} />
         ) : (
           <>
-            <MyPageUserSearch />
+            <ProfileUserSearchTab />
           </>
         )}
       </section>
     </>
   );
 };
-export default MyPage;
+export default Profile;

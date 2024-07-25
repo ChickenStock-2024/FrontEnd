@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyPageProfile = () => {
+const ProfileUserInfo = () => {
   const userInfo = {
     nickName: "쑤",
     teer: "플래티넘 5",
@@ -35,4 +35,4 @@ const MyPageProfile = () => {
   );
 };
 
-export default MyPageProfile;
+export default ProfileUserInfo;
