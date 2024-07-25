@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import ProfileHistoryTabModal from "./ProfileHistoryTabModal";
+import React from "react";
+
+import { useState } from "react";
 
 const tabsData = [
   {
@@ -15,8 +16,8 @@ const competitionHistoryInfos = [
   {
     competitonId: 4,
     title: "정기 4차 대회",
-    startAt: "2024-08-07T09:03:28.0654",
-    endAt: "2024-08-10T18:03:28.0654",
+    startAt: "24-08-07",
+    endAt: "24-08-10",
     rank: "3",
     latestRating: "-300",
     earningRate: "30",
@@ -25,8 +26,8 @@ const competitionHistoryInfos = [
   {
     competitonId: 3,
     title: "정기 3차 대회",
-    startAt: "2024-08-02T13:03:28.0654",
-    endAt: "2024-08-05T18:03:28.0654",
+    startAt: "24-08-02",
+    endAt: "24-08-05",
     rank: "3",
     latestRating: "400",
     earningRate: "50",
@@ -35,8 +36,8 @@ const competitionHistoryInfos = [
   {
     competitonId: 2,
     title: "정기 2차 대회",
-    startAt: "2024-07-27T10:03:28.0654",
-    endAt: "2024-07-30T18:03:28.0654",
+    startAt: "24-07-27",
+    endAt: "24-07-30",
     rank: "3",
     latestRating: "+200",
     earningRate: "20",
@@ -45,8 +46,8 @@ const competitionHistoryInfos = [
   {
     competitonId: 1,
     title: "정기 1차 대회",
-    startAt: "2024-07-22T10:03:28.0654",
-    endAt: "2024-07-26T18:03:28.0654",
+    startAt: "24-07-22",
+    endAt: "24-07-26",
     rank: "6",
     latestRating: "+2340",
     earningRate: "15",
@@ -54,7 +55,35 @@ const competitionHistoryInfos = [
   },
 ];
 
-const ProfileHistoryTab = () => {
+const Modal = ({ show, onClose, competitionItem }) => {
+  if (!show) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <div className="bg-white p-4 rounded">
+        <h2 className="text-xl mb-2">{competitionItem.title}</h2>
+        <div className="text-xs mb-4">
+          기간: {competitionItem.startAt} ~ {competitionItem.endAt}
+        </div>
+        <div className="text-right">
+          <div>순위: {competitionItem.rank}위</div>
+          <div>레이팅: {competitionItem.latestRating}</div>
+          <div>
+            수익률: {competitionItem.earningRate}% ({competitionItem.earnings})
+          </div>
+        </div>
+        <button
+          onClick={onClose}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          닫기
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const ProfileHistoryTab = ({}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCompetition, setSelectedCompetition] = useState(null);
 
@@ -93,15 +122,11 @@ const ProfileHistoryTab = () => {
           </div>
         ))}
       </div>
-      <div>
-        {showModal ? (
-          <ProfileHistoryTabModal
-            show={showModal}
-            onClose={handleCloseModal}
-            competitionItem={selectedCompetition}
-          />
-        ) : null}
-      </div>
+      <Modal
+        show={showModal}
+        onClose={handleCloseModal}
+        competitionItem={selectedCompetition}
+      />
     </>
   );
 };
