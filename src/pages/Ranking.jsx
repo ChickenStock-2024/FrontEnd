@@ -9,7 +9,7 @@ const Ranking = () => {
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
   };
-  console.log(activeTabOption);
+  // console.log(activeTabOption);
 
   const SelectedRanking = (tabOption) => {
     switch (tabOption) {
