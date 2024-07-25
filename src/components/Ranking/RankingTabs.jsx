@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const tabsData = [
   {
-    id: "allRanking",
+    id: "totalRanking",
     label: "전체 순위",
   },
   {
@@ -16,7 +16,7 @@ const tabsData = [
   },
 ];
 
-const RankingTab = ({ getActiveTabOption }) => {
+const RankingTabs = ({ getActiveTabOption }) => {
   const [activeTab, setActiveTab] = useState(tabsData[0].id);
   useEffect(() => {
     getActiveTabOption(activeTab);
@@ -54,4 +54,4 @@ const RankingTab = ({ getActiveTabOption }) => {
   );
 };
 
-export default RankingTab;
+export default RankingTabs;

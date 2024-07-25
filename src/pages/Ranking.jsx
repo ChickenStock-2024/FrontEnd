@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import RankingTab from "../components/Ranking/RankingTab";
-import AllRanking from "../components/Ranking/AllRanking";
+import RankingTabs from "../components/Ranking/RankingTabs";
+import TotalRanking from "../components/Ranking/TotalRanking";
+import RivalRanking from "../components/Ranking/RivalRanking";
+import NowRanking from "../components/Ranking/NowRanking";
 
 const Ranking = () => {
   const [activeTabOption, setActiveTabOption] = useState("");
@@ -9,12 +11,24 @@ const Ranking = () => {
   };
   console.log(activeTabOption);
 
+  const SelectedRanking = (tabOption) => {
+    switch (tabOption) {
+      case "totalRanking":
+        return <TotalRanking />;
+      case "rivalRanking":
+        return <RivalRanking />;
+      case "nowRanking":
+        return <NowRanking />;
+      default:
+        null;
+    }
+  };
+
   return (
     <div className="mt-10 mx-24">
-      랭킹페이지
-      <RankingTab getActiveTabOption={getActiveTabOption} />
-      <div></div>
-      <AllRanking activeTabOption={activeTabOption} />
+      ...랭킹페이지...
+      <RankingTabs getActiveTabOption={getActiveTabOption} />
+      {SelectedRanking(activeTabOption)}
     </div>
   );
 };
