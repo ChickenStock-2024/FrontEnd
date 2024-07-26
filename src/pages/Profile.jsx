@@ -22,7 +22,7 @@ const Profile = () => {
             [h: 112px/백그라운드: 252-245-199]
           </div>
           <div className="h-44">[h: 240px 흰색 백그라운드]</div>
-          <div className="absolute top-0 left-24">
+          <div className="absolute top-0 left-40">
             <ProfileUserInfo />
           </div>
         </div>
