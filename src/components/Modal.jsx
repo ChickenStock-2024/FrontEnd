@@ -11,6 +11,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
           width: "100vw",
           height: "100vh",
           backgroundColor: "rgba(0, 0, 0, 0.35)",
+          zIndex: 100,
         }}
       >
         <div
