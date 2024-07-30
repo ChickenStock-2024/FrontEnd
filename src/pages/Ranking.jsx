@@ -11,7 +11,7 @@ const Ranking = () => {
   };
   // console.log(activeTabOption);
 
-  const SelectedRanking = (tabOption) => {
+  const selectedRanking = (tabOption) => {
     switch (tabOption) {
       case "totalRanking":
         return <TotalRanking />;
@@ -27,7 +27,7 @@ const Ranking = () => {
   return (
     <div className="mt-10 mx-24 mb-24">
       <RankingTabs getActiveTabOption={getActiveTabOption} />
-      {SelectedRanking(activeTabOption)}
+      {selectedRanking(activeTabOption)}
     </div>
   );
 };
