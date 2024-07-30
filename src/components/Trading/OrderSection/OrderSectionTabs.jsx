@@ -23,7 +23,7 @@ const OrderSectionTabs = ({ getActiveTabOption }) => {
   }, [activeTab]);
   return (
     <>
-      <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="mb-4 border-b border-gray-200">
         <ul
           className="flex flex-wrap -mb-px text-sm text-center justify-evenly"
           id="default-tab"

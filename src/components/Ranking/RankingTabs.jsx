@@ -23,14 +23,14 @@ const RankingTabs = ({ getActiveTabOption }) => {
   }, [activeTab]);
   return (
     <>
-      <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="mb-4 border-b border-gray-200">
         <ul
           className="flex flex-wrap -mb-px text-sm text-center justify-evenly"
           id="default-tab"
           role="tablist"
         >
           {tabsData.map((tab) => (
-            <li className="px-2 flex-auto" role="presentation" key={tab.id}>
+            <li className="flex-auto" role="presentation" key={tab.id}>
               <button
                 className={`inline-block w-full p-4 border-b-2 rounded-t-lg ${
                   activeTab === tab.id

@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 
 const tabsData = [
   {
-    id: "totalRanking",
-    label: "전체 순위",
+    id: "buy",
+    label: "매수",
   },
   {
-    id: "rivalRanking",
-    label: "친구 순위",
+    id: "sell",
+    label: "매도",
   },
 ];
 
@@ -19,18 +19,20 @@ const OrderStockTabs = ({ getActiveTabOption }) => {
   }, [activeTab]);
   return (
     <>
-      <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="mb-4 border-b border-gray-200">
         <ul
           className="flex flex-wrap -mb-px text-sm text-center justify-evenly"
           id="default-tab"
           role="tablist"
         >
           {tabsData.map((tab) => (
-            <li className="px-2 flex-auto" role="presentation" key={tab.id}>
+            <li className="flex-auto" role="presentation" key={tab.id}>
               <button
-                className={`inline-block w-full p-4 border-b-2 rounded-t-lg ${
+                className={`inline-block w-full p-3 border-b-2 rounded-t-lg ${
                   activeTab === tab.id
-                    ? "font-bold text-slate-950 border-slate-950"
+                    ? activeTab === "buy"
+                      ? "font-bold text-red-500 border-red-500"
+                      : "font-bold text-blue-600  border-blue-600"
                     : "font-medium text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 "
                 }`}
                 id={`${tab.id}-tab`}
