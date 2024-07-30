@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import LoginFormAxios from "./LoginFormAxios";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
@@ -13,42 +15,44 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    LoginFormAxios({ email, password, setEmail, setPassword });
+    // axios({
+    //   method: "POST",
+    //   url: "/auth/login/email",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   responseType: "json",
+    //   data: {
+    //     email: email,
+    //     password: password,
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
+    //     sessionStorage.setItem("token", data.token);
+    //     sessionStorage.setItem("email", data.email);
+    //     sessionStorage.setItem("nickName", data.nickName);
+    //     sessionStorage.setItem("isLogin", true);
+    //     // sessionStorage에 저장된 search 값을 가져옴
+    //     console.log(window.sessionStorage.getItem("email"));
+    //     // alert(`안녕하세요, ${response.data.nickName}님`);
+    //     if (data.hedaers.token) {
+    //       // 로그인 성공시 메인 페이지로!
+    //       nav("/");
+    //     } else {
+    //       alert("이메일 혹은 패스워드를 확인해주세요.");
+    //     }
+    //   })
+    //   // .catch((error) => alert(error.message));
+    //   .catch((error) => {
+    //     alert(error.message);
+    //   });
 
-    fetch("/auth/login/email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
-        sessionStorage.setItem("token", data.token);
-        sessionStorage.setItem("email", data.email);
-        sessionStorage.setItem("nickName", data.nickName);
-        sessionStorage.setItem("isLogin", true);
-        // sessionStorage에 저장된 search 값을 가져옴
-        console.log(window.sessionStorage.getItem("email"));
-        // alert(`안녕하세요, ${response.data.nickName}님`);
-        if (data.hedaers.token) {
-          // 로그인 성공시 메인 페이지로!
-          nav("/");
-        } else {
-          alert("이메일 혹은 패스워드를 확인해주세요.");
-        }
-      })
-      // .catch((error) => alert(error.message));
-      .catch((error) => {
-        alert(error.message);
-      });
-
-    setEmail("");
-    setPassword("");
+    // setEmail("");
+    // setPassword("");
   };
 
   return (
@@ -104,11 +108,11 @@ const LoginForm = () => {
       <div className="w-72 flex flec-row justify-evenly items-center text-center text-base text-gray-500">
         <div className="flex-1 text-center">비밀번호 찾기</div>
         <span> | </span>
-        <Link to={"/signup"}>
-          <div role="button" className="flex-1 text-center">
-            회원가입
-          </div>
-        </Link>
+        <div role="button" className="flex-1 text-center">
+          <Link to={"/signup"}>
+            <div>회원가입</div>
+          </Link>
+        </div>
       </div>
 
       {/* 간편로그인 line */}

@@ -1,11 +1,11 @@
 import React from "react";
 
-const Button = ({ text, type, onClick }) => {
+const Button = ({ text, type, onClick, color }) => {
   return (
     <div>
       <button
         onClick={onClick}
-        className="bg-yellow2 w-32 px-6 py-3 font-bold rounded-lg"
+        className={`${color ? "bg-" + color : "bg-yellow2"} px-9 py-3 font-bold rounded-lg`}
       >
         {text}
       </button>
