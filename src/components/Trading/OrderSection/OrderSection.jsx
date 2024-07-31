@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import OrderSectionTabs from "./OrderSectionTabs";
-import Order from "./Order";
-import OrderList from "./OrderList";
+import OrderMain from "./OrderMain/OrderMain";
+import OrderList from "./OrderList/OrderList";
 import Account from "./Account";
+import OrderContestInfo from "./OrderContestInfo";
 
 const OrderSection = () => {
   const [activeTabOption, setActiveTabOption] = useState("");
@@ -13,7 +14,7 @@ const OrderSection = () => {
   const selectedSection = (tabOption) => {
     switch (tabOption) {
       case "order":
-        return <Order />;
+        return <OrderMain />;
       case "orderList":
         return <OrderList />;
       case "account":
@@ -25,7 +26,9 @@ const OrderSection = () => {
 
   return (
     <div className="m-2">
-      <div className="bg-violet-100 h-12">대회 정보 부분</div>
+      <div className="bg-violet-100 h-12">
+        <OrderContestInfo />
+      </div>
       <OrderSectionTabs getActiveTabOption={getActiveTabOption} />
       {selectedSection(activeTabOption)}
     </div>

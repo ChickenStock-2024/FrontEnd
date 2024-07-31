@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import QuantityButton from "./QuantityButton";
 
 const OrderStockBuy = () => {
   return (

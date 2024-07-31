@@ -68,7 +68,7 @@ const OrderStockInput = ({ activeTabOption }) => {
         <QuantityButton percent={50} onClickPercent={onClickPercent} />
         <QuantityButton percent={100} onClickPercent={onClickPercent} />
       </div>
-      <span>@@@[최대 주문 가능 수량: {maxQuantity}]</span>
+      {/* <span>@@@[최대 주문 가능 수량: {maxQuantity}]</span> */}
       {/* 주문 총액 */}
       <div className="my-6">
         <div className="font-bold">주문 총액</div>

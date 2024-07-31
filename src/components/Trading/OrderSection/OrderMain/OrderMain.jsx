@@ -2,7 +2,7 @@ import React from "react";
 import OrderBook from "./OrderBook";
 import OrderStock from "./OrderStock";
 
-const Order = () => {
+const OrderMain = () => {
   return (
     <div className="flex h-[500px]">
       <div className="w-2/5 bg-slate-100">
@@ -15,4 +15,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrderMain;
