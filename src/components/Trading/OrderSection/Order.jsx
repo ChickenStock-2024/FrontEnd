@@ -8,7 +8,7 @@ const Order = () => {
       <div className="w-2/5 bg-slate-100">
         <OrderBook />
       </div>
-      <div className="w-3/5 bg-slate-200">
+      <div className="w-3/5">
         <OrderStock />
       </div>
     </div>

@@ -139,7 +139,7 @@ const StockChart = () => {
   return (
     <div>
       <ChartTitle />
-      <ECharts option={options} style={{ height: "500px" }} />
+      <ECharts option={options} style={{ height: "450px" }} />
     </div>
   );
 };
