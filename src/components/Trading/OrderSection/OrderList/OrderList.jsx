@@ -1,10 +1,12 @@
 import React from "react";
+import ExecutionList from "./ExecutionList";
+import UnexecutionList from "./UnexecutionList";
 
 const OrderList = () => {
   return (
-    <div>
-      <div>미체결 내역</div>
-      <div>체결 내역</div>
+    <div className="overflow-y-auto max-h-[450px]">
+      <UnexecutionList />
+      <ExecutionList />
     </div>
   );
 };
