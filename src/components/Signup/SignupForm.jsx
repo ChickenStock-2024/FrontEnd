@@ -89,15 +89,20 @@ const SignupForm = () => {
           >
             닉네임
           </label>
-          <input
-            className="w-72 h-12 border-2 border-gray-200 rounded-md mt-1"
-            type="text"
-            placeholder="닉네임"
-            id="nickname"
-            value={nickname}
-            onChange={handleInput}
-            required
-          />
+          <div className="w-72 h-12 flex">
+            <input
+              className="flex-1 border-2 border-gray-200 rounded-md mt-1"
+              type="text"
+              placeholder="닉네임"
+              id="nickname"
+              value={nickname}
+              onChange={handleInput}
+              required
+            />
+            <button className="h-10 mt-1 ml-2 px-1 bg-yellow3 rounded-md text-sm">
+              중복확인
+            </button>
+          </div>
         </div>
         <div className="flex flex-col pb-3">
           <label
@@ -106,15 +111,20 @@ const SignupForm = () => {
           >
             이메일
           </label>
-          <input
-            className="w-72 h-12 border-2 border-gray-200 rounded-md mt-1"
-            type="email"
-            placeholder="이메일"
-            id="email"
-            value={email}
-            onChange={handleInput}
-            required
-          />
+          <div className="w-72 h-12 flex">
+            <input
+              className="flex-1 border-2 border-gray-200 rounded-md mt-1"
+              type="email"
+              placeholder="이메일"
+              id="email"
+              value={email}
+              onChange={handleInput}
+              required
+            />
+            <button className="h-10 mt-1 ml-2 px-1 bg-yellow3 rounded-md text-sm">
+              중복확인
+            </button>
+          </div>
         </div>
         <div className="flex flex-col pb-3">
           <label

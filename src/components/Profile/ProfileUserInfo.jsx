@@ -1,4 +1,6 @@
 import React from "react";
+import profileImg from "../../assets/dummy-profile-icon.png";
+import teerBadgeIcon from "../../assets/userTeerBadge.png";
 
 const ProfileUserInfo = () => {
   const userInfo = {
@@ -13,7 +15,7 @@ const ProfileUserInfo = () => {
           <section>
             <img
               className="rounded-full items-center w-40 h-40"
-              src="src/assets/userProfileImage_쑤.png"
+              src={profileImg}
               alt="userProfileImage"
             />
           </section>
@@ -26,7 +28,7 @@ const ProfileUserInfo = () => {
               <>
                 <img
                   className="rounded-full w-5 h-5 ml-2"
-                  src="src\assets\userTeerBadge.png"
+                  src={teerBadgeIcon}
                   alt="userTeerBadge"
                 />
               </>
