@@ -2,6 +2,7 @@ import React from "react";
 import OrderStockTabs from "./OrderStockTabs";
 import OrderStockSell from "./OrderStockSell";
 import OrderStockBuy from "./OrderStockBuy";
+import OrderStockInput from "./OrderStockInput";
 import { useState } from "react";
 
 const OrderStock = () => {
@@ -24,6 +25,7 @@ const OrderStock = () => {
   return (
     <div>
       <OrderStockTabs getActiveTabOption={getActiveTabOption} />
+      <OrderStockInput activeTabOption={activeTabOption} />
       {selectedSection(activeTabOption)}
     </div>
   );
