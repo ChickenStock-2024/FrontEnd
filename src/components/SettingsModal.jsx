@@ -17,12 +17,12 @@ const SettingsModal = ({ closeModal }) => {
             <Toggle />
           </div>
           <div className="flex flex-col py-4">
-            <label htmlFor="nickname" className="mb-2">
+            <label htmlFor="nickname-setting" className="mb-2">
               닉네임 변경
             </label>
             <input
               type="text"
-              id="nickname"
+              id="nickname-setting"
               className="border border-gray-500 rounded-md p-3"
             />
           </div>

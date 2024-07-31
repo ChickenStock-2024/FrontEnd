@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stomp/stompjs": "^7.0.0",
+    "axios": "^1.7.2",
     "eslint-config-prettier": "^9.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.1",
     "react-icons": "^5.2.1",
+    "react-kakao-login": "^2.1.1",
+    "react-phone-number-input": "^3.4.4",
     "react-router-dom": "^6.25.1"
   },
   "devDependencies": {
