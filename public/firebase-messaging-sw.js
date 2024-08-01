@@ -14,45 +14,18 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-// self.addEventListener("install", function (e) {
-//   console.log("fcm 서비스 워커 install..");
-//   self.skipWaiting();
-// });
-
-// self.addEventListener("activate", function (e) {
-//   console.log("fcm 서비스 워커 활성화!!");
-// });
-
-// self.addEventListener("push", function (e) {
-//   // console.log("push: ", e.data.json());
-//   if (!e.data.json()) return;
-
-//   const resultData = e.data.json().notification;
-//   const notificationTitle = resultData.title;
-//   const notificationOptions = {
-//     body: resultData.body,
-//     icon: resultData.image,
-//     tag: resultData.tag,
-//     ...resultData,
-//   };
-//   // console.log("push: ", { resultData, notificationTitle, notificationOptions });
-//   // console.log("push: ", { resultData });
-
-//   self.registration.showNotification(notificationTitle, notificationOptions);
-// });
-
 // onBackgroundMessage 함수를 통해 백그라운드 상태일 때 FCM 메시지 수신
 const messaging = firebase.messaging();
-messaging.onBackgroundMessage((payload) => {
-  // console.log("[firebase-messaging-sw.js] Received background message ");
-  // // 알림 Customize
-  // const notificationTitle = "Background Message Title";
-  // const notificationOptions = {
-  //   body: "Background Message body.",
-  //   icon: "/firebase-logo.png",
-  // };
-  // self.registration.showNotification(notificationTitle, notificationOptions);
-});
+// messaging.onBackgroundMessage((payload) => {
+//   // console.log("[firebase-messaging-sw.js] Received background message ");
+//   // // 알림 Customize
+//   // const notificationTitle = "Background Message Title";
+//   // const notificationOptions = {
+//   //   body: "Background Message body.",
+//   //   icon: "/firebase-logo.png",
+//   // };
+//   // self.registration.showNotification(notificationTitle, notificationOptions);
+// });
 
 // // 알림 클릭시, 특정 url로 이동
 // self.addEventListener("notificationclick", function (event) {
@@ -61,3 +34,48 @@ messaging.onBackgroundMessage((payload) => {
 //   event.notification.close();
 //   event.waitUntil(clients.openWindow(url));
 // });
+
+// [onnotificationclickd이용] 알림 클릭시, 특정 url로 이동
+self.addEventListener("notificationclick", (event) => {
+  console.log("On notification click: ", event.notification.tag);
+  event.notification.close();
+  const url = "http://localhost:5173/trading";
+
+  // This looks to see if the current is already open and
+  // focuses if it is
+  event.waitUntil(
+    clients
+      .matchAll({
+        type: "window",
+      })
+      .then((clientList) => {
+        for (const client of clientList) {
+          if (client.url === url && "focus" in client) return client.focus();
+        }
+        if (clients.openWindow) return clients.openWindow(url);
+      })
+  );
+});
+
+// // [onnotificationclickd이용] 알림 클릭시, 특정 url로 이동
+// self.onnotificationclick = (event) => {
+//   console.log("On notification click: ", event.notification.tag);
+//   event.notification.close();
+//   const url = "http://localhost:5173/trading";
+//   // const url = "/trading";
+
+//   // This looks to see if the current is already open and
+//   // focuses if it is
+//   event.waitUntil(
+//     clients
+//       .matchAll({
+//         type: "window",
+//       })
+//       .then((clientList) => {
+//         for (const client of clientList) {
+//           if (client.url === url && "focus" in client) return client.focus();
+//         }
+//         if (clients.openWindow) return clients.openWindow(url);
+//       })
+//   );
+// };
