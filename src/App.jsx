@@ -1,5 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import NotificationInApp from "./components/Notification/NotioficationInApp";
+// import NotificationFcmTokenAxios from "./components/Notification/NotificationFcmTokenAxios";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -8,6 +10,8 @@ import Trading from "./pages/Trading";
 import Ranking from "./pages/Ranking";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
+
+NotificationInApp();
 
 function App() {
   return (

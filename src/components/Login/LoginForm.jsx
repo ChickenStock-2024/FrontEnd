@@ -9,7 +9,7 @@ import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
 const LoginForm = () => {
   const nav = useNavigate();
 
-  // 로그인 정보
+  // 로그인 정보(유저가 로그인 창에서 입력한 email, password, fcm토큰)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
