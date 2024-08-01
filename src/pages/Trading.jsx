@@ -6,7 +6,7 @@ import OrderSection from "../components/Trading/OrderSection/OrderSection";
 const Trading = () => {
   return (
     <div className="flex">
-      <div className="w-2/12 bg-indigo-50">
+      <div className="w-2/12">
         <StockList />
       </div>
       <div className="w-6/12 h-full">

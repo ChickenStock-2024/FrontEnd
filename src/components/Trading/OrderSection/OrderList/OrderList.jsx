@@ -4,7 +4,7 @@ import UnexecutionList from "./UnexecutionList";
 
 const OrderList = () => {
   return (
-    <div className="overflow-y-auto max-h-[450px]">
+    <div className="overflow-y-auto max-h-[450px] border border-red-300">
       <UnexecutionList />
       <ExecutionList />
     </div>

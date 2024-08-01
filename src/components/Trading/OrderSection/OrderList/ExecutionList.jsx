@@ -73,76 +73,6 @@ const ExecutionList = () => {
       status: "매도체결",
       created_at: "2024-07-23T10:03:30.0007",
     },
-    {
-      company_name: "카카오",
-      price: "41000",
-      quantity: "5",
-      status: "매수체결",
-      created_at: "2022-07-23T12:54:20.1125",
-    },
-    {
-      company_name: "삼성전자",
-      price: "83200",
-      quantity: "12",
-      status: "매도체결",
-      created_at: "2024-07-23T10:03:30.0007",
-    },
-    {
-      company_name: "카카오",
-      price: "41000",
-      quantity: "5",
-      status: "매수체결",
-      created_at: "2022-07-23T12:54:20.1125",
-    },
-    {
-      company_name: "삼성전자",
-      price: "83200",
-      quantity: "12",
-      status: "매도체결",
-      created_at: "2024-07-23T10:03:30.0007",
-    },
-    {
-      company_name: "카카오",
-      price: "41000",
-      quantity: "5",
-      status: "매수체결",
-      created_at: "2022-07-23T12:54:20.1125",
-    },
-    {
-      company_name: "삼성전자",
-      price: "83200",
-      quantity: "12",
-      status: "매도체결",
-      created_at: "2024-07-23T10:03:30.0007",
-    },
-    {
-      company_name: "카카오",
-      price: "41000",
-      quantity: "5",
-      status: "매수체결",
-      created_at: "2022-07-23T12:54:20.1125",
-    },
-    {
-      company_name: "삼성전자",
-      price: "83200",
-      quantity: "12",
-      status: "매도체결",
-      created_at: "2024-07-23T10:03:30.0007",
-    },
-    {
-      company_name: "카카오",
-      price: "41000",
-      quantity: "5",
-      status: "매수체결",
-      created_at: "2022-07-23T12:54:20.1125",
-    },
-    {
-      company_name: "삼성전자",
-      price: "83200",
-      quantity: "12",
-      status: "매도체결",
-      created_at: "2024-07-23T10:03:30.0007",
-    },
   ];
 
   const handleTime = (strDate) => {
@@ -184,10 +114,10 @@ const ExecutionList = () => {
               >
                 {execution.status.substr(0, 2)}
               </div>
-              <div className="font-light text-xs">{execution.quantity}주</div>
               <div className="font-light text-xs">
                 {priceFormat(execution.price)}원
               </div>
+              <div className="font-light text-xs">{execution.quantity}주</div>
             </div>
           </div>
           <div>
