@@ -2,70 +2,70 @@ import React from "react";
 // import profileImage from "../../assets/userProfileImage_쑤.png";
 // import userTeerBadge from "../../assets/userTeerBadge.png";
 
-const ProfileUserSearchTabResult = () => {
-  const userInfos = [
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-    {
-      nickName: "쑤",
-      rank: "23",
-      latestRating: "+2340",
-      earningRate: "+30",
-      earnings: "+300,000",
-    },
-  ];
+const ProfileUserSearchTabResult = ({ userInfos }) => {
+  // const userInfos = [
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  //   {
+  //     nickName: "쑤",
+  //     rank: "23",
+  //     latestRating: "+2340",
+  //     earningRate: "+30",
+  //     earnings: "+300,000",
+  //   },
+  // ];
   return (
     <div className="flex">
       <section className="flex-row flex-1">
         {userInfos.map((userInfo, index) => (
-          <>
+          <div key={index}>
             <div className="flex py-3">
               <div className=" flex w-[50%]">
                 <div className="w-[20%] text-l font-bold">
@@ -108,7 +108,7 @@ const ProfileUserSearchTabResult = () => {
               </div>
             </div>
             <hr />
-          </>
+          </div>
         ))}
       </section>
     </div>

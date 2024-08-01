@@ -3,7 +3,7 @@ import ProfileUserSearchTabResult from "./ProfileUserSearchTabResult.jsx";
 
 import Input from "../Input.jsx";
 
-const ProfileUserSearchTab = () => {
+const ProfileUserSearchTab = ({ userInfos }) => {
   return (
     <>
       <div className="flex flex-col mx-52">
@@ -12,7 +12,7 @@ const ProfileUserSearchTab = () => {
           <Input placeholder={"유저 닉네임을 입력하세여~!!"} />
         </div>
         <div className="px-7">
-          <ProfileUserSearchTabResult />
+          <ProfileUserSearchTabResult userInfos={userInfos} />
         </div>
       </div>
     </>
