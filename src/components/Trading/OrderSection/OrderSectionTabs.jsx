@@ -3,20 +3,20 @@ import { useState, useEffect } from "react";
 
 const tabsData = [
   {
-    id: "totalRanking",
-    label: "전체 순위",
+    id: "order",
+    label: "주문하기",
   },
   {
-    id: "rivalRanking",
-    label: "친구 순위",
+    id: "orderList",
+    label: "체결 내역",
   },
   {
-    id: "nowRanking",
-    label: "실시간 대회 순위",
+    id: "account",
+    label: "보유 현황",
   },
 ];
 
-const RankingTabs = ({ getActiveTabOption }) => {
+const OrderSectionTabs = ({ getActiveTabOption }) => {
   const [activeTab, setActiveTab] = useState(tabsData[0].id);
   useEffect(() => {
     getActiveTabOption(activeTab);
@@ -54,4 +54,4 @@ const RankingTabs = ({ getActiveTabOption }) => {
   );
 };
 
-export default RankingTabs;
+export default OrderSectionTabs;

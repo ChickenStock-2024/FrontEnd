@@ -3,20 +3,16 @@ import { useState, useEffect } from "react";
 
 const tabsData = [
   {
-    id: "totalRanking",
-    label: "전체 순위",
+    id: "buy",
+    label: "매수",
   },
   {
-    id: "rivalRanking",
-    label: "친구 순위",
-  },
-  {
-    id: "nowRanking",
-    label: "실시간 대회 순위",
+    id: "sell",
+    label: "매도",
   },
 ];
 
-const RankingTabs = ({ getActiveTabOption }) => {
+const OrderStockTabs = ({ getActiveTabOption }) => {
   const [activeTab, setActiveTab] = useState(tabsData[0].id);
   useEffect(() => {
     getActiveTabOption(activeTab);
@@ -32,9 +28,11 @@ const RankingTabs = ({ getActiveTabOption }) => {
           {tabsData.map((tab) => (
             <li className="flex-auto" role="presentation" key={tab.id}>
               <button
-                className={`inline-block w-full p-4 border-b-2 rounded-t-lg ${
+                className={`inline-block w-full p-3 border-b-2 rounded-t-lg ${
                   activeTab === tab.id
-                    ? "font-bold text-slate-950 border-slate-950"
+                    ? activeTab === "buy"
+                      ? "font-bold text-red-500 border-red-500"
+                      : "font-bold text-blue-600  border-blue-600"
                     : "font-medium text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 "
                 }`}
                 id={`${tab.id}-tab`}
@@ -54,4 +52,4 @@ const RankingTabs = ({ getActiveTabOption }) => {
   );
 };
 
-export default RankingTabs;
+export default OrderStockTabs;
