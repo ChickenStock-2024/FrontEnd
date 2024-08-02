@@ -210,17 +210,17 @@ const ProfileHistoryTabModal = ({
             </div>
             <div className="block text-right">
               <div>순위: {competitionItem.rank}위</div>
-              <div>레이팅: {competitionItem.latestRating}</div>
+              <div>레이팅 변동: {competitionItem.rating_change}</div>
               <div>
-                수익률: {competitionItem.earningRate}% (
-                {priceFormat(competitionItem.earnings)}원)
+                수익률: {(competitionItem.balance - 1000000) / 10000}% (
+                {priceFormat(competitionItem.balance - 1000000)}원)
               </div>
             </div>
           </div>
           <hr />
-          <div className="">
+          <div>
             {tradeHistoryInfos.map((tradeHistoryInfo, index) => (
-              <div className="flex gap-x-4 justify-between mb-2">
+              <div className="flex gap-x-4 justify-between mb-2" key={index}>
                 <div className="flex-col text-right">
                   <div className="text-sm">
                     {handleDate(tradeHistoryInfo.createdAt)}
