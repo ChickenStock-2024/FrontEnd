@@ -36,7 +36,7 @@ const Header = () => {
                 closeModal={closeModal}
                 setIsModalOpen={setIsModalOpen}
               >
-                <SettingsModal isOpen={isModalOpen} closeModal={closeModal} />
+                <SettingsModal closeModal={closeModal} />
               </Modal>
             </div>
             <Link to={"/profile"}>

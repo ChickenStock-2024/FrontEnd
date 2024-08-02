@@ -8,8 +8,7 @@ const OrderMain = () => {
 
   return (
     <div className="flex h-[500px]">
-      <div className="w-2/5 bg-slate-100">
-        <span>{stockId}번 주식 매매창</span>
+      <div className="w-2/5 overflow-y-auto">
         <OrderBook />
       </div>
       <div className="w-3/5">

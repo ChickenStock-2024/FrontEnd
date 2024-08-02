@@ -14,18 +14,27 @@ const OrderStock = () => {
   const selectedSection = (tabOption) => {
     switch (tabOption) {
       case "sell":
-        return <OrderStockSell />;
+        return <OrderStockSell price={price} quantity={quantity} />;
       case "buy":
-        return <OrderStockBuy />;
+        return <OrderStockBuy price={price} quantity={quantity} />;
       default:
         null;
     }
   };
 
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState(0);
+
   return (
     <div>
       <OrderStockTabs getActiveTabOption={getActiveTabOption} />
-      <OrderStockInput activeTabOption={activeTabOption} />
+      <OrderStockInput
+        activeTabOption={activeTabOption}
+        setPrice={setPrice}
+        setQuantity={setQuantity}
+        price={price}
+        quantity={quantity}
+      />
       {selectedSection(activeTabOption)}
     </div>
   );

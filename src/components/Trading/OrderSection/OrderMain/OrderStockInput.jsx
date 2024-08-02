@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import QuantityButton from "./QuantityButton";
 import PriceToggle from "./PriceToggle";
 
-const OrderStockInput = ({ activeTabOption }) => {
-  const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState(0);
+const OrderStockInput = ({
+  activeTabOption,
+  setPrice,
+  setQuantity,
+  price,
+  quantity,
+}) => {
   const onChangePrice = (e) => {
     setPrice(e.target.value.toLocaleString("ko-KR"));
   };
