@@ -1,6 +1,6 @@
 import React from "react";
 import profileImage from "../../assets/userProfileImage_쑤.png";
-import userTeerBadge from "../../assets/userTeerBadge.png";
+import userTierBadge from "../../assets/userTierBadge.png";
 
 function EachRanking({ user }) {
   return (
@@ -10,7 +10,7 @@ function EachRanking({ user }) {
         {/* 이 부분을 클릭했을 때 각 프로필로 라우팅 되어야 함 */}
         <div className="col-span-3 text-left flex gap-2 items-center">
           <img src={profileImage} alt="" className="rounded-full w-6 h-6" />
-          <img src={userTeerBadge} alt="" className="rounded-full w-6 h-6" />
+          <img src={userTierBadge} alt="" className="rounded-full w-6 h-6" />
           <div>{user.nickname}</div>
         </div>
       </div>

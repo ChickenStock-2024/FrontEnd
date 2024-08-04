@@ -79,7 +79,7 @@ const SignupForm = () => {
           // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
           sessionStorage.setItem("token", data.token);
           sessionStorage.setItem("email", data.email);
-          sessionStorage.setItem("nickName", data.nickname);
+          sessionStorage.setItem("nickname", data.nickname);
           sessionStorage.setItem("isLogin", true);
           // sessionStorage에 저장된 search 값을 가져옴
           console.log(window.sessionStorage.getItem("email"));

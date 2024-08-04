@@ -3,7 +3,7 @@ import RankingProfileRank from "./RankingProfileRank";
 
 const RankingProfile = ({ parameter }) => {
   const userInfo = {
-    nickName: "치킨엔젤",
+    nickname: "치킨엔젤",
     tier: "플래티넘 5",
     rank: 23,
     latestRating: +2340,
@@ -26,14 +26,14 @@ const RankingProfile = ({ parameter }) => {
           <div className="flex flex-wrap items-center">
             <img
               className="rounded-full w-5 h-5 mr-2"
-              src="src\assets\userTeerBadge.png"
+              src="src\assets\userTierBadge.png"
               alt="userTierBadge"
             />
             <div className="font-bold">
               {userInfo.tier} | {userInfo.latestRating}
             </div>
           </div>
-          <h2 className="text-3xl font-bold">{userInfo.nickName}</h2>
+          <h2 className="text-3xl font-bold">{userInfo.nickname}</h2>
           <span>대회 {userInfo.competitionCount}회 참여</span>
           <span>
             {userInfo.earningRate}%(+{userInfo.earnings})

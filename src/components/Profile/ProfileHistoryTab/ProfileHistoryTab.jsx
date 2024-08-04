@@ -1,34 +1,6 @@
 import React, { useState } from "react";
 import ProfileHistoryTabModal from "./ProfileHistoryTabModal";
 
-// Date converted to YYYY. MM. DD format
-const handleDate = (strDate) => {
-  const date = new Date(strDate);
-  return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
-};
-
-const priceFormat = (str) => {
-  const comma = (str) => {
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-  };
-  const uncomma = (str) => {
-    str = String(str);
-    return str.replace(/[^\d]+/g, "");
-  };
-  return comma(uncomma(str));
-};
-
-const tabsData = [
-  {
-    id: "history",
-    label: "대회참여 히스토리",
-  },
-  {
-    id: "userSearch",
-    label: "유저 검색",
-  },
-];
 const competitionItems = [
   {
     competitonId: 12,
@@ -36,9 +8,8 @@ const competitionItems = [
     startAt: "2024-08-07T09:03:28.0654",
     endAt: "2024-08-10T18:03:28.0654",
     rank: "9",
-    latestRating: "-300",
-    earningRate: "30",
-    earnings: "300,000",
+    rating_change: "-300",
+    balance: "1300000",
   },
   {
     competitonId: 11,
@@ -46,9 +17,8 @@ const competitionItems = [
     startAt: "2024-08-02T13:03:28.0654",
     endAt: "2024-08-05T18:03:28.0654",
     rank: "1",
-    latestRating: "+400",
-    earningRate: "50",
-    earnings: "500,000",
+    rating_change: "+400",
+    balance: "1500000",
   },
   {
     competitonId: 10,
@@ -56,9 +26,8 @@ const competitionItems = [
     startAt: "2024-07-27T10:03:28.0654",
     endAt: "2024-07-30T18:03:28.0654",
     rank: "3",
-    latestRating: "+200",
-    earningRate: "20",
-    earnings: "200,000",
+    rating_change: "+200",
+    balance: "1200000",
   },
   {
     competitonId: 9,
@@ -66,9 +35,8 @@ const competitionItems = [
     startAt: "2024-07-22T10:03:28.0654",
     endAt: "2024-07-26T18:03:28.0654",
     rank: "6",
-    latestRating: "+2340",
-    earningRate: "15",
-    earnings: "150,000",
+    rating_change: "+2340",
+    balance: "1150000",
   },
   {
     competitonId: 8,
@@ -76,9 +44,8 @@ const competitionItems = [
     startAt: "2024-08-07T09:03:28.0654",
     endAt: "2024-08-10T18:03:28.0654",
     rank: "9",
-    latestRating: "-300",
-    earningRate: "30",
-    earnings: "300,000",
+    rating_change: "-300",
+    balance: "1300000",
   },
   {
     competitonId: 7,
@@ -86,9 +53,8 @@ const competitionItems = [
     startAt: "2024-08-02T13:03:28.0654",
     endAt: "2024-08-05T18:03:28.0654",
     rank: "1",
-    latestRating: "+400",
-    earningRate: "50",
-    earnings: "500,000",
+    rating_change: "+400",
+    balance: "1500000",
   },
   {
     competitonId: 6,
@@ -96,9 +62,8 @@ const competitionItems = [
     startAt: "2024-07-27T10:03:28.0654",
     endAt: "2024-07-30T18:03:28.0654",
     rank: "3",
-    latestRating: "+200",
-    earningRate: "20",
-    earnings: "200,000",
+    rating_change: "+200",
+    balance: "1200000",
   },
   {
     competitonId: 5,
@@ -106,9 +71,8 @@ const competitionItems = [
     startAt: "2024-07-22T10:03:28.0654",
     endAt: "2024-07-26T18:03:28.0654",
     rank: "6",
-    latestRating: "+2340",
-    earningRate: "15",
-    earnings: "150,000",
+    rating_change: "+2340",
+    balance: "1150000",
   },
   {
     competitonId: 4,
@@ -116,9 +80,8 @@ const competitionItems = [
     startAt: "2024-08-07T09:03:28.0654",
     endAt: "2024-08-10T18:03:28.0654",
     rank: "9",
-    latestRating: "-300",
-    earningRate: "30",
-    earnings: "300,000",
+    rating_change: "-300",
+    balance: "1300000",
   },
   {
     competitonId: 3,
@@ -126,9 +89,8 @@ const competitionItems = [
     startAt: "2024-08-02T13:03:28.0654",
     endAt: "2024-08-05T18:03:28.0654",
     rank: "1",
-    latestRating: "+400",
-    earningRate: "50",
-    earnings: "500,000",
+    rating_change: "+400",
+    balance: "1500000",
   },
   {
     competitonId: 2,
@@ -136,9 +98,8 @@ const competitionItems = [
     startAt: "2024-07-27T10:03:28.0654",
     endAt: "2024-07-30T18:03:28.0654",
     rank: "3",
-    latestRating: "+200",
-    earningRate: "20",
-    earnings: "200,000",
+    rating_change: "+200",
+    balance: "1200000",
   },
   {
     competitonId: 1,
@@ -146,13 +107,12 @@ const competitionItems = [
     startAt: "2024-07-22T10:03:28.0654",
     endAt: "2024-07-26T18:03:28.0654",
     rank: "6",
-    latestRating: "+2340",
-    earningRate: "15",
-    earnings: "150,000",
+    rating_change: "+2340",
+    balance: "1150000",
   },
 ];
 
-const ProfileHistoryTab = () => {
+const ProfileHistoryTab = ({ handleDate, priceFormat }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCompetition, setSelectedCompetition] = useState(null);
 
@@ -183,10 +143,10 @@ const ProfileHistoryTab = () => {
               </div>
               <div className="block text-right">
                 <div>순위: {competitionItem.rank}위</div>
-                <div>레이팅: {competitionItem.latestRating}</div>
+                <div>레이팅 변동: {competitionItem.rating_change}</div>
                 <div>
-                  수익률: {competitionItem.earningRate}% (
-                  {priceFormat(competitionItem.earnings)}원)
+                  수익률: {(competitionItem.balance - 1000000) / 10000}% (
+                  {priceFormat(competitionItem.balance - 1000000)}원)
                 </div>
               </div>
             </div>

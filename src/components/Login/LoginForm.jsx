@@ -34,11 +34,11 @@ const LoginForm = () => {
     //     // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
     //     sessionStorage.setItem("token", data.token);
     //     sessionStorage.setItem("email", data.email);
-    //     sessionStorage.setItem("nickName", data.nickName);
+    //     sessionStorage.setItem("nickname", data.nickname);
     //     sessionStorage.setItem("isLogin", true);
     //     // sessionStorage에 저장된 search 값을 가져옴
     //     console.log(window.sessionStorage.getItem("email"));
-    //     // alert(`안녕하세요, ${response.data.nickName}님`);
+    //     // alert(`안녕하세요, ${response.data.nickname}님`);
     //     if (data.hedaers.token) {
     //       // 로그인 성공시 메인 페이지로!
     //       nav("/");
