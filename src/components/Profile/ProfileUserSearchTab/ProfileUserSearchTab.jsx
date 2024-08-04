@@ -5,7 +5,7 @@ import ProfileUserSearchTabSearch from "./ProfileUserSearchTabSearch.jsx";
 import ProfileUserSearchTabAxios from "./ProfileUserSearchTabAxios.js";
 // import Input from "../../Input.jsx";
 
-const ProfileUserSearchTab = () => {
+const ProfileUserSearchTab = ({ handleDate, priceFormat }) => {
   const [users, setUsers] = useState(null);
   useEffect(() => {
     setUsers(() => ProfileUserSearchTabAxios());
@@ -20,6 +20,8 @@ const ProfileUserSearchTab = () => {
           <div className="pb-5">
             <ProfileUserSearchTabSearch
               users={users}
+              handleDate={handleDate}
+              priceFormat={priceFormat}
               // placeholder={"유저 닉네임을 입력하세여~!!"}
             />
           </div>

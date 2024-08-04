@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import ProfileUserSearchTabResult from "./ProfileUserSearchTabResult";
 
-const ProfileUserSearchTabSearch = ({ users }) => {
+const ProfileUserSearchTabSearch = ({ users, priceFormat }) => {
   // users: 전체 유저
   console.log(users);
   const [search, setSearch] = useState("");
@@ -41,8 +41,9 @@ const ProfileUserSearchTabSearch = ({ users }) => {
           <section className="flex-row flex-1">
             {filteredUsers.map((filteredUser, index) => (
               <ProfileUserSearchTabResult
-                filteredUser={filteredUser}
                 key={index}
+                filteredUser={filteredUser}
+                priceFormat={priceFormat}
               />
             ))}
           </section>

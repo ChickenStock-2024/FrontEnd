@@ -2,63 +2,63 @@ import React from "react";
 import profileImage from "../../../assets/userProfileImage_쑤.png";
 import userTierBadge from "../../../assets/userTierBadge.png";
 
-const ProfileUserSearchTabResult = ({ filteredUser }) => {
+const ProfileUserSearchTabResult = ({ filteredUser, priceFormat }) => {
   // const userInfos = [
   //   {
   //     nickname: "0.쑤",
   //     rank: "23",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   //   {
   //     nickname: "1.쑤",
   //     rank: "23",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   //   {
   //     nickname: "2.쑤",
   //     rank: "25",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   //   {
   //     nickname: "3.쑤",
   //     rank: "263",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   //   {
   //     nickname: "4.쑤",
   //     rank: "15",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   //   {
   //     nickname: "5.쑤",
   //     rank: "16",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   //   {
   //     nickname: "6.쑤",
   //     rank: "18",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   //   {
   //     nickname: "7.쑤",
   //     rank: "20",
   //     rating: "+2340",
   //     earningRate: "+30",
-  //     earnings: "+300,000",
+  //     earnings: "+300000",
   //   },
   // ];
   return (
@@ -97,7 +97,7 @@ const ProfileUserSearchTabResult = ({ filteredUser }) => {
               {filteredUser["earningRate"]}%
             </div>
             <div className="text-l font-medium">
-              ({filteredUser["earnings"]})
+              ({priceFormat(filteredUser["earnings"])})
             </div>
           </div>
           <div className="w-[40%]">

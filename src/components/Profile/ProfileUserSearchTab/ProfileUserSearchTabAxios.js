@@ -10,7 +10,7 @@ const ProfileUserSearchTabAxios = () => {
       rating: 1832,
       point: 100,
       earningRate: "+30",
-      earnings: "+300,000",
+      earnings: "300000",
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ const ProfileUserSearchTabAxios = () => {
       rating: 2947,
       point: 100,
       earningRate: "+30",
-      earnings: "+300,000",
+      earnings: "300000",
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ const ProfileUserSearchTabAxios = () => {
       rating: 2587,
       point: 100,
       earningRate: "+30",
-      earnings: "+300,000",
+      earnings: "300,000",
     },
     {
       id: 4,
@@ -37,7 +37,7 @@ const ProfileUserSearchTabAxios = () => {
       rating: 1832,
       point: 100,
       earningRate: "+30",
-      earnings: "+300,000",
+      earnings: "300,000",
     },
     {
       id: 5,
@@ -46,7 +46,7 @@ const ProfileUserSearchTabAxios = () => {
       rating: 2947,
       point: 100,
       earningRate: "+30",
-      earnings: "+300,000",
+      earnings: "300,000",
     },
     {
       id: 6,
@@ -55,7 +55,7 @@ const ProfileUserSearchTabAxios = () => {
       rating: 2587,
       point: 100,
       earningRate: "+70",
-      earnings: "+700,000",
+      earnings: "700,000",
     },
   ];
   // axios({

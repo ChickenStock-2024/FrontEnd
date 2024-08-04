@@ -13,6 +13,24 @@ import ProfileUserInfo from "../components/Profile/ProfileUserInfo/ProfileUserIn
 import ProfileUserInfoAxios from "../components/Profile/ProfileUserInfo/ProfileUserInfoAxios.js";
 import ProfileUserSearchTab from "../components/Profile/ProfileUserSearchTab/ProfileUserSearchTab.jsx";
 
+// Date converted to YYYY. MM. DD format
+const handleDate = (strDate) => {
+  const date = new Date(strDate);
+  return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
+};
+
+const priceFormat = (str) => {
+  const comma = (str) => {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+  };
+  const uncomma = (str) => {
+    str = String(str);
+    return str.replace(/[^\d]+/g, "");
+  };
+  return comma(uncomma(str));
+};
+
 const Profile = () => {
   const params = useParams();
   const userId = params.id;
@@ -67,10 +85,15 @@ const Profile = () => {
           <ProfileHistoryTab
             userInfo={userInfo}
             activeTabOption={activeTabOption}
+            handleDate={handleDate}
+            priceFormat={priceFormat}
           />
         ) : (
           <>
-            <ProfileUserSearchTab />
+            <ProfileUserSearchTab
+              handleDate={handleDate}
+              priceFormat={priceFormat}
+            />
           </>
         )}
       </section>

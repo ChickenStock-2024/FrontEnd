@@ -1,34 +1,6 @@
 import React, { useState } from "react";
 import ProfileHistoryTabModal from "./ProfileHistoryTabModal";
 
-// Date converted to YYYY. MM. DD format
-const handleDate = (strDate) => {
-  const date = new Date(strDate);
-  return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
-};
-
-const priceFormat = (str) => {
-  const comma = (str) => {
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-  };
-  const uncomma = (str) => {
-    str = String(str);
-    return str.replace(/[^\d]+/g, "");
-  };
-  return comma(uncomma(str));
-};
-
-const tabsData = [
-  {
-    id: "history",
-    label: "대회참여 히스토리",
-  },
-  {
-    id: "userSearch",
-    label: "유저 검색",
-  },
-];
 const competitionItems = [
   {
     competitonId: 12,
@@ -140,7 +112,7 @@ const competitionItems = [
   },
 ];
 
-const ProfileHistoryTab = () => {
+const ProfileHistoryTab = ({ handleDate, priceFormat }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCompetition, setSelectedCompetition] = useState(null);
 
