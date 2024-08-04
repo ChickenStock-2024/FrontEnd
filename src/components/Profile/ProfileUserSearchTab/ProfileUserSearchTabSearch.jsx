@@ -4,7 +4,7 @@ import ProfileUserSearchTabResult from "./ProfileUserSearchTabResult";
 
 const ProfileUserSearchTabSearch = ({ users }) => {
   // users: 전체 유저
-  // console.log(users);
+  console.log(users);
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e) => {

@@ -70,7 +70,7 @@ const Profile = () => {
           />
         ) : (
           <>
-            <ProfileUserSearchTab userInfo={userInfo} />
+            <ProfileUserSearchTab />
           </>
         )}
       </section>
