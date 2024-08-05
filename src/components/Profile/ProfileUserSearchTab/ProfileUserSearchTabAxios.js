@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-const ProfileUserSearchTabAxios = () => {
-  const users = [
+const ProfileUserSearchTabAxios = ({ search }) => {
+  const users_list = [
     {
       id: 1,
       nickname: "nickname",
@@ -60,7 +60,8 @@ const ProfileUserSearchTabAxios = () => {
   ];
   // axios({
   //   method: "GET",
-  //   url: "/users/search",
+  //   // url: "/users/search/",
+  //   url: `/users/search?value=${search}`,
   //   heders: {
   //     "Content-Type": "application/json",
   //     // "Access-Token": sessionStorage.getItem("accessToken"),
@@ -71,13 +72,13 @@ const ProfileUserSearchTabAxios = () => {
   //   .then((res) => res.json())
   //   .then((data) => {
   //     console.log(data);
-  //     const users = data.member_list;
-  //     return users;
+  //     const users_list = data.member_list;
+  //     return users_list;
   //   })
   //   .catch((error) => {
   //     alert(error.message);
   //   });
 
-  return users;
+  return users_list;
 };
 export default ProfileUserSearchTabAxios;

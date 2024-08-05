@@ -2,7 +2,7 @@ import React from "react";
 import profileImage from "../../../assets/userProfileImage_쑤.png";
 import userTierBadge from "../../../assets/userTierBadge.png";
 
-const ProfileUserSearchTabResult = ({ filteredUser, priceFormat }) => {
+const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
   // const userInfos = [
   //   {
   //     nickname: "0.쑤",
@@ -65,12 +65,10 @@ const ProfileUserSearchTabResult = ({ filteredUser, priceFormat }) => {
     // <div className="flex">
     //   <section className="flex-row flex-1">
     //     {userInfos.map((userInfo, index) => (
-    <div key={filteredUser.id}>
+    <div key={user.id}>
       <div className="flex py-3">
         <div className=" flex w-[50%]">
-          <div className="w-[20%] text-l font-bold">
-            {filteredUser["rank"]}위
-          </div>
+          <div className="w-[20%] text-l font-bold">{user["rank"]}위</div>
           <div className="flex items-center">
             <div className="flex-none">
               <img
@@ -88,21 +86,19 @@ const ProfileUserSearchTabResult = ({ filteredUser, priceFormat }) => {
                 alt="userTierBadge"
               />
             </div>
-            <div className="text-l font-bold">{filteredUser["nickname"]}</div>
+            <div className="text-l font-bold">{user["nickname"]}</div>
           </div>
         </div>
         <div className="w-[50%] flex justify-end">
           <div className="w-[60%] flex justify-end ">
+            <div className="text-l font-medium">{user["earningRate"]}%</div>
             <div className="text-l font-medium">
-              {filteredUser["earningRate"]}%
-            </div>
-            <div className="text-l font-medium">
-              ({priceFormat(filteredUser["earnings"])})
+              ({priceFormat(user["earnings"])})
             </div>
           </div>
           <div className="w-[40%]">
             <div className="text-l font-medium text-right">
-              {filteredUser["rating"]}
+              {user["rating"]}
             </div>
           </div>
         </div>
