@@ -2,14 +2,19 @@ import React from "react";
 import { useContext } from "react";
 import { PriceContext } from "./OrderMain";
 
-const OrderBookStockPrice = ({ price, volume, bgColor }) => {
-  const { onClickPrice } = useContext(PriceContext);
+const OrderBookStockPrice = ({
+  price,
+  volume,
+  bgColor,
+  onClick,
+  isSelected,
+}) => {
+  // const { onClickPrice } = useContext(PriceContext);
 
   return (
     <div
       className={`${bgColor} flex justify-between p-2 mb-1 text-sm`}
-      onClick={onClickPrice}
-      // role="button"
+      onClick={() => onClick(price)}
     >
       <div className="price">{price.toLocaleString()}</div>
       {/* <div className="changeRate">

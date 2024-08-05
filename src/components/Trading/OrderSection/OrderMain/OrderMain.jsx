@@ -10,17 +10,16 @@ const OrderMain = () => {
   const { stockId } = useParams();
   const [selectedPrice, setSelectedPrice] = useState("");
 
-  const onClickPrice = (e) => {
-    // console.log(e.currentTarget.firstChild.innerHTML);
-    const currentPrice = e.currentTarget.firstChild.innerHTML;
-    setSelectedPrice(currentPrice);
-  };
+  // const onClickPrice = (e) => {
+  //   console.log(e.currentTarget);
+  //   const currentPrice = e.currentTarget.firstChild.innerHTML.replace(/,/g, "");
+  //   // const numericPrice = e.target.value.replace(/,/g, '');
+  //   setSelectedPrice(currentPrice);
+  // };
 
   return (
     <div className="flex h-[500px]">
-      <PriceContext.Provider
-        value={{ onClickPrice, selectedPrice, setSelectedPrice }}
-      >
+      <PriceContext.Provider value={{ selectedPrice, setSelectedPrice }}>
         <div className="w-2/5 overflow-y-auto">
           <OrderBook />
         </div>

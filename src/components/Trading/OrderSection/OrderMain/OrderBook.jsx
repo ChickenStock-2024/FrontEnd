@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import React from "react";
 import OrderBookStockPrice from "./OrderBookStockPrice";
+import { PriceContext } from "./OrderMain";
 
 const OrderBook = () => {
-  // const { onClickPrice } = useContext(PriceContext);
+  const { setSelectedPrice } = useContext(PriceContext);
   const sellingPrice = [
     {
       price: "80500",
@@ -86,6 +87,12 @@ const OrderBook = () => {
     },
   ];
 
+  const handleClickPrice = (price) => {
+    console.log("Clicked price:", price);
+    setSelectedPrice(price);
+    // 해당 함수가 실행되었을 때 표시가 되어야 함
+  };
+
   return (
     <>
       {sellingPrice.reverse().map((item, idx) => {
@@ -98,14 +105,13 @@ const OrderBook = () => {
         return (
           <OrderBookStockPrice
             key={item.price}
-            index={idx}
             price={parseInt(item.price)}
             volume={parseInt(item.volume)}
             bgColor={"bg-blue-100"}
-            // onClickPrice={onClickPrice}
+            onClick={handleClickPrice}
             // changeRate={changeRate}
             // totalSellingVolume={totalSellingVolume}
-            // totalBuyingVolum={totalBuyingVolum}
+            // totalBuyingVolume={totalBuyingVolume}
           />
         );
       })}
@@ -118,6 +124,7 @@ const OrderBook = () => {
             price={parseInt(item.price)}
             volume={parseInt(item.volume)}
             bgColor={"bg-red-100"}
+            onClick={handleClickPrice}
           />
         );
       })}

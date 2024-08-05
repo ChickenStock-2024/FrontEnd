@@ -10,6 +10,8 @@ const OrderStockInput = ({
   price,
   quantity,
 }) => {
+  const { selectedPrice } = useContext(PriceContext);
+
   const onChangePrice = (e) => {
     setPrice(e.target.value.toLocaleString("ko-KR"));
   };
@@ -21,7 +23,6 @@ const OrderStockInput = ({
     setQuantity(Math.floor((maxQuantity * percent) / 100));
   };
 
-  const { selectedPrice } = useContext(PriceContext);
   // console.log(selectedPrice);
   // useEffect(() => {
   //   console.log("인풋 가격 업뎃", price);
@@ -36,8 +37,6 @@ const OrderStockInput = ({
   // 임의의 해당 종목 보유량
   const myQuantity = 200;
 
-  // 내가 매수/매도할 수 있는 최대 수량 계산
-  console.log(price);
   const maxQuantity =
     activeTabOption === "buy" ? Math.floor(myAccount / price) : myQuantity;
 
@@ -80,13 +79,10 @@ const OrderStockInput = ({
       {/* 수량 퍼센트 버튼 */}
       <div className="grid grid-cols-4 gap-2">
         <QuantityButton percent={10} onClickPercent={onClickPercent} />
-        <QuantityButton percent={20} onClickPercent={onClickPercent} />
+        <QuantityButton percent={25} onClickPercent={onClickPercent} />
         <QuantityButton percent={50} onClickPercent={onClickPercent} />
         <QuantityButton percent={100} onClickPercent={onClickPercent} />
       </div>
-
-      <span>{price}</span>
-      <span>@@@[최대 주문 가능 수량: {maxQuantity}]</span>
 
       {/* 주문 총액 */}
       <div className="my-6">
