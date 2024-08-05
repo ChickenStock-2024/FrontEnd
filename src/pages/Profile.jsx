@@ -59,7 +59,7 @@ const Profile = () => {
   return (
     <>
       <section>
-        <div className="bg-red-200">{userInfo && userInfo.nickname}</div>
+        {/* <div className="bg-red-200">{userInfo && userInfo.nickname}</div> */}
         {/* <div className="relative bg-red-200"> */}
         <div className="relative">
           {/* <div className="bg-yellow3 h-28">{params.id}의 프로필 페이지~!!</div> */}

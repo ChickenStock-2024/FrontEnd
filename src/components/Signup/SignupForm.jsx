@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import kakaoSignupImage from "../../assets/kakaoSignup.svg";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   // 가입 정보
@@ -27,7 +28,8 @@ const SignupForm = () => {
     if (password !== password_check) {
       alert("비밀번호 확인란을 다시 확인해주세요");
     } else {
-      SignupFormAxios({ userData });
+      SignupFormAxios({ userData, isSuccess });
+      // navigate("/");
       // <SignupFormAxios
       //   nickname={nickname}
       //   email={email}
