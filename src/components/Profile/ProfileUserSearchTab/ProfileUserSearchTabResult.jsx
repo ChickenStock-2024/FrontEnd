@@ -62,9 +62,6 @@ const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
   //   },
   // ];
   return (
-    // <div className="flex">
-    //   <section className="flex-row flex-1">
-    //     {userInfos.map((userInfo, index) => (
     <div key={user.id}>
       <div className="flex py-3">
         <div className=" flex w-[50%]">
@@ -73,7 +70,6 @@ const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
             <div className="flex-none">
               <img
                 className="rounded-full w-5 h-5"
-                // src="src/assets/userProfileImage_쑤.png"
                 src={profileImage}
                 alt="userProfileImage"
               />
@@ -81,7 +77,6 @@ const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
             <div className="flex-none">
               <img
                 className="rounded-full w-5 h-5 ml-1 mr-2"
-                // src="src/assets/userTierBadge.png"
                 src={userTierBadge}
                 alt="userTierBadge"
               />
@@ -91,9 +86,11 @@ const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
         </div>
         <div className="w-[50%] flex justify-end">
           <div className="w-[60%] flex justify-end ">
-            <div className="text-l font-medium">{user["earningRate"]}%</div>
             <div className="text-l font-medium">
-              ({priceFormat(user["earnings"])})
+              {(user.balance - 1000000) / 10000}%
+            </div>
+            <div className="text-l font-medium">
+              ({priceFormat(user.balance - 1000000)}원)
             </div>
           </div>
           <div className="w-[40%]">
@@ -105,9 +102,6 @@ const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
       </div>
       <hr />
     </div>
-    //     ))}
-    //   </section>
-    // </div>
   );
 };
 

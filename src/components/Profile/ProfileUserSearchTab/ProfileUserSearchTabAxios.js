@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 
 const ProfileUserSearchTabAxios = ({ search }) => {
+  // console.log(search);
+  // console.log(search.toString());
   const users_list = [
     {
       id: 1,
@@ -9,8 +11,7 @@ const ProfileUserSearchTabAxios = ({ search }) => {
       rank: "23",
       rating: 1832,
       point: 100,
-      earningRate: "+30",
-      earnings: "300000",
+      balance: "1300000",
     },
     {
       id: 2,
@@ -18,8 +19,7 @@ const ProfileUserSearchTabAxios = ({ search }) => {
       rank: "2",
       rating: 2947,
       point: 100,
-      earningRate: "+30",
-      earnings: "300000",
+      balance: "1300000",
     },
     {
       id: 3,
@@ -27,8 +27,7 @@ const ProfileUserSearchTabAxios = ({ search }) => {
       rank: "3",
       rating: 2587,
       point: 100,
-      earningRate: "+30",
-      earnings: "300,000",
+      balance: "1300000",
     },
     {
       id: 4,
@@ -36,8 +35,7 @@ const ProfileUserSearchTabAxios = ({ search }) => {
       rank: "23",
       rating: 1832,
       point: 100,
-      earningRate: "+30",
-      earnings: "300,000",
+      balance: "1300000",
     },
     {
       id: 5,
@@ -45,8 +43,7 @@ const ProfileUserSearchTabAxios = ({ search }) => {
       rank: "2",
       rating: 2947,
       point: 100,
-      earningRate: "+30",
-      earnings: "300,000",
+      balance: "1300000",
     },
     {
       id: 6,
@@ -54,8 +51,7 @@ const ProfileUserSearchTabAxios = ({ search }) => {
       rank: "3",
       rating: 2587,
       point: 100,
-      earningRate: "+70",
-      earnings: "700,000",
+      balance: "1300000",
     },
   ];
   // axios({
@@ -78,7 +74,6 @@ const ProfileUserSearchTabAxios = ({ search }) => {
   //   .catch((error) => {
   //     alert(error.message);
   //   });
-
   return users_list;
 };
 export default ProfileUserSearchTabAxios;
