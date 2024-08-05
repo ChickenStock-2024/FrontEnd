@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import React from "react";
 import OrderBookStockPrice from "./OrderBookStockPrice";
 
 const OrderBook = () => {
-  // 매도호가
+  // const { onClickPrice } = useContext(PriceContext);
   const sellingPrice = [
     {
       price: "80500",
@@ -101,6 +102,7 @@ const OrderBook = () => {
             price={parseInt(item.price)}
             volume={parseInt(item.volume)}
             bgColor={"bg-blue-100"}
+            // onClickPrice={onClickPrice}
             // changeRate={changeRate}
             // totalSellingVolume={totalSellingVolume}
             // totalBuyingVolum={totalBuyingVolum}

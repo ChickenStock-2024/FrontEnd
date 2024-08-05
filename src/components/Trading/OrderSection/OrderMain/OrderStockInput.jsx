@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import QuantityButton from "./QuantityButton";
 import PriceToggle from "./PriceToggle";
+import { PriceContext } from "./OrderMain";
 
 const OrderStockInput = ({
   activeTabOption,
@@ -20,12 +21,23 @@ const OrderStockInput = ({
     setQuantity(Math.floor((maxQuantity * percent) / 100));
   };
 
+  const { selectedPrice } = useContext(PriceContext);
+  // console.log(selectedPrice);
+  // useEffect(() => {
+  //   console.log("인풋 가격 업뎃", price);
+  // }, [price]);
+  useEffect(() => {
+    console.log("호가 선택 업데이트", selectedPrice);
+    setPrice(selectedPrice);
+  }, [selectedPrice]);
+
   // 임의의 초기 잔고
   const myAccount = 1000000;
   // 임의의 해당 종목 보유량
   const myQuantity = 200;
 
   // 내가 매수/매도할 수 있는 최대 수량 계산
+  console.log(price);
   const maxQuantity =
     activeTabOption === "buy" ? Math.floor(myAccount / price) : myQuantity;
 
@@ -72,7 +84,10 @@ const OrderStockInput = ({
         <QuantityButton percent={50} onClickPercent={onClickPercent} />
         <QuantityButton percent={100} onClickPercent={onClickPercent} />
       </div>
-      {/* <span>@@@[최대 주문 가능 수량: {maxQuantity}]</span> */}
+
+      <span>{price}</span>
+      <span>@@@[최대 주문 가능 수량: {maxQuantity}]</span>
+
       {/* 주문 총액 */}
       <div className="my-6">
         <div className="font-bold">주문 총액</div>

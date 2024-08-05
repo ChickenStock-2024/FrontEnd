@@ -3,7 +3,8 @@ import OrderStockTabs from "./OrderStockTabs";
 import OrderStockSell from "./OrderStockSell";
 import OrderStockBuy from "./OrderStockBuy";
 import OrderStockInput from "./OrderStockInput";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { PriceContext } from "./OrderMain";
 
 const OrderStock = () => {
   const [activeTabOption, setActiveTabOption] = useState("");

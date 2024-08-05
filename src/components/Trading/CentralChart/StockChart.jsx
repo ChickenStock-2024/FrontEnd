@@ -29,11 +29,16 @@ const dates = rawData.map(function (item) {
 const data = rawData.map(function (item) {
   return [+item[1], +item[2], +item[5], +item[6]];
 });
+
+const volume = rawData.map(function (item) {
+  return item[7];
+});
+
 const StockChart = () => {
   // 그래프 그리는 부분
   const [options, setOptions] = useState({
     legend: {
-      data: ["MA5", "MA10", "MA20", "MA30"],
+      data: ["MA5", "MA10", "MA20", "MA30", "Volume"],
       inactiveColor: "#777",
     },
     tooltip: {
@@ -48,41 +53,132 @@ const StockChart = () => {
         },
       },
     },
-    xAxis: {
-      type: "category",
-      data: dates,
-      axisLine: { lineStyle: { color: "#8392A5" } },
-    },
-    yAxis: {
-      scale: true,
-      axisLine: { lineStyle: { color: "#8392A5" } },
-      splitLine: { show: false },
-    },
-    grid: {
-      bottom: 80,
-    },
-    dataZoom: [
+    // toolbox: {
+    //   feature: {
+    //     dataZoom: {
+    //       yAxisIndex: false,
+    //     },
+    //     brush: {
+    //       type: ["lineX", "clear"],
+    //     },
+    //   },
+    // },
+    xAxis: [
       {
-        textStyle: {
-          color: "#8392A5",
-        },
-        handleIcon:
-          "path://M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z",
-        dataBackground: {
-          areaStyle: {
-            color: "#8392A5",
-          },
-          lineStyle: {
-            opacity: 0.8,
-            color: "#8392A5",
-          },
-        },
-        brushSelect: true,
+        type: "category",
+        data: dates,
+        axisLine: { lineStyle: { color: "#8392A5" } },
       },
       {
-        type: "inside",
+        type: "category",
+        gridIndex: 1,
+        data: dates,
+        boundaryGap: false,
+        splitLine: { show: false },
+        axisLabel: { show: false },
+        axisTick: { show: false },
+        axisLine: { lineStyle: { color: "#777" } },
+        min: "dataMin",
+        max: "dataMax",
       },
     ],
+    yAxis: [
+      {
+        scale: true,
+        axisLine: { lineStyle: { color: "#8392A5" } },
+        splitLine: { show: false },
+      },
+      {
+        scale: true,
+        gridIndex: 1,
+        splitNumber: 2,
+        axisLabel: { show: false },
+        axisLine: { show: false },
+        axisTick: { show: false },
+        splitLine: { show: false },
+      },
+    ],
+    grid: [
+      {
+        left: "10%",
+        right: "8%",
+        height: "50%",
+      },
+      {
+        left: "10%",
+        right: "8%",
+        top: "68%",
+        height: "16%",
+      },
+    ],
+
+    // brush: {
+    //   xAxisIndex: "all",
+    //   brushLink: "all",
+    //   outOfBrush: {
+    //     colorAlpha: 0.1,
+    //   },
+    // },
+    // xAxis: [
+    //   {
+    //     type: "category",
+    //     data: data.categoryData,
+    //     boundaryGap: false,
+    //     axisLine: { onZero: false },
+    //     splitLine: { show: false },
+    //     min: "dataMin",
+    //     max: "dataMax",
+    //     axisPointer: {
+    //       z: 100,
+    //     },
+    //   },
+    //   {
+    //     type: "category",
+    //     gridIndex: 1,
+    //     data: data.categoryData,
+    //     boundaryGap: false,
+    //     axisLine: { onZero: false },
+    //     axisTick: { show: false },
+    //     splitLine: { show: false },
+    //     axisLabel: { show: false },
+    //     min: "dataMin",
+    //     max: "dataMax",
+    //   },
+    // ],
+    // yAxis: [
+    //   {
+    //     scale: true,
+    //     splitArea: {
+    //       show: true,
+    //     },
+    //   },
+    //   {
+    //     scale: true,
+    //     gridIndex: 1,
+    //     splitNumber: 2,
+    //     axisLabel: { show: false },
+    //     axisLine: { show: false },
+    //     axisTick: { show: false },
+    //     splitLine: { show: false },
+    //   },
+    // ],
+    dataZoom: [
+      {
+        type: "inside",
+        xAxisIndex: [0, 1],
+        start: 50,
+        end: 100,
+      },
+      {
+        show: true,
+        xAxisIndex: [0, 1],
+        type: "slider",
+        top: "85%",
+        start: 50,
+        end: 100,
+      },
+    ],
+
     series: [
       {
         type: "candlestick",
@@ -134,6 +230,13 @@ const StockChart = () => {
         lineStyle: {
           width: 1,
         },
+      },
+      {
+        name: "Volume",
+        type: "bar",
+        xAxisIndex: 1,
+        yAxisIndex: 1,
+        data: volume,
       },
     ],
   });
