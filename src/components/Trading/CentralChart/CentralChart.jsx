@@ -6,8 +6,8 @@ import StockChart from "./StockChart";
 const CentralChart = () => {
   return (
     <div className="px-2 border border-red-500">
-      {/* <StockSearch /> */}
-      <Input placeholder={"종목 검색"} />
+      {/* <Input placeholder={"종목 검색"} /> */}
+      <StockSearch />
       <StockChart />
     </div>
   );
