@@ -31,11 +31,10 @@ const priceFormat = (str) => {
 };
 
 const Profile = () => {
-  const params = useParams();
-  const userId = params.id;
+  const { memberId } = useParams();
   const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
-    setUserInfo(() => ProfileUserInfoAxios(userId));
+    setUserInfo(() => ProfileUserInfoAxios(memberId));
   }, []);
 
   const [activeTabOption, setActiveTabOption] = useState("");
@@ -49,7 +48,9 @@ const Profile = () => {
         {/* <div className="relative bg-red-200"> */}
         <div className="relative">
           {/* <div className="bg-yellow3 h-28">{params.id}의 프로필 페이지~!!</div> */}
-          <div className="bg-yellow3 h-28">프로필 페이지~!!</div>
+          <div className="bg-yellow3 h-28">
+            {memberId}번 유저의 프로필 페이지~!!
+          </div>
           <div className="h-44"></div>
           <div className="flex flex-row justify-between">
             <div className="absolute top-0 left-40">

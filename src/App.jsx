@@ -23,7 +23,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/trading/:stockId" element={<Trading />} />
         <Route path="/ranking" element={<Ranking />} />
-        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile/:memberId" element={<Profile />} />
         {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
     </div>
