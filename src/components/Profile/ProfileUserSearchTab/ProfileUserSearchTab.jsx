@@ -5,37 +5,32 @@ import ProfileUserSearchTabSearch from "./ProfileUserSearchTabSearch.jsx";
 import ProfileUserSearchTabAxios from "./ProfileUserSearchTabAxios.js";
 // import Input from "../../Input.jsx";
 
-const ProfileUserSearchTab = ({ handleDate, priceFormat }) => {
+const ProfileUserSearchTab = ({ priceFormat }) => {
   const [users, setUsers] = useState(null);
-  useEffect(() => {
-    setUsers(() => ProfileUserSearchTabAxios());
-  }, []);
-  if (!users) {
-    return <div>Loading...</div>; // users가 없을 때, 로딩중 렌더링
-  } else {
-    return (
-      <>
-        <div className="flex flex-col mx-52">
-          {/* 하기에 유저 검색창 기능 및 인풋 코드 추가하기!  */}
-          <div className="pb-5">
-            <ProfileUserSearchTabSearch
-              users={users}
-              handleDate={handleDate}
-              priceFormat={priceFormat}
-              // placeholder={"유저 닉네임을 입력하세여~!!"}
-            />
-          </div>
+  const [search, setSearch] = useState("");
 
-          {/* <div className="pb-5">
-          <Input placeholder={"유저 닉네임을 입력하세여~!!"} />
+  useEffect(() => {
+    if (search === "") {
+      return setUsers(null);
+    } else {
+      setUsers(() => ProfileUserSearchTabAxios(search));
+    }
+  }, [search]);
+
+  return (
+    <>
+      <div className="flex flex-col mx-52">
+        <div className="pb-5">
+          <ProfileUserSearchTabSearch
+            users={users}
+            search={search}
+            setSearch={setSearch}
+            priceFormat={priceFormat}
+          />
         </div>
-        <div className="px-7">
-          <ProfileUserSearchTabResult />
-        </div> */}
-        </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 };
 
 export default ProfileUserSearchTab;

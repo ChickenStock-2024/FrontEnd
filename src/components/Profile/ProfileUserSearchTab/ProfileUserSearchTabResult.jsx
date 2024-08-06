@@ -2,7 +2,7 @@ import React from "react";
 import profileImage from "../../../assets/userProfileImage_쑤.png";
 import userTierBadge from "../../../assets/userTierBadge.png";
 
-const ProfileUserSearchTabResult = ({ filteredUser, priceFormat }) => {
+const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
   // const userInfos = [
   //   {
   //     nickname: "0.쑤",
@@ -62,20 +62,14 @@ const ProfileUserSearchTabResult = ({ filteredUser, priceFormat }) => {
   //   },
   // ];
   return (
-    // <div className="flex">
-    //   <section className="flex-row flex-1">
-    //     {userInfos.map((userInfo, index) => (
-    <div key={filteredUser.id}>
+    <div key={user.id}>
       <div className="flex py-3">
         <div className=" flex w-[50%]">
-          <div className="w-[20%] text-l font-bold">
-            {filteredUser["rank"]}위
-          </div>
+          <div className="w-[20%] text-l font-bold">{user["rank"]}위</div>
           <div className="flex items-center">
             <div className="flex-none">
               <img
                 className="rounded-full w-5 h-5"
-                // src="src/assets/userProfileImage_쑤.png"
                 src={profileImage}
                 alt="userProfileImage"
               />
@@ -83,35 +77,31 @@ const ProfileUserSearchTabResult = ({ filteredUser, priceFormat }) => {
             <div className="flex-none">
               <img
                 className="rounded-full w-5 h-5 ml-1 mr-2"
-                // src="src/assets/userTierBadge.png"
                 src={userTierBadge}
                 alt="userTierBadge"
               />
             </div>
-            <div className="text-l font-bold">{filteredUser["nickname"]}</div>
+            <div className="text-l font-bold">{user["nickname"]}</div>
           </div>
         </div>
         <div className="w-[50%] flex justify-end">
           <div className="w-[60%] flex justify-end ">
             <div className="text-l font-medium">
-              {filteredUser["earningRate"]}%
+              {(user.balance - 1000000) / 10000}%
             </div>
             <div className="text-l font-medium">
-              ({priceFormat(filteredUser["earnings"])})
+              ({priceFormat(user.balance - 1000000)}원)
             </div>
           </div>
           <div className="w-[40%]">
             <div className="text-l font-medium text-right">
-              {filteredUser["rating"]}
+              {user["rating"]}
             </div>
           </div>
         </div>
       </div>
       <hr />
     </div>
-    //     ))}
-    //   </section>
-    // </div>
   );
 };
 

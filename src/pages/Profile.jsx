@@ -3,7 +3,6 @@ import profileImg from "../assets/dummy-profile-icon.png";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import Button from "../components/Button.jsx";
 
@@ -39,19 +38,6 @@ const Profile = () => {
     setUserInfo(() => ProfileUserInfoAxios(userId));
   }, []);
 
-  // console.log(userInfo);
-  // useEffect(() => {
-  //   console.log(userInfo);
-  // }, [userInfo]);
-
-  // const userInfo = {
-  //   nickname: "0.쑤",
-  //   rank: "23",
-  //   rating: "+2340",
-  //   tier: "플래티넘 5",
-  //   profileImg: profileImg,
-  // };
-
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
@@ -59,7 +45,7 @@ const Profile = () => {
   return (
     <>
       <section>
-        <div className="bg-red-200">{userInfo && userInfo.nickname}</div>
+        {/* <div className="bg-red-200">{userInfo && userInfo.nickname}</div> */}
         {/* <div className="relative bg-red-200"> */}
         <div className="relative">
           {/* <div className="bg-yellow3 h-28">{params.id}의 프로필 페이지~!!</div> */}
