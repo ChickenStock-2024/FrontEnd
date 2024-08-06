@@ -2,7 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { defaultInstance } from "../../api/axios";
+import SignupFormAxios from "./SignupFormAxios";
+import SignupFormNicknameCheckAxios from "./SignupFormNicknameCheckAxios";
+import SignupFormEmailCheckAxios from "./SignupFormEmailCheckAxios";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import kakaoSignupImage from "../../assets/kakaoSignup.svg";
@@ -39,7 +41,7 @@ const SignupForm = () => {
   });
 
   // # 2.2. checkedData 바뀔 때마다 저장하기
-  // -> checkedData는 각각의 axios가 끝난 후, try문 안에서 값 변경
+  // -> checkedData는 각각의 axios안에서 값 변경
 
   // # 2.3. checkedData 구조분해 할당
   const {
@@ -49,90 +51,36 @@ const SignupForm = () => {
     checkedNickname,
     checkedEmail,
   } = checkedData;
+  console.log("isNicknameChecked: ", isNicknameChecked);
 
-  // # 3. 닉네임 중복 검사 axios
-  const getNicknameChecked = async () => {
+  // # 3. 닉네임 중복 검사
+  const handleNicknameCheck = () => {
     try {
-      console.log("닉네임 중복 검사 전: ", checkedData);
-
-      // Axios의 응답 객체에서 직접 checkedNickname 추출
-      const response = await defaultInstance.get(`/auth/nickname/${nickname}`);
-      const checkedNickname = response.data.nickname;
-
-      alert("닉네임 중복 확인 완료~!!");
-      console.log("중복 확인 완료 닉네임: ", checkedNickname);
-
-      // 진행 상태 업데이트
-      setCheckedData({
-        ...checkedData,
-        isNicknameChecked: true,
-        checkedNickname: checkedNickname,
-      });
+      console.log(checkedData);
+      SignupFormNicknameCheckAxios(nickname, checkedData, setCheckedData);
+      if (checkedData.isNicknameChecked === true) {
+        alert("사용 가능한 닉네임입니다.");
+      } else {
+        alert("이미 사용 중인 닉네임입니다.");
+      }
     } catch (error) {
-      console.log(error);
-      alert(
-        "닉네임 중복 확인 중 오류: " +
-          (error.response ? error.response.data.message : error.message)
-      );
+      console.error("닉네임 확인 중 오류:", error);
+      alert("닉네임 확인 중 오류가 발생했습니다.");
     }
   };
 
-  // # 4. 이메일 중복 검사 axios
-  const getEmailChecked = async () => {
+  // # 4. 이메일 중복 검사
+  const handleEmailCheck = () => {
     try {
-      console.log("이메일 중복 검사 전: ", checkedData);
-
-      // Axios의 응답 객체에서 직접 checkedEmail 추출
-      const response = await defaultInstance.get(`/auth/email/${email}`);
-      const checkedEmail = response.data.email;
-
-      alert("이메일 중복 확인 완료~!!");
-      console.log("중복 확인 완료 이메일: ", checkedEmail);
-
-      // 진행 상태 업데이트
-      setCheckedData({
-        ...checkedData,
-        isEmailChecked: true,
-        checkedEmail: checkedEmail,
-      });
+      SignupFormEmailCheckAxios(email, checkedData, setCheckedData);
+      if (checkedData.isEmailChecked === true) {
+        alert("사용 가능한 이메일입니다.");
+      } else {
+        alert("이미 사용 중인 이메일입니다.");
+      }
     } catch (error) {
-      console.log(error);
-      alert(
-        "이메일 중복 확인 중 오류: " +
-          (error.response ? error.response.data.message : error.message)
-      );
-    }
-  };
-
-  // # 5. 회원가입 axios
-  const postSignup = async () => {
-    try {
-      console.log("회원가입 전: ", userData);
-
-      // # 5.0. Axios의 응답 객체에서 직접 checkedEmail 추출
-      const response = await defaultInstance.post("/auth/signup", {
-        email: email,
-        password: password,
-        password_check: passwordCheck,
-        nickname: nickname,
-      });
-      // # 5.1. 회원가입 완료 알림
-      alert("회원가입 완료~!!");
-
-      // # 5.2. 진행 상태 업데이트
-      setCheckedData({
-        ...checkedData,
-        isSuccessed: true,
-      });
-
-      // # 5.3. 회원가입 완료 후, 로그인 페이지로 이동!
-      nav("/login");
-    } catch (error) {
-      console.log(error);
-      alert(
-        "가입에 실패했습니다: " +
-          (error.response ? error.response.data.message : error.message)
-      );
+      console.error("이메일 확인 중 오류:", error);
+      alert("이메일 확인 중 오류가 발생했습니다.");
     }
   };
 
@@ -146,7 +94,15 @@ const SignupForm = () => {
     } else if (!isEmailChecked || email != checkedEmail) {
       alert("이메일 중복 확인이 필요해요");
     } else {
-      postSignup();
+      SignupFormAxios(userData, checkedData, setCheckedData);
+      // SignupFormAxios({ userData });
+      console.log("isSuccessed: ", isSuccessed);
+      if (!isSuccessed) {
+        console.log(isSuccessed);
+        alert("가입 정보를 다시 입력해주세요");
+      } else {
+        nav("/login");
+      }
     }
   };
 
@@ -178,7 +134,7 @@ const SignupForm = () => {
             <button
               className="h-10 mt-1 ml-2 px-1 bg-yellow3 rounded-md text-sm"
               type="button"
-              onClick={getNicknameChecked}
+              onClick={handleNicknameCheck}
             >
               중복확인
             </button>
@@ -204,7 +160,7 @@ const SignupForm = () => {
             <button
               className="h-10 mt-1 ml-2 px-1 bg-yellow3 rounded-md text-sm"
               type="button"
-              onClick={getEmailChecked}
+              onClick={handleEmailCheck}
             >
               중복확인
             </button>

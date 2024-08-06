@@ -3,7 +3,6 @@ import profileImg from "../assets/dummy-profile-icon.png";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import Button from "../components/Button.jsx";
 
@@ -38,19 +37,6 @@ const Profile = () => {
   useEffect(() => {
     setUserInfo(() => ProfileUserInfoAxios(userId));
   }, []);
-
-  // console.log(userInfo);
-  // useEffect(() => {
-  //   console.log(userInfo);
-  // }, [userInfo]);
-
-  // const userInfo = {
-  //   nickname: "0.쑤",
-  //   rank: "23",
-  //   rating: "+2340",
-  //   tier: "플래티넘 5",
-  //   profileImg: profileImg,
-  // };
 
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {

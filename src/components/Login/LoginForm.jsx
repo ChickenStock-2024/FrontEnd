@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import LoginFormAxios from "./LoginFormAxios";
+
+import { defaultInstance } from "../../api/axios";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
@@ -10,49 +10,62 @@ const LoginForm = () => {
   const nav = useNavigate();
 
   // 로그인 정보(유저가 로그인 창에서 입력한 email, password, fcm토큰)
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // # 1.1. inputData 상태관리
+  const [inputData, setInputData] = useState({
+    email: "",
+    password: "",
+  });
 
+  // # 1.2. inputData 바뀔 때마다 저장하기
+  const handleInput = (e) => {
+    setInputData({
+      ...inputData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // # 1.3. inputData 구조분해 할당
+  const { email, password } = inputData;
+
+  // 2. 폼 제출 시
   const handleSubmit = (e) => {
     e.preventDefault();
-    LoginFormAxios({ email, password, setEmail, setPassword });
-    // axios({
-    //   method: "POST",
-    //   url: "/auth/login/email",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   responseType: "json",
-    //   data: {
-    //     email: email,
-    //     password: password,
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
-    //     sessionStorage.setItem("token", data.token);
-    //     sessionStorage.setItem("email", data.email);
-    //     sessionStorage.setItem("nickname", data.nickname);
-    //     sessionStorage.setItem("isLogin", true);
-    //     // sessionStorage에 저장된 search 값을 가져옴
-    //     console.log(window.sessionStorage.getItem("email"));
-    //     // alert(`안녕하세요, ${response.data.nickname}님`);
-    //     if (data.hedaers.token) {
-    //       // 로그인 성공시 메인 페이지로!
-    //       nav("/");
-    //     } else {
-    //       alert("이메일 혹은 패스워드를 확인해주세요.");
-    //     }
-    //   })
-    //   // .catch((error) => alert(error.message));
-    //   .catch((error) => {
-    //     alert(error.message);
-    //   });
+    postLogin();
+  };
 
-    // setEmail("");
-    // setPassword("");
+  // # 3. 로그인 axios
+  const postLogin = async () => {
+    try {
+      console.log("로그인 전: ", inputData);
+
+      // # 2.0. Axios의 응답 객체에서 직접 checkedEmail 추출
+      const response = await defaultInstance.post("/auth/login", {
+        email: email,
+        password: password,
+      });
+      // # 2.1. 로그인 완료 알림
+      alert("로그인 완료~!!");
+      console.log(response);
+
+      // # 2.2. 로그인 상태 업데이트
+      // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
+      sessionStorage.setItem("accessToken", response.headers.token);
+      sessionStorage.setItem("memberId", response.data.memberId);
+      sessionStorage.setItem("nickname", response.data.nickName);
+      sessionStorage.setItem("isLogin", true);
+
+      // # 2.3. 로그인 완료 후, 메인 페이지로 이동!
+      // sessionStorage에 저장된 search 값을 가져옴
+      // console.log(window.sessionStorage.getItem("email"));
+      nav("/");
+      // alert(`안녕하세요, ${response.data.nickname}님`);
+    } catch (error) {
+      console.log(error);
+      alert(
+        "로그인에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
   };
 
   return (
@@ -78,7 +91,7 @@ const LoginForm = () => {
             placeholder="이메일"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleInput}
             required
           />
         </div>
@@ -95,7 +108,7 @@ const LoginForm = () => {
             placeholder="비밀번호"
             id="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleInput}
             required
           />
         </div>
