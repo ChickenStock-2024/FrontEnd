@@ -9,6 +9,8 @@ export const PriceContext = createContext();
 const OrderMain = () => {
   const { stockId } = useParams();
   const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedPriceState, setSelectedPriceState] = useState(null);
+  const [marketPrice, setMarketPrice] = useState(0);
 
   // const onClickPrice = (e) => {
   //   console.log(e.currentTarget);
@@ -19,14 +21,25 @@ const OrderMain = () => {
 
   return (
     <div className="flex h-[500px]">
-      <PriceContext.Provider value={{ selectedPrice, setSelectedPrice }}>
-        <div className="w-2/5 overflow-y-auto">
-          <OrderBook />
-        </div>
-        <div className="w-3/5">
-          <OrderStock />
-        </div>
-      </PriceContext.Provider>
+      {/* <PriceContext.Provider value={{ selectedPrice, setSelectedPrice }}> */}
+      <div className="w-2/5 overflow-y-auto">
+        <OrderBook
+          setSelectedPrice={setSelectedPrice}
+          selectedPriceState={selectedPriceState}
+          setSelectedPriceState={setSelectedPriceState}
+          marketPrice={marketPrice}
+          setMarketPrice={setMarketPrice}
+        />
+      </div>
+      <div className="w-3/5">
+        <OrderStock
+          selectedPrice={selectedPrice}
+          selectedPriceState={selectedPriceState}
+          setSelectedPriceState={setSelectedPriceState}
+          marketPrice={marketPrice}
+        />
+      </div>
+      {/* </PriceContext.Provider> */}
     </div>
   );
 };

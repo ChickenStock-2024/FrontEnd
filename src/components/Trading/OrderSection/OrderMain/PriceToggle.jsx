@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-const PriceToggle = () => {
+const PriceToggle = ({ setIsMarketPrice, isMarketPrice }) => {
   const [activeOption, setActiveOption] = useState("limitPrice");
 
   const handleSwitchClick = (option) => {
     setActiveOption(option);
+    option === "marketPrice" ? setIsMarketPrice(true) : setIsMarketPrice(false);
   };
 
   return (

@@ -6,7 +6,12 @@ import OrderStockInput from "./OrderStockInput";
 import { useState, useContext } from "react";
 import { PriceContext } from "./OrderMain";
 
-const OrderStock = () => {
+const OrderStock = ({
+  selectedPrice,
+  selectedPriceState,
+  setSelectedPriceState,
+  marketPrice,
+}) => {
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
@@ -23,7 +28,7 @@ const OrderStock = () => {
     }
   };
 
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
   return (
@@ -35,6 +40,10 @@ const OrderStock = () => {
         setQuantity={setQuantity}
         price={price}
         quantity={quantity}
+        selectedPrice={selectedPrice}
+        selectedPriceState={selectedPriceState}
+        setSelectedPriceState={setSelectedPriceState}
+        marketPrice={marketPrice}
       />
       {selectedSection(activeTabOption)}
     </div>

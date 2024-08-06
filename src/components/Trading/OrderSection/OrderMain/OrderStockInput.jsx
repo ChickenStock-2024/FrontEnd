@@ -9,42 +9,79 @@ const OrderStockInput = ({
   setQuantity,
   price,
   quantity,
+  selectedPrice,
+  selectedPriceState,
+  setSelectedPriceState,
+  marketPrice,
 }) => {
-  const { selectedPrice } = useContext(PriceContext);
+  // 임의의 초기 잔고
+  const myAccount = 1000000;
+
+  // 임의의 해당 종목 보유량
+  const myQuantity = 200;
+
+  // 보유할 수 있는 최대개수
+  const maxQuantity =
+    activeTabOption === "buy" ? Math.floor(myAccount / price) : myQuantity;
+
+  // 입력할 수 있는 최대 가격
+  const maxPrice = Math.floor(myAccount / quantity);
+
+  const [isMarketPrice, setIsMarketPrice] = useState(false);
+
+  useEffect(() => {
+    setPrice(selectedPrice);
+  }, [selectedPrice]);
+
+  // useEffect(() => {
+  //   console.log(isMarketPrice);
+  //   if (isMarketPrice) {
+  //     console.log("시장가로 고정");
+  //     setPrice(marketPrice);
+  //     setSelectedPriceState(marketPrice);
+  //   }
+  // }, [isMarketPrice]);
+
+  if (isMarketPrice) {
+    console.log("시장가로 고정");
+    setPrice(marketPrice);
+    setSelectedPriceState(marketPrice);
+  }
 
   const onChangePrice = (e) => {
-    setPrice(e.target.value.toLocaleString("ko-KR"));
+    // setPrice(e.target.value);
+    // setSelectedPriceState(parseInt(e.target.value));
+
+    const newPrice = e.target.value;
+    if (newPrice >= maxPrice) {
+      setPrice(maxPrice);
+      setSelectedPriceState(parseInt(maxPrice));
+    } else {
+      setPrice(newPrice);
+      setSelectedPriceState(parseInt(newPrice));
+    }
   };
+
   const onChangeQuantity = (e) => {
-    setQuantity(e.target.value);
+    // setQuantity(e.target.value);
+    const newQuantity = e.target.value;
+    newQuantity >= maxQuantity
+      ? setQuantity(maxQuantity)
+      : setQuantity(newQuantity);
   };
 
   const onClickPercent = (percent) => {
     setQuantity(Math.floor((maxQuantity * percent) / 100));
   };
 
-  // console.log(selectedPrice);
-  // useEffect(() => {
-  //   console.log("인풋 가격 업뎃", price);
-  // }, [price]);
-  useEffect(() => {
-    console.log("호가 선택 업데이트", selectedPrice);
-    setPrice(selectedPrice);
-  }, [selectedPrice]);
-
-  // 임의의 초기 잔고
-  const myAccount = 1000000;
-  // 임의의 해당 종목 보유량
-  const myQuantity = 200;
-
-  const maxQuantity =
-    activeTabOption === "buy" ? Math.floor(myAccount / price) : myQuantity;
-
   return (
     <div className="m-4">
       {/* 가격 */}
       <div className="mb-4">
-        <PriceToggle />
+        <PriceToggle
+          isMarketPrice={isMarketPrice}
+          setIsMarketPrice={setIsMarketPrice}
+        />
         <label htmlFor="price" className="font-bold">
           가격
         </label>
@@ -52,7 +89,8 @@ const OrderStockInput = ({
           <input
             id="price"
             value={price}
-            type="text"
+            type="number"
+            step={100}
             className="w-full focus:outline-none text-right"
             onChange={onChangePrice}
           />
@@ -78,10 +116,26 @@ const OrderStockInput = ({
       </div>
       {/* 수량 퍼센트 버튼 */}
       <div className="grid grid-cols-4 gap-2">
-        <QuantityButton percent={10} onClickPercent={onClickPercent} />
-        <QuantityButton percent={25} onClickPercent={onClickPercent} />
-        <QuantityButton percent={50} onClickPercent={onClickPercent} />
-        <QuantityButton percent={100} onClickPercent={onClickPercent} />
+        <QuantityButton
+          percent={10}
+          onClickPercent={onClickPercent}
+          disabled={price == 0}
+        />
+        <QuantityButton
+          percent={25}
+          onClickPercent={onClickPercent}
+          disabled={price == 0}
+        />
+        <QuantityButton
+          percent={50}
+          onClickPercent={onClickPercent}
+          disabled={price == 0}
+        />
+        <QuantityButton
+          percent={100}
+          onClickPercent={onClickPercent}
+          disabled={price == 0}
+        />
       </div>
 
       {/* 주문 총액 */}

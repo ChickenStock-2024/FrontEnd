@@ -1,10 +1,18 @@
-import { useContext } from "react";
 import React from "react";
+import { useContext, useState, useEffect } from "react";
 import OrderBookStockPrice from "./OrderBookStockPrice";
 import { PriceContext } from "./OrderMain";
 
-const OrderBook = () => {
-  const { setSelectedPrice } = useContext(PriceContext);
+const OrderBook = ({
+  setSelectedPrice,
+  selectedPriceState,
+  setSelectedPriceState,
+  marketPrice,
+  setMarketPrice,
+}) => {
+  // const { setSelectedPrice } = useContext(PriceContext);
+  // const [selectedPriceState, setSelectedPriceState] = useState(null);
+
   const sellingPrice = [
     {
       price: "80500",
@@ -87,10 +95,17 @@ const OrderBook = () => {
     },
   ];
 
+  // console.log(parseInt(buyingPrice[0].price));
+
+  // 시장가 지정
+  useEffect(() => {
+    setMarketPrice(parseInt(buyingPrice[0].price));
+  }, [marketPrice]);
+
   const handleClickPrice = (price) => {
-    console.log("Clicked price:", price);
     setSelectedPrice(price);
-    // 해당 함수가 실행되었을 때 표시가 되어야 함
+    setSelectedPriceState(price);
+    // 해당 함수가 실행되었을 때 표시가 되어야 함(노란색으로 표시됨)
   };
 
   return (
@@ -108,7 +123,8 @@ const OrderBook = () => {
             price={parseInt(item.price)}
             volume={parseInt(item.volume)}
             bgColor={"bg-blue-100"}
-            onClick={handleClickPrice}
+            handleClickPrice={handleClickPrice}
+            isSelected={selectedPriceState === parseInt(item.price)}
             // changeRate={changeRate}
             // totalSellingVolume={totalSellingVolume}
             // totalBuyingVolume={totalBuyingVolume}
@@ -124,7 +140,8 @@ const OrderBook = () => {
             price={parseInt(item.price)}
             volume={parseInt(item.volume)}
             bgColor={"bg-red-100"}
-            onClick={handleClickPrice}
+            handleClickPrice={handleClickPrice}
+            isSelected={selectedPriceState === parseInt(item.price)}
           />
         );
       })}

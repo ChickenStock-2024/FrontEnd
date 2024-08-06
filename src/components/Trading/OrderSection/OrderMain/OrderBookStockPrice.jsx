@@ -6,15 +6,15 @@ const OrderBookStockPrice = ({
   price,
   volume,
   bgColor,
-  onClick,
+  handleClickPrice,
   isSelected,
 }) => {
   // const { onClickPrice } = useContext(PriceContext);
 
   return (
     <div
-      className={`${bgColor} flex justify-between p-2 mb-1 text-sm`}
-      onClick={() => onClick(price)}
+      className={`${bgColor} flex justify-around p-2 mb-1 text-sm  ${isSelected ? "border-l-4 border-yellow2" : ""}`}
+      onClick={() => handleClickPrice(price)}
     >
       <div className="price">{price.toLocaleString()}</div>
       {/* <div className="changeRate">
