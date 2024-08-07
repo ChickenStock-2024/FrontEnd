@@ -43,7 +43,7 @@ const OrderStockInput = ({
   // }, [isMarketPrice]);
 
   if (isMarketPrice) {
-    console.log("시장가로 고정");
+    // console.log("시장가로 고정");
     setPrice(marketPrice);
     setSelectedPriceState(marketPrice);
   }
