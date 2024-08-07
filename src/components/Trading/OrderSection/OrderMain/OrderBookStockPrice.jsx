@@ -1,6 +1,4 @@
 import React from "react";
-import { useContext } from "react";
-import { PriceContext } from "./OrderMain";
 
 const OrderBookStockPrice = ({
   price,
@@ -9,8 +7,6 @@ const OrderBookStockPrice = ({
   handleClickPrice,
   isSelected,
 }) => {
-  // const { onClickPrice } = useContext(PriceContext);
-
   return (
     <div
       className={`${bgColor} flex justify-around p-2 mb-1 text-sm  ${isSelected ? "border-l-4 border-yellow2" : ""}`}
