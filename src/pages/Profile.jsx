@@ -3,13 +3,15 @@ import profileImg from "../assets/dummy-profile-icon.png";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { defaultInstance } from "../api/axios.jsx";
+import useLoginUserStore from "../store/useLoginUserStore.jsx";
 
 import Button from "../components/Button.jsx";
 
 import ProfileTabs from "../components/Profile/ProfileTabs.jsx";
 import ProfileHistoryTab from "../components/Profile/ProfileHistoryTab/ProfileHistoryTab.jsx";
 import ProfileUserInfo from "../components/Profile/ProfileUserInfo/ProfileUserInfo.jsx";
-import ProfileUserInfoAxios from "../components/Profile/ProfileUserInfo/ProfileUserInfoAxios.js";
+// import ProfileUserInfoAxios from "../components/Profile/ProfileUserInfo/ProfileUserInfoAxios.js";
 import ProfileUserSearchTab from "../components/Profile/ProfileUserSearchTab/ProfileUserSearchTab.jsx";
 
 // Date converted to YYYY. MM. DD format
@@ -31,16 +33,46 @@ const priceFormat = (str) => {
 };
 
 const Profile = () => {
-  const { memberId } = useParams();
+  const { profilePageId } = useParams();
+  const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
+
   const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
-    setUserInfo(() => ProfileUserInfoAxios(memberId));
+    console.log(profilePageId);
+    setUserInfo(() => getUserInfo(profilePageId));
   }, []);
 
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
   };
+
+  // # 1. 프로필 페이지 렌더링 시,
+  const getUserInfo = async () => {
+    try {
+      console.log("로그인 전: ", userInfo);
+
+      // # 1.0. Axios의 응답 객체에서 직접 checkedEmail 추출
+      const response = await defaultInstance.get(`/users/${profilePageId}`);
+      // # 2.1. 로그인 완료 알림
+      alert("getUserInfo 완료");
+      console.log(response);
+
+      // # 2.2. response값 저장
+      // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
+      // sessionStorage.setItem("nickname", response.headers.token);
+      // sessionStorage.setItem("rank", response.data.memberId);
+      // sessionStorage.setItem("rating", response.data.nickName);
+      // sessionStorage.setItem("tier", true);
+    } catch (error) {
+      console.log(error);
+      alert(
+        "프로필 페이지 로딩에 필요한 정보 조회에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
+  };
+
   return (
     <>
       <section>
@@ -49,7 +81,9 @@ const Profile = () => {
         <div className="relative">
           {/* <div className="bg-yellow3 h-28">{params.id}의 프로필 페이지~!!</div> */}
           <div className="bg-yellow3 h-28">
-            {memberId}번 유저의 프로필 페이지~!!
+            {profilePageId}번 유저의 프로필 페이지~!!
+            {loginUserInfo.isLogin}
+            {loginUserInfo.loginId}
           </div>
           <div className="h-44"></div>
           <div className="flex flex-row justify-between">

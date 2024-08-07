@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import logo from "./../assets/logo.png";
 import { Link } from "react-router-dom";
+import useLoginUserStore from "../store/useLoginUserStore.jsx";
+
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 import Modal from "./Modal";
 import SettingsModal from "./SettingsModal";
 
 const Header = () => {
+  // const loginId = useLoginUserStore((state) => state.loginUserInfo.loginId);
+  // const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
+  // const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
+  // const { loginUserInfo } = useLoginUserStore();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const memberId = window.sessionStorage.getItem("memberId");
-  console.log("지금 로그인한 memberId: ", memberId);
+  const profilePageId = window.sessionStorage.getItem("loginId");
+  // console.log("지금 로그인한 loginMemberId: ", loginUserInfo.loginId);
+  // console.log("지금 유저의 로그인 유무: ", isLogin);
   return (
     <div>
       <header className="Header sticky inset-x-0 top-0 z-50 left-0 bg-white text-gray-600 body-font border-b border-gray-200">
@@ -42,8 +50,8 @@ const Header = () => {
                 <SettingsModal closeModal={closeModal} />
               </Modal>
             </div>
-            <Link to={`/profile/${memberId}`}>
-              {/* <Link to={"/profile:memberId"}> */}
+            {/* <Link to={`/profile/${loginUserInfo && loginUserInfo.loginId}`}> */}
+            <Link to={`/profile/${profilePageId}`}>
               <CgProfile className="mr-5 w-6 h-6 inline-block" />
               {/* <span className="mr-5 hover:text-gray-900">마이페이지</span> */}
             </Link>

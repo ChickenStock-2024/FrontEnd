@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { defaultInstance } from "../../api/axios";
+import useLoginUserStore from "../../store/useLoginUserStore";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
 
 const LoginForm = () => {
   const nav = useNavigate();
-
+  const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
   // 로그인 정보(유저가 로그인 창에서 입력한 email, password, fcm토큰)
   // # 1.1. inputData 상태관리
   const [inputData, setInputData] = useState({
@@ -49,10 +50,15 @@ const LoginForm = () => {
 
       // # 2.2. 로그인 상태 업데이트
       // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
-      sessionStorage.setItem("accessToken", response.headers.token);
-      sessionStorage.setItem("memberId", response.data.memberId);
-      sessionStorage.setItem("nickname", response.data.nickName);
+      // sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("loginId", response.data.memberId);
+      sessionStorage.setItem("nickname", response.data.nickname);
       sessionStorage.setItem("isLogin", true);
+      console.log(loginUserInfo.isLogin);
+      loginUserInfo.loginId = response.data.memberId;
+      loginUserInfo.nickname = response.data.nickName;
+      loginUserInfo.isLogin = true;
+      console.log(loginUserInfo);
 
       // # 2.3. 로그인 완료 후, 메인 페이지로 이동!
       // sessionStorage에 저장된 search 값을 가져옴
