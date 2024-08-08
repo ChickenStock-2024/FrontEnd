@@ -2,6 +2,7 @@ import React from "react";
 import { useRef, useMemo, useEffect } from "react";
 import OrderBookStockPrice from "./OrderBookStockPrice";
 import useStompData from "../../../../hooks/useStompData";
+import useStockDataStore from "../../../../store/useStockDataStore";
 
 const OrderBook = ({
   setSelectedPrice,
@@ -93,6 +94,8 @@ const OrderBook = ({
 
   const { offers, bids, stockInfo } = useStompData();
 
+  const stockInfo2 = useStockDataStore((state) => state.stockInfo);
+
   // offers 배열을 memoized 값으로 캐싱
   const reversedOffers = useMemo(() => {
     return [...offers].reverse();
@@ -112,7 +115,8 @@ const OrderBook = ({
 
   return (
     <>
-      <div>시장가 : {stockInfo.currentPrice}</div>
+      <div>호가창 시장가 : {stockInfo.currentPrice}</div>
+      <div>store 시장가 : {stockInfo2.currentPrice}</div>
       {reversedOffers.map((item, idx) => (
         // const changeRate = (
         //   ((item.price - yesterDayStockClosingPrice) /

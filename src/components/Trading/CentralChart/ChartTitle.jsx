@@ -1,4 +1,5 @@
 import React from "react";
+import useStockDataStore from "../../../store/useStockDataStore";
 
 const mokData = {
   company: "삼성전자",
@@ -8,6 +9,23 @@ const mokData = {
 };
 
 const ChartTitle = ({ stockId }) => {
+  const stockInfo = useStockDataStore((state) => state.stockInfo);
+
+  let txtColor = "";
+  let changeSign = "-";
+  let plusSign = "";
+
+  if (stockInfo.change > 0) {
+    txtColor = "text-red-600";
+    changeSign = "▲";
+    plusSign = "+";
+  }
+
+  if (stockInfo.change < 0) {
+    txtColor = "text-blue-600";
+    changeSign = "▼";
+  }
+
   return (
     <div className="flex justify-between items-center mx-2 my-10">
       {/* 종목 이름 */}
@@ -19,13 +37,19 @@ const ChartTitle = ({ stockId }) => {
           {stockId}번 회사: {mokData.company}
         </h2>
       </div>
+
+      {/* 등락 부호에 따라 색상, 화살표 지정 */}
       {/* 가격 등락 부분 */}
-      <div
-        className={`flex gap-4 items-center ${Number(mokData.changes) < 0 ? "text-blue-700" : "text-red-500"}`}
-      >
-        <span className="text-2xl font-bold">{mokData.price}</span>
-        <span className="text-lg font-bold">{mokData.changesRatio}</span>
-        <span className="text-lg font-bold">{mokData.changes}</span>
+      <div className={`flex gap-4 items-center ${txtColor}`}>
+        <span className="text-2xl font-bold">{stockInfo.currentPrice}</span>
+        <span className="text-lg font-bold">
+          {plusSign}
+          {stockInfo.changeRate}%
+        </span>
+        <span className="text-lg font-bold">
+          {changeSign}
+          {Math.abs(stockInfo.change)}
+        </span>
       </div>
     </div>
   );

@@ -1,9 +1,15 @@
 import { useMemo } from "react";
 import useStompData from "../hooks/useStompData";
+import useStompDataTest from "../hooks/useStompDataTest";
+import useStockDataStore from "../store/useStockDataStore";
 import OrderBookStockPrice from "./Trading/OrderSection/OrderMain/OrderBookStockPrice";
 
 const WebSocketTest = () => {
-  const { offers, bids, stockInfo } = useStompData();
+  useStompDataTest();
+
+  const offers = useStockDataStore((state) => state.hokaData.offers) || [];
+  const bids = useStockDataStore((state) => state.hokaData.bids) || [];
+  const stockInfo = useStockDataStore((state) => state.stockInfo);
 
   // offers 배열을 memoized 값으로 캐싱
   const reversedOffers = useMemo(() => {
@@ -26,11 +32,11 @@ const WebSocketTest = () => {
         </div>
         <div className="hoka w-48">
           {reversedOffers.map((item, idx) => {
-            const changeRate = (
-              ((item.price - yesterDayStockClosingPrice) /
-                yesterDayStockClosingPrice) *
-              100
-            ).toFixed(2);
+            // const changeRate = (
+            //   ((item.price - yesterDayStockClosingPrice) /
+            //     yesterDayStockClosingPrice) *
+            //   100
+            // ).toFixed(2);
             return (
               <OrderBookStockPrice
                 key={item.price}

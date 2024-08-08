@@ -76,6 +76,7 @@ const OrderStockInput = ({
             id="price"
             value={price}
             type="number"
+            min={0}
             step={100}
             className={`w-full focus:outline-none text-right ${isMarketPrice ? "text-gray-300" : ""}`}
             onChange={onChangePrice}
@@ -94,6 +95,7 @@ const OrderStockInput = ({
             id="quantity"
             value={quantity}
             type="number"
+            min={0}
             className="w-full focus:outline-none text-right"
             onChange={onChangeQuantity}
           />
