@@ -1,15 +1,17 @@
 import React from "react";
 import { useRef, useMemo, useEffect } from "react";
-import OrderBookStockPrice from "./OrderBookStockPrice";
-import useStompData from "../../../../hooks/useStompData";
+import useStompDataTest from "../../../../hooks/useStompDataTest";
 import useStockDataStore from "../../../../store/useStockDataStore";
+import OrderBookStockPrice from "./OrderBookStockPrice";
 
 const OrderBook = ({
   setSelectedPrice,
   selectedPriceState,
   setSelectedPriceState,
   setMarketPrice,
+  activeTabMarket,
 }) => {
+  // 호가 mock data
   const sellingPrice = [
     {
       price: "80500",
@@ -48,7 +50,6 @@ const OrderBook = ({
       volume: "32832",
     },
   ];
-  // 매수 호가
   const buyingPrice = [
     {
       price: "80400",
@@ -92,20 +93,30 @@ const OrderBook = ({
     },
   ];
 
-  const { offers, bids, stockInfo } = useStompData();
-
-  const stockInfo2 = useStockDataStore((state) => state.stockInfo);
+  useStompDataTest();
+  const offers = useStockDataStore((state) => state.hokaData.offers) || [];
+  const bids = useStockDataStore((state) => state.hokaData.bids) || [];
+  const stockInfo = useStockDataStore((state) => state.stockInfo);
 
   // offers 배열을 memoized 값으로 캐싱
   const reversedOffers = useMemo(() => {
     return [...offers].reverse();
   }, [offers]);
 
+  // 매도 매수에 따라 알맞은 시장가 지정
+  // useEffect(() => {
+  //   if (bids.length > 0) {
+  //     setMarketPrice(parseInt(bids[0].price));
+  //   }
+  // }, [bids, setMarketPrice]);
+
   useEffect(() => {
-    if (bids.length > 0) {
+    if (activeTabMarket === "buy" && bids.length > 0) {
       setMarketPrice(parseInt(bids[0].price));
+    } else if (activeTabMarket === "sell" && offers.length > 0) {
+      setMarketPrice(parseInt(offers[0].price));
     }
-  }, [bids, setMarketPrice]);
+  }, [bids, offers, setMarketPrice, activeTabMarket]);
 
   const handleClickPrice = (price) => {
     setSelectedPrice(price);
@@ -115,8 +126,8 @@ const OrderBook = ({
 
   return (
     <>
-      <div>호가창 시장가 : {stockInfo.currentPrice}</div>
-      <div>store 시장가 : {stockInfo2.currentPrice}</div>
+      {/* <div>호가창 시장가 : {stockInfo.currentPrice}</div> */}
+      <div>현재가 : {stockInfo.currentPrice}</div>
       {reversedOffers.map((item, idx) => (
         // const changeRate = (
         //   ((item.price - yesterDayStockClosingPrice) /

@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import QuantityButton from "./QuantityButton";
 import PriceToggle from "./PriceToggle";
-import { PriceContext } from "./OrderMain";
 
 const OrderStockInput = ({
   activeTabOption,
