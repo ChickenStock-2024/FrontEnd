@@ -2,13 +2,14 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 // hook기반으로 생성을 한다.
-const useLoginUserStore = create(
+const useLoginUserInfoStore = create(
   persist(
     (set) => ({
       // 상태선언
       loginUserInfo: {
         loginId: null,
-        isLogin: false,
+        isLogineded: false,
+        isJoined: false,
         nickname: "",
         rank: "",
         rating: "",
@@ -25,7 +26,7 @@ const useLoginUserStore = create(
         set({
           loginUserInfo: {
             loginId: null,
-            isLogin: false,
+            isLogined: false,
             nickname: "",
             rank: "",
             rating: "",
@@ -40,4 +41,4 @@ const useLoginUserStore = create(
     }
   )
 );
-export default useLoginUserStore;
+export default useLoginUserInfoStore;

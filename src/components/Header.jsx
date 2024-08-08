@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "./../assets/logo.png";
 import { Link } from "react-router-dom";
-import useLoginUserStore from "../store/useLoginUserStore.jsx";
+import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
 
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
@@ -11,14 +11,14 @@ import SettingsModal from "./SettingsModal/SettingsModal.jsx";
 const Header = () => {
   // const setLoginId = () => {
   //   console.log("loginId: ", loginId);
-  //   useLoginUserStore.setState({ loginId: loginId });
+  //   useLoginUserInfoStore.setState({ loginId: loginId });
   //   console.log("loginId: ", loginId);
   // };
 
-  const loginId = useLoginUserStore((state) => state.loginUserInfo.loginId);
-  const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
-  // const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
-  // const { loginUserInfo } = useLoginUserStore();
+  const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
+  const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  // const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  // const { loginUserInfo } = useLoginUserInfoStore();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -27,7 +27,7 @@ const Header = () => {
   console.log("지금 로그인한 loginMemberId: ", loginId);
   console.log(loginUserInfo);
 
-  // console.log("지금 유저의 로그인 유무: ", isLogin);
+  // console.log("지금 유저의 로그인 유무: ", isLogined);
 
   // useEffect(() => {
   //   setLoginId();

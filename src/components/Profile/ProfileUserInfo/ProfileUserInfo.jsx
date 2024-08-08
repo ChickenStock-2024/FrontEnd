@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import { TbPhotoEdit } from "react-icons/tb";
 
+import useProfilePageInfoStore from "../../../store/useProfilePageInfoStore";
+
 import ProfileUserInfoImage from "./ProfileUserInfoImage";
 // import profileImg from "../../../assets/dummy-profile-icon.png";
 import tierBadgeIcon from "../../../assets/userTierBadge.png";
 
-const ProfileUserInfo = ({ userInfo }) => {
-  // useEffect(() => {});
-  // const userInfo = {
-  //   member_id: 1,
-  //   nickname: "쑤",
-  //   tier: "플래티넘 5",
-  //   profileImg: profileImg,
-  // };
+const ProfileUserInfo = () => {
+  const profilePageInfo = useProfilePageInfoStore(
+    (state) => state.profilePageInfo
+  );
+  console.log(profilePageInfo);
 
-  // console.log(userInfo);
-  if (!userInfo) {
-    return <div>Loading...</div>; // userInfo가 없을 때 대처
+  if (!profilePageInfo) {
+    return <div>Loading...</div>; // profilePageInfo가 없을 때 대처
   } else
     return (
       // <div className="flex flex-col justify-around w-52 h-72 border-solid border-2">
@@ -36,11 +34,11 @@ const ProfileUserInfo = ({ userInfo }) => {
             </section>
             <section>
               <div className="text-3xl font-semibold text-left mb-2">
-                {userInfo.nickname}
+                {profilePageInfo.nickname}
               </div>
               <div className="flex items-center">
                 {/* <>{userInfo["tier"].split(" ")[0]}</> */}
-                <>{userInfo.tier}</>
+                <>{profilePageInfo.tier}</>
                 <>
                   <img
                     className="rounded-full w-5 h-5 ml-2"

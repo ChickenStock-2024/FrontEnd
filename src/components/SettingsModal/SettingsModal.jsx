@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { defaultInstance } from "../../api/axios";
-import useLoginUserStore from "../../store/useLoginUserStore";
+import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 
 import React from "react";
 import Button from "../Button";
@@ -8,7 +8,7 @@ import Toggle from "../Toggle";
 
 const SettingsModal = ({ closeModal }) => {
   const nav = useNavigate();
-  const clearLoginUserInfo = useLoginUserStore(
+  const clearLoginUserInfo = useLoginUserInfoStore(
     (state) => state.clearLoginUserInfo
   );
 
