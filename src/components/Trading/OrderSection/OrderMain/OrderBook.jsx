@@ -1,5 +1,5 @@
 import React from "react";
-import { useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import OrderBookStockPrice from "./OrderBookStockPrice";
 import useStompData from "../../../../hooks/useStompData";
 
@@ -7,7 +7,6 @@ const OrderBook = ({
   setSelectedPrice,
   selectedPriceState,
   setSelectedPriceState,
-  marketPrice,
   setMarketPrice,
 }) => {
   const sellingPrice = [
@@ -114,7 +113,7 @@ const OrderBook = ({
   return (
     <>
       <div>시장가 : {stockInfo.currentPrice}</div>
-      {reversedOffers.reverse().map((item, idx) => {
+      {reversedOffers.map((item, idx) => (
         // const changeRate = (
         //   ((item.price - yesterDayStockClosingPrice) /
         //     yesterDayStockClosingPrice) *
@@ -130,10 +129,10 @@ const OrderBook = ({
           // changeRate={changeRate}
           // totalSellingVolume={totalSellingVolume}
           // totalBuyingVolume={totalBuyingVolume}
-        />;
-      })}
+        />
+      ))}
 
-      {bids.map((item, idx) => {
+      {bids.map((item, idx) => (
         <OrderBookStockPrice
           key={item.price}
           index={idx}
@@ -142,8 +141,8 @@ const OrderBook = ({
           bgColor={"bg-red-100"}
           handleClickPrice={handleClickPrice}
           isSelected={selectedPriceState === parseInt(item.price)}
-        />;
-      })}
+        />
+      ))}
     </>
   );
 };
