@@ -124,6 +124,7 @@ const OrderBook = ({
           price={parseInt(item.price)}
           volume={parseInt(item.volume)}
           bgColor={"bg-blue-100"}
+          txtColor={"text-blue-600"}
           handleClickPrice={handleClickPrice}
           isSelected={selectedPriceState === parseInt(item.price)}
           // changeRate={changeRate}
@@ -139,6 +140,7 @@ const OrderBook = ({
           price={parseInt(item.price)}
           volume={parseInt(item.volume)}
           bgColor={"bg-red-100"}
+          txtColor={"text-red-600"}
           handleClickPrice={handleClickPrice}
           isSelected={selectedPriceState === parseInt(item.price)}
         />

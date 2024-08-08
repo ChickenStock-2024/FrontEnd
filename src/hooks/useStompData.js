@@ -47,6 +47,7 @@ const useStompData = () => {
   return {
     offers: messages.offers || [],
     bids: messages.bids || [],
+    messages: messages,
     stockInfo: stockInfo,
   };
 };

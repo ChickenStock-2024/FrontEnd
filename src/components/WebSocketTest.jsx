@@ -26,12 +26,20 @@ const WebSocketTest = () => {
         </div>
         <div className="hoka w-48">
           {reversedOffers.map((item, idx) => {
+            const changeRate = (
+              ((item.price - yesterDayStockClosingPrice) /
+                yesterDayStockClosingPrice) *
+              100
+            ).toFixed(2);
             return (
               <OrderBookStockPrice
                 key={item.price}
                 price={parseInt(item.price)}
                 volume={parseInt(item.volume)}
                 bgColor={"bg-blue-100"}
+                // changeRate={changeRate}
+                // totalSellingVolume={totalSellingVolume}
+                // totalBuyingVolume={totalBuyingVolume}
               />
             );
           })}
