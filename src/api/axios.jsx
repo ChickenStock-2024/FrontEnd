@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = "http://10.13.13.2:8080";
+// const BASE_URL = "http://10.13.13.2:8080";
+const BASE_URL = "https://chickenstock.givendragon.site/api";
 
-// 단순 get요청으로 인증값이 필요없는 경우
+// 토큰을 헤더에 넣지 않고, api요청 시
 const axiosApi = (url, options) => {
   const instance = axios.create({
     baseURL: url,
@@ -12,14 +13,14 @@ const axiosApi = (url, options) => {
   return instance;
 };
 
-// post, delete등 api요청 시 인증값이 필요한 경우
+// 토큰을 헤더에 넣어서 api요청 시
 const axiosAuthApi = (url, options) => {
   const accessToken = "토큰 값";
   const instance = axios.create({
     baseURL: url,
     headers: { Authorization: accessToken },
     ...options,
-    withCredentials: true,
+    // withCredentials: true,
   });
   return instance;
 };
