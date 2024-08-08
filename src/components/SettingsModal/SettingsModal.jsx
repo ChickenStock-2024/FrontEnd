@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "./Button";
-import Toggle from "./Toggle";
+import Button from "../Button";
+import Toggle from "../Toggle";
 
 const SettingsModal = ({ closeModal }) => {
   const logout = () => {

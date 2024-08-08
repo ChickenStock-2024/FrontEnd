@@ -7,7 +7,7 @@ import HomeCenterAfterLoginJoinCompetition from "../components/Home/HomeCenterAf
 import HomeBottom from "../components/Home/HomeBottom";
 import Input from "../components/Input";
 import Modal from "../components/Modal";
-import SettingsModal from "../components/SettingsModal";
+import SettingsModal from "../components/SettingsModal/SettingsModal";
 
 const Home = () => {
   return (

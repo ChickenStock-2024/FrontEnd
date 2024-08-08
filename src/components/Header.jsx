@@ -6,7 +6,7 @@ import useLoginUserStore from "../store/useLoginUserStore.jsx";
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 import Modal from "./Modal";
-import SettingsModal from "./SettingsModal";
+import SettingsModal from "./SettingsModal/SettingsModal.jsx";
 
 const Header = () => {
   // const setLoginId = () => {

@@ -24,7 +24,8 @@ const ProfileUserInfo = ({ userInfo }) => {
         <div className="flex flex-row justify-between ">
           <div className="flex flex-col justify-around w-52 h-72">
             <section className="relative">
-              <ProfileUserInfoImage profileImg={userInfo.profileImg} />
+              <ProfileUserInfoImage />
+              {/* <ProfileUserInfoImage profileImg={userInfo.profileImg} /> */}
               {/* <TbPhotoEdit className="absolute bottom-11 left-32 w-7 h-7 p-1 rounded-full border-2 border-gray-300 bg-white" /> */}
 
               {/* <img
