@@ -34,13 +34,14 @@ const priceFormat = (str) => {
 
 const Profile = () => {
   const { profilePageId } = useParams();
-  const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
+  // const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
 
   const [userInfo, setUserInfo] = useState(null);
+
   useEffect(() => {
-    console.log(profilePageId);
+    console.log("현재 접속한 profilePageId: ", profilePageId);
     setUserInfo(() => getUserInfo(profilePageId));
-  }, []);
+  }, [profilePageId]);
 
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
@@ -50,17 +51,18 @@ const Profile = () => {
   // # 1. 프로필 페이지 렌더링 시,
   const getUserInfo = async () => {
     try {
-      console.log("로그인 전: ", userInfo);
+      console.log("getUserInfo 전: ", userInfo);
 
-      // # 1.0. Axios의 응답 객체에서 직접 checkedEmail 추출
-      const response = await defaultInstance.get(`/users/${profilePageId}`);
-      // # 2.1. 로그인 완료 알림
+      // # 1.0. Axios의 응답 객체에서 프로필 페이지 UserInfo 추출
+      const response = await defaultInstance.get(`/user/${profilePageId}`);
+      const data = response.data;
+      // # 1.1. UserInfo 가져오기 완료 알림
       alert("getUserInfo 완료");
-      console.log(response);
+      console.log(data);
 
-      // # 2.2. response값 저장
+      // # 1.2. UserInfo 값 할당
       // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
-      // sessionStorage.setItem("nickname", response.headers.token);
+      // userInfo = "nickname", response.headers.token);
       // sessionStorage.setItem("rank", response.data.memberId);
       // sessionStorage.setItem("rating", response.data.nickName);
       // sessionStorage.setItem("tier", true);
@@ -82,8 +84,8 @@ const Profile = () => {
           {/* <div className="bg-yellow3 h-28">{params.id}의 프로필 페이지~!!</div> */}
           <div className="bg-yellow3 h-28">
             {profilePageId}번 유저의 프로필 페이지~!!
-            {loginUserInfo.isLogin}
-            {loginUserInfo.loginId}
+            {/* {loginUserInfo.isLogin}
+            {loginUserInfo.loginId} */}
           </div>
           <div className="h-44"></div>
           <div className="flex flex-row justify-between">

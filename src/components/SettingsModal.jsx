@@ -3,6 +3,10 @@ import Button from "./Button";
 import Toggle from "./Toggle";
 
 const SettingsModal = ({ closeModal }) => {
+  const logout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+  };
   return (
     <div className="p-10">
       <div>
@@ -29,6 +33,9 @@ const SettingsModal = ({ closeModal }) => {
         </div>
         <div className="mt-10 text-center">
           <Button text={"저장"} onClick={closeModal} />
+        </div>
+        <div className="mt-3 text-center">
+          <Button text={"로그아웃"} onClick={logout} color={"yellow3"} />
         </div>
       </div>
     </div>
