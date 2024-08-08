@@ -1,12 +1,49 @@
+import { useNavigate } from "react-router-dom";
+import { defaultInstance } from "../../api/axios";
+import useLoginUserStore from "../../store/useLoginUserStore";
+
 import React from "react";
 import Button from "../Button";
 import Toggle from "../Toggle";
 
 const SettingsModal = ({ closeModal }) => {
-  const logout = () => {
-    localStorage.clear();
-    sessionStorage.clear();
+  const nav = useNavigate();
+  const clearLoginUserInfo = useLoginUserStore(
+    (state) => state.clearLoginUserInfo
+  );
+
+  // 1. 로그아웃 클릭시
+  const handleLogout = () => {
+    postLogout();
   };
+
+  // 2. 로그아웃 axios
+  const postLogout = async () => {
+    try {
+      const response = await defaultInstance.post("/auth/logout");
+
+      // # 2.1. 로그아웃 axios 보내면서, 로그인한 유저 정보 삭제
+      clearLoginUserInfo();
+      localStorage.clear();
+      sessionStorage.clear();
+
+      // # 2.2. 로그아웃 완료 알림
+      alert("로그아웃 완료~!!");
+      console.log(response);
+      nav("/");
+    } catch (error) {
+      console.log(error);
+      clearLoginUserInfo();
+      localStorage.clear();
+      sessionStorage.clear();
+      alert(
+        "로그아웃에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+      nav("/");
+    }
+  };
+
   return (
     <div className="p-10">
       <div>
@@ -35,7 +72,7 @@ const SettingsModal = ({ closeModal }) => {
           <Button text={"저장"} onClick={closeModal} />
         </div>
         <div className="mt-3 text-center">
-          <Button text={"로그아웃"} onClick={logout} color={"yellow3"} />
+          <Button text={"로그아웃"} onClick={handleLogout} color={"yellow3"} />
         </div>
       </div>
     </div>

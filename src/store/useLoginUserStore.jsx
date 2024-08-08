@@ -21,6 +21,18 @@ const useLoginUserStore = create(
       // updateLoginId: (val) => set((state) => ({ loginId: val })),
       // update: () => set((state) => ({ bears: state.bears + 1 })),
       // removeloginUserInfo: () => set({ bears: 0 }),
+      clearLoginUserInfo: () =>
+        set({
+          loginUserInfo: {
+            loginId: null,
+            isLogin: false,
+            nickname: "",
+            rank: "",
+            rating: "",
+            tier: "",
+            profileImg: "",
+          },
+        }),
     }),
     {
       name: "loginUserInfo", // name of the item in the storage (must be unique)
