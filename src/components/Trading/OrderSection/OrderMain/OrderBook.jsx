@@ -94,8 +94,12 @@ const OrderBook = ({
   ];
 
   useStompDataTest();
-  const offers = useStockDataStore((state) => state.hokaData.offers) || [];
-  const bids = useStockDataStore((state) => state.hokaData.bids) || [];
+  const hokaData = useStockDataStore((state) => state.hokaData);
+  // const offers = useStockDataStore((state) => state.hokaData.offers) || [];
+  // const bids = useStockDataStore((state) => state.hokaData.bids) || [];
+
+  const offers = hokaData.offers || [];
+  const bids = hokaData.bids || [];
   const stockInfo = useStockDataStore((state) => state.stockInfo);
 
   // offers 배열을 memoized 값으로 캐싱
@@ -124,43 +128,85 @@ const OrderBook = ({
     // 해당 함수가 실행되었을 때 표시가 되어야 함(노란색으로 표시됨)
   };
 
-  return (
-    <>
-      {/* <div>호가창 시장가 : {stockInfo.currentPrice}</div> */}
-      <div>현재가 : {stockInfo.currentPrice}</div>
-      {reversedOffers.map((item, idx) => (
-        // const changeRate = (
-        //   ((item.price - yesterDayStockClosingPrice) /
-        //     yesterDayStockClosingPrice) *
-        //   100
-        // ).toFixed(2); // 전날 종가대비 주가 변동률
-        <OrderBookStockPrice
-          key={item.price}
-          price={parseInt(item.price)}
-          volume={parseInt(item.volume)}
-          bgColor={"bg-blue-100"}
-          txtColor={"text-blue-600"}
-          handleClickPrice={handleClickPrice}
-          isSelected={selectedPriceState === parseInt(item.price)}
-          // changeRate={changeRate}
-          // totalSellingVolume={totalSellingVolume}
-          // totalBuyingVolume={totalBuyingVolume}
-        />
-      ))}
+  console.log(offers);
 
-      {bids.map((item, idx) => (
-        <OrderBookStockPrice
-          key={item.price}
-          index={idx}
-          price={parseInt(item.price)}
-          volume={parseInt(item.volume)}
-          bgColor={"bg-red-100"}
-          txtColor={"text-red-600"}
-          handleClickPrice={handleClickPrice}
-          isSelected={selectedPriceState === parseInt(item.price)}
-        />
-      ))}
-    </>
+  return (
+    <div className="flex flex-col h-full">
+      {/* <div>호가창 시장가 : {stockInfo.currentPrice}</div> */}
+      {/* <div>현재가 : {stockInfo.currentPrice}</div> */}
+      <div>매도호가 잔량: {hokaData.totalOfferVolume}</div>
+      {(offers.length | bids.length) == 0 ? (
+        <div>데이터 없음</div>
+      ) : (
+        <div className="flex-grow overflow-y-scroll">
+          {reversedOffers.map((item, idx) => (
+            // const changeRate = (
+            //   ((item.price - yesterDayStockClosingPrice) /
+            //     yesterDayStockClosingPrice) *
+            //   100
+            // ).toFixed(2); // 전날 종가대비 주가 변동률
+            <OrderBookStockPrice
+              key={item.price}
+              price={parseInt(item.price)}
+              volume={parseInt(item.volume)}
+              bgColor={"bg-blue-100"}
+              txtColor={"text-blue-600"}
+              handleClickPrice={handleClickPrice}
+              isSelected={selectedPriceState === parseInt(item.price)}
+              // changeRate={changeRate}
+              // totalSellingVolume={totalSellingVolume}
+              // totalBuyingVolume={totalBuyingVolume}
+            />
+          ))}
+          {bids.map((item, idx) => (
+            <OrderBookStockPrice
+              key={item.price}
+              index={idx}
+              price={parseInt(item.price)}
+              volume={parseInt(item.volume)}
+              bgColor={"bg-red-100"}
+              txtColor={"text-red-600"}
+              handleClickPrice={handleClickPrice}
+              isSelected={selectedPriceState === parseInt(item.price)}
+            />
+          ))}
+        </div>
+      )}
+      <div className="flex-grow overflow-y-scroll">
+        {reversedOffers.map((item, idx) => (
+          // const changeRate = (
+          //   ((item.price - yesterDayStockClosingPrice) /
+          //     yesterDayStockClosingPrice) *
+          //   100
+          // ).toFixed(2); // 전날 종가대비 주가 변동률
+          <OrderBookStockPrice
+            key={item.price}
+            price={parseInt(item.price)}
+            volume={parseInt(item.volume)}
+            bgColor={"bg-blue-100"}
+            txtColor={"text-blue-600"}
+            handleClickPrice={handleClickPrice}
+            isSelected={selectedPriceState === parseInt(item.price)}
+            // changeRate={changeRate}
+            // totalSellingVolume={totalSellingVolume}
+            // totalBuyingVolume={totalBuyingVolume}
+          />
+        ))}
+        {bids.map((item, idx) => (
+          <OrderBookStockPrice
+            key={item.price}
+            index={idx}
+            price={parseInt(item.price)}
+            volume={parseInt(item.volume)}
+            bgColor={"bg-red-100"}
+            txtColor={"text-red-600"}
+            handleClickPrice={handleClickPrice}
+            isSelected={selectedPriceState === parseInt(item.price)}
+          />
+        ))}
+      </div>
+      <div>매수호가 잔량: {hokaData.totalBidVolume}</div>
+    </div>
   );
 };
 

@@ -23,6 +23,7 @@ const useStompDataTest = () => {
     client.onConnect = () => {
       client.subscribe("/stock-hoka", (message) => {
         const newMessage = JSON.parse(message.body);
+        console.log(newMessage);
         setHokaData(newMessage);
       });
 
