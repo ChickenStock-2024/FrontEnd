@@ -24,6 +24,7 @@ const OrderMain = () => {
       {/* <PriceContext.Provider value={{ selectedPrice, setSelectedPrice }}> */}
       <div className="w-2/5 overflow-y-auto">
         <OrderBook
+          selectedPrice={selectedPrice}
           setSelectedPrice={setSelectedPrice}
           selectedPriceState={selectedPriceState}
           setSelectedPriceState={setSelectedPriceState}

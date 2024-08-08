@@ -10,6 +10,7 @@ import Trading from "./pages/Trading";
 import Ranking from "./pages/Ranking";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
+import WebSocketTest from "./components/WebSocketTest";
 
 NotificationInApp();
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/profile/:id" element={<Profile />} />
         {/* <Route path="/profile" element={<Profile />} /> */}
+        <Route path="/test" element={<WebSocketTest />} />
       </Routes>
     </div>
   );

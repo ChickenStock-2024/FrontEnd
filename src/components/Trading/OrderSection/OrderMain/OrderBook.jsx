@@ -1,18 +1,14 @@
 import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import OrderBookStockPrice from "./OrderBookStockPrice";
-import { PriceContext } from "./OrderMain";
+import useStompData from "../../../../hooks/useStompData";
 
 const OrderBook = ({
   setSelectedPrice,
   selectedPriceState,
   setSelectedPriceState,
-  marketPrice,
   setMarketPrice,
 }) => {
-  // const { setSelectedPrice } = useContext(PriceContext);
-  // const [selectedPriceState, setSelectedPriceState] = useState(null);
-
   const sellingPrice = [
     {
       price: "80500",
@@ -95,12 +91,18 @@ const OrderBook = ({
     },
   ];
 
-  // console.log(parseInt(buyingPrice[0].price));
+  const { offers, bids, stockInfo } = useStompData();
 
-  // 시장가 지정
+  // offers 배열을 memoized 값으로 캐싱
+  const reversedOffers = useMemo(() => {
+    return [...offers].reverse();
+  }, [offers]);
+
   useEffect(() => {
-    setMarketPrice(parseInt(buyingPrice[0].price));
-  }, [marketPrice]);
+    if (bids.length > 0) {
+      setMarketPrice(parseInt(bids[0].price));
+    }
+  }, [bids, setMarketPrice]);
 
   const handleClickPrice = (price) => {
     setSelectedPrice(price);
@@ -110,41 +112,39 @@ const OrderBook = ({
 
   return (
     <>
-      {sellingPrice.reverse().map((item, idx) => {
+      <div>시장가 : {stockInfo.currentPrice}</div>
+      {reversedOffers.map((item, idx) => (
         // const changeRate = (
         //   ((item.price - yesterDayStockClosingPrice) /
         //     yesterDayStockClosingPrice) *
         //   100
         // ).toFixed(2); // 전날 종가대비 주가 변동률
+        <OrderBookStockPrice
+          key={item.price}
+          price={parseInt(item.price)}
+          volume={parseInt(item.volume)}
+          bgColor={"bg-blue-100"}
+          txtColor={"text-blue-600"}
+          handleClickPrice={handleClickPrice}
+          isSelected={selectedPriceState === parseInt(item.price)}
+          // changeRate={changeRate}
+          // totalSellingVolume={totalSellingVolume}
+          // totalBuyingVolume={totalBuyingVolume}
+        />
+      ))}
 
-        return (
-          <OrderBookStockPrice
-            key={item.price}
-            price={parseInt(item.price)}
-            volume={parseInt(item.volume)}
-            bgColor={"bg-blue-100"}
-            handleClickPrice={handleClickPrice}
-            isSelected={selectedPriceState === parseInt(item.price)}
-            // changeRate={changeRate}
-            // totalSellingVolume={totalSellingVolume}
-            // totalBuyingVolume={totalBuyingVolume}
-          />
-        );
-      })}
-
-      {buyingPrice.map((item, idx) => {
-        return (
-          <OrderBookStockPrice
-            key={item.price}
-            index={idx}
-            price={parseInt(item.price)}
-            volume={parseInt(item.volume)}
-            bgColor={"bg-red-100"}
-            handleClickPrice={handleClickPrice}
-            isSelected={selectedPriceState === parseInt(item.price)}
-          />
-        );
-      })}
+      {bids.map((item, idx) => (
+        <OrderBookStockPrice
+          key={item.price}
+          index={idx}
+          price={parseInt(item.price)}
+          volume={parseInt(item.volume)}
+          bgColor={"bg-red-100"}
+          txtColor={"text-red-600"}
+          handleClickPrice={handleClickPrice}
+          isSelected={selectedPriceState === parseInt(item.price)}
+        />
+      ))}
     </>
   );
 };

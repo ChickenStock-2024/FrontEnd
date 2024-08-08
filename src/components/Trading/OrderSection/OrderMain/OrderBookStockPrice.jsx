@@ -1,27 +1,25 @@
 import React from "react";
-import { useContext } from "react";
-import { PriceContext } from "./OrderMain";
+import { useRef, useEffect } from "react";
 
 const OrderBookStockPrice = ({
   price,
   volume,
   bgColor,
+  txtColor,
   handleClickPrice,
   isSelected,
 }) => {
-  // const { onClickPrice } = useContext(PriceContext);
-
   return (
     <div
-      className={`${bgColor} flex justify-around p-2 mb-1 text-sm  ${isSelected ? "border-l-4 border-yellow2" : ""}`}
+      className={`${bgColor} flex justify-around items-center p-2 mb-1 text-sm ${isSelected ? "border-l-8 border-yellow1" : ""}`}
       onClick={() => handleClickPrice(price)}
     >
-      <div className="price">{price.toLocaleString()}</div>
+      <div className="price text-base">{price.toLocaleString()}</div>
       {/* <div className="changeRate">
         {changeRate}
         {changeRateUnit}
       </div> */}
-      <div className="volume">{volume.toLocaleString()}</div>
+      <div className={`volume ${txtColor}`}>{volume.toLocaleString()}</div>
     </div>
   );
 };

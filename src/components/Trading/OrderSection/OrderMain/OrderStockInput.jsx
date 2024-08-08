@@ -33,25 +33,12 @@ const OrderStockInput = ({
     setPrice(selectedPrice);
   }, [selectedPrice]);
 
-  // useEffect(() => {
-  //   console.log(isMarketPrice);
-  //   if (isMarketPrice) {
-  //     console.log("시장가로 고정");
-  //     setPrice(marketPrice);
-  //     setSelectedPriceState(marketPrice);
-  //   }
-  // }, [isMarketPrice]);
-
   if (isMarketPrice) {
-    console.log("시장가로 고정");
     setPrice(marketPrice);
     setSelectedPriceState(marketPrice);
   }
 
   const onChangePrice = (e) => {
-    // setPrice(e.target.value);
-    // setSelectedPriceState(parseInt(e.target.value));
-
     const newPrice = e.target.value;
     if (newPrice >= maxPrice) {
       setPrice(maxPrice);
@@ -63,7 +50,6 @@ const OrderStockInput = ({
   };
 
   const onChangeQuantity = (e) => {
-    // setQuantity(e.target.value);
     const newQuantity = e.target.value;
     newQuantity >= maxQuantity
       ? setQuantity(maxQuantity)
@@ -91,7 +77,7 @@ const OrderStockInput = ({
             value={price}
             type="number"
             step={100}
-            className="w-full focus:outline-none text-right"
+            className={`w-full focus:outline-none text-right ${isMarketPrice ? "text-gray-300" : ""}`}
             onChange={onChangePrice}
           />
           <span className="text-gray-400">원</span>
