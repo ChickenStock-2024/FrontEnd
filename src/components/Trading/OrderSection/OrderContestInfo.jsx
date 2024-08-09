@@ -8,10 +8,12 @@ const contestInfo = {
 
 const OrderContestInfo = () => {
   return (
-    <div>
-      <div className="text-lg">{contestInfo.title}</div>
-      <div className="text-sm text-right">
-        기간: {contestInfo.startDate} ~ {contestInfo.endDate}
+    <div className="px-2">
+      <div className="flex justify-between items-baseline">
+        <div className="text-lg">{contestInfo.title}</div>
+        <div className="text-sm text-right">
+          기간: {contestInfo.startDate} ~ {contestInfo.endDate}
+        </div>
       </div>
     </div>
   );

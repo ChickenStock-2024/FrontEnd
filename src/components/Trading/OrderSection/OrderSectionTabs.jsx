@@ -32,7 +32,7 @@ const OrderSectionTabs = ({ getActiveTabOption }) => {
           {tabsData.map((tab) => (
             <li className="flex-auto" role="presentation" key={tab.id}>
               <button
-                className={`inline-block w-full p-4 border-b-2 rounded-t-lg ${
+                className={`inline-block w-full p-4 border-b-2 ${
                   activeTab === tab.id
                     ? "font-bold text-slate-950 border-slate-950"
                     : "font-medium text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300 "

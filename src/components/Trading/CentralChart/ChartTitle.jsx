@@ -1,5 +1,6 @@
 import React from "react";
 import useStockDataStore from "../../../store/useStockDataStore";
+import companyLogo from "../../../assets/005930.png";
 
 const mokData = {
   company: "삼성전자",
@@ -33,6 +34,7 @@ const ChartTitle = ({ stockId }) => {
         <div className="bg-blue-700 w-8 h-8 rounded-full text-white text-center">
           삼성
         </div>
+        <companyLogo />
         <h2 className="text-2xl font-bold">
           {stockId}번 회사: {mokData.company}
         </h2>

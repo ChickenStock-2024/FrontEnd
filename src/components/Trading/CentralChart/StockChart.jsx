@@ -4,6 +4,7 @@ import ECharts from "echarts-for-react";
 
 import ChartTitle from "./ChartTitle";
 import rawData from "./samsung_stock";
+
 const companyName = "삼성전자";
 
 // 이동평균(MA) 계산하는 함수
