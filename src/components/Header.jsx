@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "./../assets/logo.png";
+import Button from "./Button.jsx";
 import { Link } from "react-router-dom";
 import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
 
@@ -50,7 +51,7 @@ const Header = () => {
             <Link to={"/ranking"}>
               <span className="mr-5 hover:text-gray-900">랭킹</span>
             </Link>
-            <div>
+            {/* <div>
               <button onClick={openModal}>
                 <FiSettings className="mr-5 w-6 h-6 inline-block" />
               </button>
@@ -61,6 +62,63 @@ const Header = () => {
               >
                 <SettingsModal closeModal={closeModal} />
               </Modal>
+            </div> */}
+            <div>
+              <div className="relative inline-block text-left">
+                <div>
+                  <button
+                    type="button"
+                    className=" w-full justify-center gap-x-1.5 rounded-md pr-5 mr-5text-sm font-semibold text-gray-600 "
+                    id="menu-button"
+                    aria-expanded="true"
+                    aria-haspopup="true"
+                  >
+                    <FiSettings className=" w-6 h-6 inline-block" />
+                  </button>
+                </div>
+                <div
+                  className="absolute -left-[150%] z-10 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                  tabIndex="-1"
+                >
+                  <div className="py-1" role="none">
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-center text-sm text-gray-700"
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="menu-item-0"
+                    >
+                      알림 설정
+                    </a>
+                  </div>
+                  <div className="py-1" role="none">
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-sm text-center text-gray-700"
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="menu-item-2"
+                    >
+                      닉네임 변경
+                    </a>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 text-sm text-center text-gray-700"
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="menu-item-3"
+                    >
+                      비밀번호 변경
+                    </a>
+                  </div>
+                  <div className="p-3 flex justify-center" role="none">
+                    <Button text={"로그아웃"} color={"yellow2"} />
+                  </div>
+                </div>
+              </div>
             </div>
             <Link to={`/profile/${loginId}`}>
               {/* <Link to={`/profile/${loginUserInfo && loginUserInfo.loginId}`}> */}
