@@ -6,7 +6,7 @@ const ProfileUserSearchTabSearch = ({
   users,
   search,
   setSearch,
-  priceFormat,
+  // priceFormat,
 }) => {
   // // users: 전체 유저
   // console.log(users);
@@ -48,7 +48,7 @@ const ProfileUserSearchTabSearch = ({
                   <ProfileUserSearchTabResult
                     key={index}
                     user={user}
-                    priceFormat={priceFormat}
+                    // priceFormat={priceFormat}
                   />
                 ))}
               </section>

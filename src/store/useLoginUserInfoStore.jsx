@@ -8,10 +8,11 @@ const useLoginUserInfoStore = create(
       // 상태선언
       loginUserInfo: {
         loginId: null,
-        isLogineded: false,
-        isJoined: false,
+        isLogined: false,
+        isJoined: true,
         nickname: "",
         rank: "",
+        balance: 10000000,
         rating: "",
         tier: "",
         profileImg: "",
@@ -27,8 +28,10 @@ const useLoginUserInfoStore = create(
           loginUserInfo: {
             loginId: null,
             isLogined: false,
+            isJoined: true,
             nickname: "",
             rank: "",
+            balance: 10000000,
             rating: "",
             tier: "",
             profileImg: "",

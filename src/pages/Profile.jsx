@@ -22,17 +22,17 @@ const handleDate = (strDate) => {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 };
 
-const priceFormat = (str) => {
-  const comma = (str) => {
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-  };
-  const uncomma = (str) => {
-    str = String(str);
-    return str.replace(/[^\d]+/g, "");
-  };
-  return comma(uncomma(str));
-};
+// const priceFormat = (str) => {
+//   const comma = (str) => {
+//     str = String(str);
+//     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+//   };
+//   const uncomma = (str) => {
+//     str = String(str);
+//     return str.replace(/[^\d]+/g, "");
+//   };
+//   return comma(uncomma(str));
+// };
 
 const Profile = () => {
   // # 1.0. 현재 접속한 페이지의 url에서 profilePageId 가져오기
@@ -130,13 +130,13 @@ const Profile = () => {
           <ProfileHistoryTab
             activeTabOption={activeTabOption}
             handleDate={handleDate}
-            priceFormat={priceFormat}
+            // priceFormat={priceFormat}
           />
         ) : (
           <>
             <ProfileUserSearchTab
               handleDate={handleDate}
-              priceFormat={priceFormat}
+              // priceFormat={priceFormat}
             />
           </>
         )}

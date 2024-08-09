@@ -9,7 +9,19 @@ import Input from "../components/Input";
 import Modal from "../components/Modal";
 import SettingsModal from "../components/SettingsModal/SettingsModal";
 
+import useLoginUserInfoStore from "../store/useLoginUserInfoStore";
+
 const Home = () => {
+  const isLogined = useLoginUserInfoStore(
+    (state) => state.loginUserInfo.isLogined
+  );
+  console.log(isLogined);
+
+  const isJoined = useLoginUserInfoStore(
+    (state) => state.loginUserInfo.isJoined
+  );
+  console.log(isJoined);
+
   return (
     <>
       <HomeCompetitionInfo />
@@ -22,9 +34,16 @@ const Home = () => {
       <div>
         {/* 로그인 & 대회참여 여부에 따라 다르게 렌더링 */}
         {/* 어떻게 구현 할지 생각???? */}
-        <HomeCenter />
-        {/* <HomeCenterAfterLogin /> */}
-        {/* <HomeCenterAfterLoginJoinCompetition /> */}
+        {isLogined ? (
+          isJoined ? (
+            <HomeCenterAfterLoginJoinCompetition />
+          ) : (
+            <HomeCenterAfterLogin />
+          )
+        ) : (
+          <HomeCenter />
+        )}
+
         <HomeBottom />
       </div>
     </>

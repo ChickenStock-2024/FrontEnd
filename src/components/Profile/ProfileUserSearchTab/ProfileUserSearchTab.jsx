@@ -5,7 +5,7 @@ import ProfileUserSearchTabSearch from "./ProfileUserSearchTabSearch.jsx";
 import ProfileUserSearchTabAxios from "./ProfileUserSearchTabAxios.js";
 // import Input from "../../Input.jsx";
 
-const ProfileUserSearchTab = ({ priceFormat }) => {
+const ProfileUserSearchTab = () => {
   const [users, setUsers] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -25,7 +25,7 @@ const ProfileUserSearchTab = ({ priceFormat }) => {
             users={users}
             search={search}
             setSearch={setSearch}
-            priceFormat={priceFormat}
+            // priceFormat={priceFormat}
           />
         </div>
       </div>

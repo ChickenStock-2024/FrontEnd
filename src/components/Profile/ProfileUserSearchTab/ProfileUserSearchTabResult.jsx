@@ -2,7 +2,8 @@ import React from "react";
 import profileImage from "../../../assets/userProfileImage_쑤.png";
 import userTierBadge from "../../../assets/userTierBadge.png";
 
-const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
+const ProfileUserSearchTabResult = ({ user }) => {
+  // const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
   // const userInfos = [
   //   {
   //     nickname: "0.쑤",
@@ -90,7 +91,7 @@ const ProfileUserSearchTabResult = ({ user, priceFormat }) => {
               {(user.balance - 1000000) / 10000}%
             </div>
             <div className="text-l font-medium">
-              ({priceFormat(user.balance - 1000000)}원)
+              ({(user.balance - 1000000).toLocaleString()}원)
             </div>
           </div>
           <div className="w-[40%]">

@@ -113,7 +113,8 @@ const competitionItems = [
   },
 ];
 
-const ProfileHistoryTab = ({ handleDate, priceFormat }) => {
+const ProfileHistoryTab = ({ handleDate }) => {
+  // const ProfileHistoryTab = ({ handleDate, priceFormat }) => {
   // useEffect(() => {
   //   // 0. 프로필 히스토리 페이지 렌더링시,
   //   getCompetitionAll();
@@ -174,7 +175,7 @@ const ProfileHistoryTab = ({ handleDate, priceFormat }) => {
                 <div>레이팅 변동: {competitionItem.rating_change}</div>
                 <div>
                   수익률: {(competitionItem.balance - 1000000) / 10000}% (
-                  {priceFormat(competitionItem.balance - 1000000)}원)
+                  {(competitionItem.balance - 1000000).toLocaleString()}원)
                 </div>
               </div>
             </div>
@@ -189,7 +190,7 @@ const ProfileHistoryTab = ({ handleDate, priceFormat }) => {
             onClose={handleCloseModal}
             competitionItem={selectedCompetition}
             handleDate={handleDate}
-            priceFormat={priceFormat}
+            // priceFormat={priceFormat}
           />
         ) : null}
       </div>

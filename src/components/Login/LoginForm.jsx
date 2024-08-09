@@ -53,8 +53,6 @@ const LoginForm = () => {
       console.log(response);
 
       // # 2.2. 로그인 상태 업데이트
-      // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
-      // sessionStorage.setItem("token", data.token);
       console.log("loginUserInfo변경 전: ", loginUserInfo.loginId);
       console.log("loginUserInfo변경 전: ", loginUserInfo.nickname);
       console.log("loginUserInfo변경 전: ", loginUserInfo.isLogined);
@@ -65,18 +63,10 @@ const LoginForm = () => {
         nickname: response.data.nickName,
         isLogined: true,
       });
-      // sessionStorage.setItem("loginId", response.data.memberId);
-      // sessionStorage.setItem("nickname", response.data.nickname);
-      // sessionStorage.setItem("isLogined", true);
-      // console.log(loginUserInfo.isLogined);
-      // loginUserInfo.loginId = response.data.memberId;
-      // loginUserInfo.nickname = response.data.nickName;
-      // loginUserInfo.isLogined = true;
+
       console.log(loginUserInfo);
 
       // # 2.3. 로그인 완료 후, 메인 페이지로 이동!
-      // sessionStorage에 저장된 search 값을 가져옴
-      // console.log(window.sessionStorage.getItem("email"));
       nav("/");
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
