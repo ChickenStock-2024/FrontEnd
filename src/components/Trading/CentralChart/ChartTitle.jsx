@@ -27,7 +27,7 @@ const ChartTitle = ({ stockId }) => {
   }
 
   return (
-    <div className="flex justify-between items-center mx-2 my-10">
+    <div className="flex justify-between items-center mx-2 my-6">
       {/* 종목 이름 */}
       <div className="flex gap-3">
         <div className="bg-blue-700 w-8 h-8 rounded-full text-white text-center">
@@ -36,6 +36,7 @@ const ChartTitle = ({ stockId }) => {
         <h2 className="text-2xl font-bold">
           {stockId}번 회사: {mokData.company}
         </h2>
+        <div className="align-baseline">{stockInfo.stockCode}</div>
       </div>
 
       {/* 등락 부호에 따라 색상, 화살표 지정 */}
