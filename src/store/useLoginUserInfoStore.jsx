@@ -9,7 +9,7 @@ const useLoginUserInfoStore = create(
       loginUserInfo: {
         loginId: null,
         isLogined: false,
-        isJoined: true,
+        isCompParticipant: true,
         nickname: "",
         rank: "",
         balance: 10000000,
@@ -28,7 +28,7 @@ const useLoginUserInfoStore = create(
           loginUserInfo: {
             loginId: null,
             isLogined: false,
-            isJoined: true,
+            isCompParticipant: true,
             nickname: "",
             rank: "",
             balance: 10000000,

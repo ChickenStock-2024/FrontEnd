@@ -1,8 +1,9 @@
 import React from "react";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
+import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 
-const HomeCenter = () => {
+const HomeCenterIngCompetitionBeforeLogin = () => {
   const nav = useNavigate();
   const onClick = () => {
     nav("/login");
@@ -10,14 +11,12 @@ const HomeCenter = () => {
   };
 
   // 데이터
-  const contestInfo = {
-    title: "XX회 정기대회",
-  };
+  const title = useCompetitionInfoStore((state) => state.competitionInfo.title);
 
   return (
     <div className="px-72 py-20 min-w-max">
       <div className="my-5">
-        <div className="text-xl font-bold">{contestInfo.title} 진행 중</div>
+        <div className="text-xl font-bold">{title} 진행 중</div>
         <div>지금 바로 로그인 후 참여하세요.</div>
       </div>
       <Button text={"로그인"} onClick={onClick} />
@@ -25,4 +24,4 @@ const HomeCenter = () => {
   );
 };
 
-export default HomeCenter;
+export default HomeCenterIngCompetitionBeforeLogin;
