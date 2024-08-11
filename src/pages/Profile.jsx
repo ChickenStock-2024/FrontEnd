@@ -112,7 +112,7 @@ const Profile = () => {
   };
 
   return (
-    <>
+    <div className="pt-24">
       <section>
         {/* <div className="bg-red-200">{userInfo && userInfo.nickname}</div> */}
         {/* <div className="relative bg-red-200"> */}
@@ -160,7 +160,7 @@ const Profile = () => {
           </>
         )}
       </section>
-    </>
+    </div>
   );
 };
 export default Profile;
