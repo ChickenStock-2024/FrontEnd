@@ -1,139 +1,132 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { defaultInstance } from "../../api/axios";
-import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 
-import React from "react";
-import Button from "../Button";
-import Toggle from "../Toggle";
-
-const SettingsModal = ({ closeModal }) => {
-  const nav = useNavigate();
-  const nickname = useLoginUserInfoStore(
-    (state) => state.loginUserInfo.nickname
-  );
-  const clearLoginUserInfo = useLoginUserInfoStore(
-    (state) => state.clearLoginUserInfo
-  );
-  // # 3.1. newNickname 상태관리
-  const [changeData, setChangeData] = useState({
-    newNickname: "",
+const SettingsModalPasswordChange = () => {
+  // # 3.1. changePassword 상태관리
+  const [changePassword, setChangePassword] = useState({
+    oldPassword: "",
+    newPassword: "",
+    newPasswordCheck: "",
   });
-  // // # 3.2. inputData 바뀔 때마다 저장하기
-  // const handleInput = (e) => {
-  //   setInputData({
-  //     ...inputData,
-  //     [e.target.id]: e.target.value,
-  //   });
-  // };
-  // # 3. 닉네임 중복 검사 axios
-  const getNicknameChecked = async () => {
+
+  // # 3.2. changePassword 바뀔 때마다 저장하기
+  const handleInput = (e) => {
+    setChangePassword({
+      ...changePassword,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  // # 3.3. changePassword 구조분해 할당
+  const { oldPassword, newPassword, newPasswordCheck } = changePassword;
+
+  // # 3.5. 닉네임 변경 axios
+  const postPasswordChange = async () => {
     try {
-      console.log("닉네임 중복 검사 전: ", newNickname);
+      console.log("닉네임 변경 전: ", changePassword);
 
-      // Axios의 응답 객체에서 직접 checkedNickname 추출
-      const response = await defaultInstance.get(
-        `/auth/nickname/${newNickname}`
-      );
-      const checkedNickname = response.data.nickname;
-
-      alert("닉네임 중복 확인 완료~!!");
-      console.log("중복 확인 완료 닉네임: ", checkedNickname);
-
-      // 진행 상태 업데이트
-      setCheckedData({
-        ...checkedData,
-        isNicknameChecked: true,
-        checkedNickname: checkedNickname,
+      // # 3.5.0. Axios 성공 실패 유무에 따른 처리
+      const response = await defaultInstance.post("/users", {
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+        newPasswordCheck: newPasswordCheck,
       });
+      // # 3.5.1. 비밀번호 변경 완료 알림
+      alert("비밀번호 변경 완료~!!");
+
+      // # 5.3. 비밀번호 변경 완료 후, 모달 창 닫기!
     } catch (error) {
       console.log(error);
       alert(
-        "닉네임 중복 확인 중 오류: " +
+        "비밀번호 변경에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
     }
   };
-  // 5.1. 로그아웃 클릭시
-  const handleLogout = () => {
-    postLogout();
-  };
 
-  // 4.2. 로그아웃 axios
-  const postLogout = async () => {
-    try {
-      const response = await defaultInstance.post("/auth/logout");
-
-      // # 2.1. 로그아웃 axios 보내면서, 로그인한 유저 정보 삭제
-      clearLoginUserInfo();
-      localStorage.clear();
-      sessionStorage.clear();
-
-      // # 2.2. 로그아웃 완료 알림
-      alert("로그아웃 완료~!!");
-      console.log(response);
-      nav("/");
-    } catch (error) {
-      console.log(error);
-      clearLoginUserInfo();
-      localStorage.clear();
-      sessionStorage.clear();
-      alert(
-        "로그아웃에 실패했습니다: " +
-          (error.response ? error.response.data.message : error.message)
-      );
-      nav("/");
+  // 3.4. 비밀번호 변경 폼 제출 시
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newPassword !== newPasswordCheck) {
+      alert("비밀번호 확인란을 다시 확인해주세요");
+    } else {
+      postPasswordChange();
     }
   };
 
   return (
-    <div className="p-10">
-      <div>
-        <h2 className="text-2xl text-center font-bold mb-12">설정</h2>
+    <form onSubmit={handleSubmit}>
+      <div className="p-10">
         <div>
-          <div className="flex justify-between border-b py-2 mb-2">
-            <span>알림</span>
-            <Toggle />
+          <h2 className="text-2xl text-center font-bold mb-12">
+            비밀번호 변경
+          </h2>
+          <div className="flex flex-col pt-4 pb-6 border-b-2 ">
+            <label
+              className="text-left font-semibold text-sm text-gray-900"
+              htmlFor="passwordCheck"
+            >
+              현재 비밀번호
+            </label>
+            <div className="flex ">
+              <input
+                type="password"
+                id="oldPassword"
+                className="flex-1 border border-gray-500 rounded-md p-3"
+                placeholder={"현재 비밀번호를 입력해주세요"}
+                value={oldPassword}
+                onChange={handleInput}
+                required
+              />
+            </div>
           </div>
-          <div className="flex justify-between border-b py-2 mb-2">
-            <span>카카오톡 알림</span>
-            <Toggle />
-          </div>
-          <div className="flex flex-col py-4">
-            <label htmlFor="nickname-setting" className="mb-2">
-              닉네임 변경
+          <div className="flex flex-col pt-6">
+            <label
+              className="text-left font-semibold text-sm text-gray-900"
+              htmlFor="passwordCheck"
+            >
+              새로운 비밀번호
             </label>
             <div className="flex">
               <input
-                type="text"
-                id="nickname-setting"
+                type="password"
+                id="newPassword"
                 className="flex-1 border border-gray-500 rounded-md p-3"
-                placeholder={nickname}
-                value={changeData.newNickname}
+                placeholder={"새로운 비밀번호를 입력해주세요"}
+                value={newPassword}
+                onChange={handleInput}
+                required
               />
-              <button
-                className="flex-none h-10 mt-1 ml-2 px-1 bg-yellow3 rounded-md text-sm"
-                type="button"
-                onClick={getNicknameChecked}
-              >
-                중복확인
-              </button>
             </div>
           </div>
-        </div>
-        <div className="mt-3 pb-3 text-center border-b">
-          <Button text={"저장"} onClick={closeModal} />
-        </div>
-        <div className="mt-3 text-center">
-          <Button
-            text={"로그아웃"}
-            onClick={(closeModal, handleLogout)}
-            color={"yellow3"}
-          />
+          <div className="flex flex-col py-4">
+            <label
+              className="text-left font-semibold text-sm text-gray-900"
+              htmlFor="passwordCheck"
+            >
+              새로운 비밀번호 확인
+            </label>
+            <div className="flex">
+              <input
+                type="password"
+                id="newPasswordCheck"
+                className="flex-1 border border-gray-500 rounded-md p-3"
+                placeholder={"새로운 비밀번호를 다시 입력해주세요"}
+                value={newPasswordCheck}
+                onChange={handleInput}
+                required
+              />
+            </div>
+          </div>
+          <div className="flex py-4">
+            <button className="flex-1 h-10 mt-1 ml-2 px-1 bg-yellow2 rounded-md text-md">
+              비밀번호 변경하기
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
-export default SettingsModal;
+export default SettingsModalPasswordChange;
