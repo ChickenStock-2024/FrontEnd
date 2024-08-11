@@ -93,10 +93,10 @@ const Profile = () => {
       //   "프로필 히스토리탭 대회 데이터 가져오기 전 competitionItems: ",
       //   competitionItems
       // );
-      console.log(profilePageInfo.profilePageMemberId);
+      console.log(profilePageId);
       // # 2.0. Axios의 응답 객체에서 직접 competitionItems 추출
       const response2 = await defaultInstance.get(
-        `/competition/all/${profilePageInfo.profilePageMemberId}`
+        `/competition/all/${profilePageId}`
       );
       console.log(response2);
       await setCompetitionItems(response2.data);
