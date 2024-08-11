@@ -10,7 +10,7 @@ const HomeCenterNoCompetitionBeforeLogin = () => {
   };
 
   return (
-    <div className="px-72 py-20 min-w-max">
+    <div className="py-20 w-1/2 mx-auto">
       <div className="my-5">
         <div className="text-xl font-bold">당신을 위한 모의주식 투자</div>
         <div>치킨스톡에서 시작하세요 🐣</div>

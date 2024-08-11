@@ -16,7 +16,7 @@ NotificationInApp();
 
 function App() {
   return (
-    <div>
+    <div className="min-w-[768px]">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

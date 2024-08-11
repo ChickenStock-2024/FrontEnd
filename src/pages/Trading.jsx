@@ -5,7 +5,7 @@ import OrderSection from "../components/Trading/OrderSection/OrderSection";
 
 const Trading = () => {
   return (
-    <div className="flex">
+    <div className="flex pt-24 min-w-[1280px]">
       <div className="w-2/12">
         <StockList />
       </div>

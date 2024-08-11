@@ -14,7 +14,7 @@ const HomeCenterIngCompetitionBeforeLogin = () => {
   const title = useCompetitionInfoStore((state) => state.competitionInfo.title);
 
   return (
-    <div className="px-72 py-20 min-w-max">
+    <div className="py-20 w-1/2 mx-auto">
       <div className="my-5">
         <div className="text-xl font-bold">{title} 진행 중</div>
         <div>지금 바로 로그인 후 참여하세요.</div>

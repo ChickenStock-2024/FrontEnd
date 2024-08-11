@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import logo from "./../assets/logo.png";
 import Button from "./Button.jsx";
 import Modal from "./Modal.jsx";
 
@@ -47,9 +46,9 @@ const Header = () => {
 
   return (
     <div>
-      <header className="absolute inset-x-0 top-0 z-50 left-0 bg-white text-gray-600 body-font border-b border-gray-200 min-w-max">
+      <header className="absolute min-w-[768px] inset-x-0 top-0 z-50 left-0 bg-white text-gray-600 body-font border-b border-gray-200">
         {/* <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center md:h-28"> */}
-        <div className="container mx-auto flex flex-wrap p-5 flex-row items-center h-24">
+        <div className="flex flex-wrap py-5 px-20 flex-row items-center h-24">
           <div className="flex title-font font-medium items-center text-gray-900 mb-0">
             {/* <div className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"> */}
             <Link to={"/"}>
