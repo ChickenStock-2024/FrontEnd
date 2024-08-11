@@ -47,9 +47,11 @@ const Header = () => {
 
   return (
     <div>
-      <header className="Header sticky inset-x-0 top-0 z-50 left-0 bg-white text-gray-600 body-font border-b border-gray-200">
-        <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <div className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <header className="absolute inset-x-0 top-0 z-50 left-0 bg-white text-gray-600 body-font border-b border-gray-200 min-w-max">
+        {/* <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center md:h-28"> */}
+        <div className="container mx-auto flex flex-wrap p-5 flex-row items-center h-24">
+          <div className="flex title-font font-medium items-center text-gray-900 mb-0">
+            {/* <div className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"> */}
             <Link to={"/"}>
               <img
                 alt="logo"
@@ -58,7 +60,8 @@ const Header = () => {
               />
             </Link>
           </div>
-          <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <nav className="ml-auto flex flex-wrap items-center text-base justify-center">
+            {/* <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center"> */}
             <Link to={"/trading/1"}>
               <span className="mr-5 hover:text-gray-900">대회</span>
             </Link>
