@@ -80,7 +80,7 @@ const SignupForm = () => {
           sessionStorage.setItem("token", data.token);
           sessionStorage.setItem("email", data.email);
           sessionStorage.setItem("nickname", data.nickname);
-          sessionStorage.setItem("isLogin", true);
+          sessionStorage.setItem("isLogined", true);
           // sessionStorage에 저장된 search 값을 가져옴
           console.log(window.sessionStorage.getItem("email"));
           // alert(`안녕하세요, ${response.data.nickname}님`);

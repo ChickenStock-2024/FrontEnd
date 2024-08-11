@@ -12,169 +12,169 @@ const handleTime = (strDate) => {
 const tradeHistoryInfos = [
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 체결",
     createdAt: "2024-07-23T12:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 취소",
     createdAt: "2024-07-23T10:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 요청",
     createdAt: "2024-07-23T10:03:28.0654",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 요청",
     createdAt: "2024-07-22T09:13:11.4823",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 체결",
     createdAt: "2024-07-23T12:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 취소",
     createdAt: "2024-07-23T10:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 요청",
     createdAt: "2024-07-23T10:03:28.0654",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 요청",
     createdAt: "2024-07-22T09:13:11.4823",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 체결",
     createdAt: "2024-07-23T12:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 취소",
     createdAt: "2024-07-23T10:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 요청",
     createdAt: "2024-07-23T10:03:28.0654",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 요청",
     createdAt: "2024-07-22T09:13:11.4823",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 체결",
     createdAt: "2024-07-23T12:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 취소",
     createdAt: "2024-07-23T10:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 요청",
     createdAt: "2024-07-23T10:03:28.0654",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 요청",
     createdAt: "2024-07-22T09:13:11.4823",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 체결",
     createdAt: "2024-07-23T12:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 취소",
     createdAt: "2024-07-23T10:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 요청",
     createdAt: "2024-07-23T10:03:28.0654",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 요청",
     createdAt: "2024-07-22T09:13:11.4823",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 체결",
     createdAt: "2024-07-23T12:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 취소",
     createdAt: "2024-07-23T10:03:30.0007",
   },
   {
     companyName: "삼성전자",
-    price: "83200",
-    quantity: "12",
+    price: 83200,
+    quantity: 12,
     status: "매도 요청",
     createdAt: "2024-07-23T10:03:28.0654",
   },
   {
     companyName: "카카오",
-    price: "41000",
-    quantity: "5",
+    price: 41000,
+    quantity: 5,
     status: "매수 요청",
     createdAt: "2024-07-22T09:13:11.4823",
   },
@@ -184,7 +184,7 @@ const ProfileHistoryTabModal = ({
   onClose,
   competitionItem,
   handleDate,
-  priceFormat,
+  // priceFormat,
 }) => {
   return (
     <div
@@ -213,7 +213,7 @@ const ProfileHistoryTabModal = ({
               <div>레이팅 변동: {competitionItem.rating_change}</div>
               <div>
                 수익률: {(competitionItem.balance - 1000000) / 10000}% (
-                {priceFormat(competitionItem.balance - 1000000)}원)
+                {(competitionItem.balance - 1000000).toLocaleString()}원)
               </div>
             </div>
           </div>
@@ -243,15 +243,15 @@ const ProfileHistoryTabModal = ({
                       {tradeHistoryInfo.quantity}주
                     </div>
                     <div className="font-light text-xs">
-                      {priceFormat(tradeHistoryInfo.price)}원
+                      {tradeHistoryInfo.price.toLocaleString()}원
                     </div>
                   </div>
                 </div>
                 <div>
                   <div>
-                    {priceFormat(
+                    {(
                       tradeHistoryInfo.price * tradeHistoryInfo.quantity
-                    )}
+                    ).toLocaleString()}
                     원
                   </div>
                 </div>

@@ -1,18 +1,46 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./ProfileTabs.css";
 
-const tabsData = [
-  {
-    id: "history",
-    label: "대회참여 히스토리",
-  },
-  {
-    id: "userSearch",
-    label: "유저 검색",
-  },
-];
+import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 
 const ProfileTabs = ({ getActiveTabOption }) => {
+  let tabsData = [];
+
+  const { profilePageId } = useParams();
+  const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
+
+  if (profilePageId == loginId) {
+    tabsData = [
+      {
+        id: "history",
+        label: "대회참여 히스토리",
+      },
+      {
+        id: "userSearch",
+        label: "유저 검색",
+      },
+    ];
+  } else {
+    tabsData = [
+      {
+        id: "history",
+        label: "대회참여 히스토리",
+      },
+    ];
+  }
+
+  // const tabsData = [
+  //   {
+  //     id: "history",
+  //     label: "대회참여 히스토리",
+  //   },
+  //   {
+  //     id: "userSearch",
+  //     label: "유저 검색",
+  //   },
+  // ];
+
   const [activeTab, setActiveTab] = useState(tabsData[0].id);
 
   useEffect(() => {

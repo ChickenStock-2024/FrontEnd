@@ -1,13 +1,19 @@
 import React from "react";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
+import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 
-const HomeCenterAfterLoginJoinCompetition = () => {
+const HomeCenterIngCompetitionAfterLoginIsCompParticipant = () => {
   const nav = useNavigate();
   const onClick = () => {
-    nav("/trading");
-    // 대회로 nav
+    nav("/login");
+    // 로그인으로 nav
   };
+
+  // 데이터
+  const competitionInfo = useCompetitionInfoStore(
+    (state) => state.competitionInfo
+  );
 
   return (
     <div className="px-72 py-20 min-w-min">
@@ -26,4 +32,4 @@ const HomeCenterAfterLoginJoinCompetition = () => {
   );
 };
 
-export default HomeCenterAfterLoginJoinCompetition;
+export default HomeCenterIngCompetitionAfterLoginIsCompParticipant;

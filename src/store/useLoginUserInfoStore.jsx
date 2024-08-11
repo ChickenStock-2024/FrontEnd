@@ -2,15 +2,17 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 // hook기반으로 생성을 한다.
-const useLoginUserStore = create(
+const useLoginUserInfoStore = create(
   persist(
     (set) => ({
       // 상태선언
       loginUserInfo: {
         loginId: null,
-        isLogin: false,
+        isLogined: false,
+        isCompParticipant: true,
         nickname: "",
         rank: "",
+        balance: 10000000,
         rating: "",
         tier: "",
         profileImg: "",
@@ -21,6 +23,20 @@ const useLoginUserStore = create(
       // updateLoginId: (val) => set((state) => ({ loginId: val })),
       // update: () => set((state) => ({ bears: state.bears + 1 })),
       // removeloginUserInfo: () => set({ bears: 0 }),
+      clearLoginUserInfo: () =>
+        set({
+          loginUserInfo: {
+            loginId: null,
+            isLogined: false,
+            isCompParticipant: true,
+            nickname: "",
+            rank: "",
+            balance: 10000000,
+            rating: "",
+            tier: "",
+            profileImg: "",
+          },
+        }),
     }),
     {
       name: "loginUserInfo", // name of the item in the storage (must be unique)
@@ -28,4 +44,4 @@ const useLoginUserStore = create(
     }
   )
 );
-export default useLoginUserStore;
+export default useLoginUserInfoStore;

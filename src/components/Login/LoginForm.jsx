@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { defaultInstance } from "../../api/axios";
-import useLoginUserStore from "../../store/useLoginUserStore";
+import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
 
 const LoginForm = () => {
   const nav = useNavigate();
-  const loginUserInfo = useLoginUserStore((state) => state.loginUserInfo);
-  const setLoginUserInfo = useLoginUserStore((state) => state.setLoginUserInfo);
+  const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  const setLoginUserInfo = useLoginUserInfoStore(
+    (state) => state.setLoginUserInfo
+  );
 
   // 로그인 정보(유저가 로그인 창에서 입력한 email, password, fcm토큰)
   // # 1.1. inputData 상태관리
@@ -51,30 +53,20 @@ const LoginForm = () => {
       console.log(response);
 
       // # 2.2. 로그인 상태 업데이트
-      // sessionStorage에 토큰, 이메일, 닉네임, 로그인유무를 저장
-      // sessionStorage.setItem("token", data.token);
       console.log("loginUserInfo변경 전: ", loginUserInfo.loginId);
       console.log("loginUserInfo변경 전: ", loginUserInfo.nickname);
-      console.log("loginUserInfo변경 전: ", loginUserInfo.isLogin);
+      console.log("loginUserInfo변경 전: ", loginUserInfo.isLogined);
 
       setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
         nickname: response.data.nickName,
-        isLogin: true,
+        isLogined: true,
       });
-      // sessionStorage.setItem("loginId", response.data.memberId);
-      // sessionStorage.setItem("nickname", response.data.nickname);
-      // sessionStorage.setItem("isLogin", true);
-      // console.log(loginUserInfo.isLogin);
-      // loginUserInfo.loginId = response.data.memberId;
-      // loginUserInfo.nickname = response.data.nickName;
-      // loginUserInfo.isLogin = true;
+
       console.log(loginUserInfo);
 
       // # 2.3. 로그인 완료 후, 메인 페이지로 이동!
-      // sessionStorage에 저장된 search 값을 가져옴
-      // console.log(window.sessionStorage.getItem("email"));
       nav("/");
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
