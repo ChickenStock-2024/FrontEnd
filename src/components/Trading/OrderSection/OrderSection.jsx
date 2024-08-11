@@ -26,9 +26,7 @@ const OrderSection = () => {
 
   return (
     <div className="m-2">
-      <div className="h-12">
-        <OrderContestInfo />
-      </div>
+      <OrderContestInfo />
       <OrderSectionTabs getActiveTabOption={getActiveTabOption} />
       {selectedSection(activeTabOption)}
     </div>

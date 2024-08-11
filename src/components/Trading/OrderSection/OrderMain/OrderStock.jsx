@@ -4,17 +4,18 @@ import OrderStockSell from "./OrderStockSell";
 import OrderStockBuy from "./OrderStockBuy";
 import OrderStockInput from "./OrderStockInput";
 import { useState, useContext } from "react";
-import { PriceContext } from "./OrderMain";
 
 const OrderStock = ({
   selectedPrice,
   selectedPriceState,
   setSelectedPriceState,
   marketPrice,
+  setActiveTabMarket,
 }) => {
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
+    setActiveTabMarket(data);
   };
 
   const selectedSection = (tabOption) => {

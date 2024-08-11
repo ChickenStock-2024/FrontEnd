@@ -9,10 +9,10 @@ const Trading = () => {
       <div className="w-2/12">
         <StockList />
       </div>
-      <div className="w-6/12 h-full">
+      <div className="w-6/12 h-fullborder-x">
         <CentralChart />
       </div>
-      <div className="w-4/12">
+      <div className="w-4/12 border-x">
         <OrderSection />
       </div>
     </div>
