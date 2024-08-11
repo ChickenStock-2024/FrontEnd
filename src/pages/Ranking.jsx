@@ -9,7 +9,6 @@ const Ranking = () => {
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
   };
-  // console.log(activeTabOption);
 
   const selectedRanking = (tabOption) => {
     switch (tabOption) {
@@ -25,7 +24,7 @@ const Ranking = () => {
   };
 
   return (
-    <div className="mt-10 mx-24 mb-24">
+    <div className="mt-10 mx-24 mb-24 pt-24">
       <RankingTabs getActiveTabOption={getActiveTabOption} />
       {selectedRanking(activeTabOption)}
     </div>

@@ -32,18 +32,11 @@ const Home = () => {
   console.log("isCompParticipant: ", isCompParticipant);
 
   return (
-    <>
-      <HomeCompetitionInfo />
-
-      {/* 인풋 예시 */}
-      {/* <div className="w-40">
-        <Input placeholder={"검색"} />
-      </div> */}
-
-      <div>
-        {/* 로그인 & 대회참여 여부에 따라 다르게 렌더링 */}
-        {/* 어떻게 구현 할지 생각???? */}
-
+    <div className="flex flex-col h-screen pt-24">
+      <div className="flex-none">
+        <HomeCompetitionInfo />
+      </div>
+      <div className="flex-none">
         {ingCompetition ? (
           isLogined ? (
             isCompParticipant ? (
@@ -59,10 +52,11 @@ const Home = () => {
         ) : (
           <HomeCenterNoCompetitionBeforeLogin />
         )}
-
+      </div>
+      <div className="flex-1">
         <HomeBottom />
       </div>
-    </>
+    </div>
   );
 };
 

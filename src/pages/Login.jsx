@@ -4,8 +4,7 @@ import LoginInfo from "../components/Login/LoginInfo";
 
 const Login = () => {
   return (
-    // <div className="py-20 bg-blue-50">
-    <div>
+    <div className="pt-24">
       <div className="w-full h-full flex justify-between items-center px-20">
         <div className="flex-1">
           <LoginForm />

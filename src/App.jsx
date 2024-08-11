@@ -16,7 +16,7 @@ NotificationInApp();
 
 function App() {
   return (
-    <div>
+    <div className="min-w-[768px]">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -25,7 +25,6 @@ function App() {
         <Route path="/trading/:stockId" element={<Trading />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/profile/:profilePageId" element={<Profile />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/test" element={<WebSocketTest />} />
       </Routes>
     </div>

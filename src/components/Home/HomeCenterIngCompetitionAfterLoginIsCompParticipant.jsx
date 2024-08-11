@@ -16,7 +16,7 @@ const HomeCenterIngCompetitionAfterLoginIsCompParticipant = () => {
   );
 
   return (
-    <div className="px-72 py-20 min-w-min">
+    <div className="py-20 w-1/2 mx-auto">
       <div className="text-xl font-bold flex items-center">
         <div className="bg-violet-500 w-8 h-8 rounded-full mr-2"></div>
         <h3>유저 닉네임</h3>
