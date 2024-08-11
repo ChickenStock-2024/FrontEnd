@@ -27,7 +27,7 @@ const holdingStockList = {
 
 const StockList = () => {
   return (
-    <div className="border border-red-300 m-3">
+    <div className="m-3">
       <div className="font-bold border-b-2 border-black pb-2 text-center">
         보유 종목
       </div>

@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import QuantityButton from "./QuantityButton";
 import PriceToggle from "./PriceToggle";
-import { PriceContext } from "./OrderMain";
 
 const OrderStockInput = ({
   activeTabOption,
@@ -76,6 +75,7 @@ const OrderStockInput = ({
             id="price"
             value={price}
             type="number"
+            min={0}
             step={100}
             className={`w-full focus:outline-none text-right ${isMarketPrice ? "text-gray-300" : ""}`}
             onChange={onChangePrice}
@@ -94,6 +94,7 @@ const OrderStockInput = ({
             id="quantity"
             value={quantity}
             type="number"
+            min={0}
             className="w-full focus:outline-none text-right"
             onChange={onChangeQuantity}
           />

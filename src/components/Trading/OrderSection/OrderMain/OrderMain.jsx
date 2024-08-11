@@ -8,6 +8,7 @@ export const PriceContext = createContext();
 
 const OrderMain = () => {
   const { stockId } = useParams();
+  const [activeTabMarket, setActiveTabMarket] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedPriceState, setSelectedPriceState] = useState(null);
   const [marketPrice, setMarketPrice] = useState(0);
@@ -28,8 +29,8 @@ const OrderMain = () => {
           setSelectedPrice={setSelectedPrice}
           selectedPriceState={selectedPriceState}
           setSelectedPriceState={setSelectedPriceState}
-          marketPrice={marketPrice}
           setMarketPrice={setMarketPrice}
+          activeTabMarket={activeTabMarket}
         />
       </div>
       <div className="w-3/5">
@@ -38,6 +39,7 @@ const OrderMain = () => {
           selectedPriceState={selectedPriceState}
           setSelectedPriceState={setSelectedPriceState}
           marketPrice={marketPrice}
+          setActiveTabMarket={setActiveTabMarket}
         />
       </div>
       {/* </PriceContext.Provider> */}
