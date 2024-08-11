@@ -6,6 +6,8 @@ import logo from "./../assets/logo.png";
 import Button from "./Button.jsx";
 import Modal from "./Modal.jsx";
 
+import LogoNameImage from "./../assets/logoName.svg";
+
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 
@@ -39,9 +41,6 @@ const Header = () => {
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const openModal = () => setIsModalOpen(true);
-  // const closeModal = () => setIsModalOpen(false);
 
   console.log("지금 로그인한 loginMemberId: ", loginId);
   console.log(loginUserInfo);
@@ -52,8 +51,11 @@ const Header = () => {
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <div className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <Link to={"/"}>
-              <img alt="logo" src={logo} className="w-12 h-12 inline-block" />
-              <span className="ml-3 text-xl">치킨스톡</span>
+              <img
+                alt="logo"
+                src={LogoNameImage}
+                className="w-36 inline-block"
+              />
             </Link>
           </div>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
@@ -63,18 +65,6 @@ const Header = () => {
             <Link to={"/ranking"}>
               <span className="mr-5 hover:text-gray-900">랭킹</span>
             </Link>
-            {/* <div>
-              <button onClick={openModal}>
-                <FiSettings className="mr-5 w-6 h-6 inline-block" />
-              </button>
-              <Modal
-                isOpen={isModalOpen}
-                closeModal={closeModal}
-                setIsModalOpen={setIsModalOpen}
-              >
-                <SettingsModal closeModal={closeModal} />
-              </Modal>
-            </div> */}
             <div>
               <div className="relative inline-block text-left">
                 <div>
@@ -168,10 +158,7 @@ const Header = () => {
               </div>
             </div>
             <Link to={`/profile/${loginId}`}>
-              {/* <Link to={`/profile/${loginUserInfo && loginUserInfo.loginId}`}> */}
-              {/* <Link to={`/profile/${profilePageId}`}> */}
               <CgProfile className="mr-5 w-6 h-6 inline-block" />
-              {/* <span className="mr-5 hover:text-gray-900">마이페이지</span> */}
             </Link>
           </nav>
         </div>
