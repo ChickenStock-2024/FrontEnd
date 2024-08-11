@@ -1,38 +1,50 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import logo from "./../assets/logo.png";
 import Button from "./Button.jsx";
-import { Link } from "react-router-dom";
-import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
+import Modal from "./Modal.jsx";
 
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
-import Modal from "./Modal";
-import SettingsModal from "./SettingsModal/SettingsModal.jsx";
+
+import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
+import SettingsModalNotification from "./SettingsModal/SettingsModalNotification.jsx";
+import SettingsModalNicknameChange from "./SettingsModal/SettingsModalNicknameChange.jsx";
+import SettingsModalPasswordChange from "./SettingsModal/SettingsModalPasswordChange.jsx";
+import PostLogout from "./SettingsModal/PostLogout.js";
 
 const Header = () => {
-  // const setLoginId = () => {
-  //   console.log("loginId: ", loginId);
-  //   useLoginUserInfoStore.setState({ loginId: loginId });
-  //   console.log("loginId: ", loginId);
+  // 1. 로그아웃 기능 관련
+  const nav = useNavigate();
+
+  const clearLoginUserInfo = useLoginUserInfoStore(
+    (state) => state.clearLoginUserInfo
+  );
+  const handleLogout = () => {
+    PostLogout(nav, clearLoginUserInfo);
+  };
+
+  // 2. 설정 드롭다운 기능 관련
+  const [isOpen, setIsOpen] = useState(false);
+  // const toggleDropdown = () => {
+  //   setIsOpen(!isOpen);
   // };
 
   const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
-  // const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
-  // const { loginUserInfo } = useLoginUserInfoStore();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  // 3. 각 모달 열고 닫기 상태 관리
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
+  const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const openModal = () => setIsModalOpen(true);
+  // const closeModal = () => setIsModalOpen(false);
 
   console.log("지금 로그인한 loginMemberId: ", loginId);
   console.log(loginUserInfo);
-
-  // console.log("지금 유저의 로그인 유무: ", isLogined);
-
-  // useEffect(() => {
-  //   setLoginId();
-  // }, [loginId]);
 
   return (
     <div>
@@ -72,52 +84,87 @@ const Header = () => {
                     id="menu-button"
                     aria-expanded="true"
                     aria-haspopup="true"
+                    onClick={() => setIsOpen(!isOpen)}
                   >
                     <FiSettings className=" w-6 h-6 inline-block" />
                   </button>
                 </div>
-                <div
-                  className="absolute -left-[150%] z-10 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="menu-button"
-                  tabIndex="-1"
-                >
-                  <div className="py-1" role="none">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-center text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="menu-item-0"
-                    >
-                      알림 설정
-                    </a>
+                {isOpen && (
+                  <div
+                    className="absolute -left-[150%] z-10 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="menu-button"
+                    tabIndex="-1"
+                  >
+                    <div className="flex justify-center py-1" role="none">
+                      <button
+                        className="block px-4 py-2 text-center text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="menu-item-0"
+                        onClick={() => setIsNotificationModalOpen(true)}
+                      >
+                        알림 설정
+                      </button>
+                      <Modal
+                        isOpen={isNotificationModalOpen}
+                        closeModal={() => setIsNotificationModalOpen(false)}
+                      >
+                        <SettingsModalNotification
+                          closeModal={() => setIsNotificationModalOpen(false)}
+                        />
+                      </Modal>
+                    </div>
+                    <div>
+                      <div className="flex justify-center py-1" role="none">
+                        <button
+                          className="block px-4 py-2 text-sm text-center text-gray-700"
+                          role="menuitem"
+                          tabIndex="-1"
+                          id="menu-item-2"
+                          onClick={() => setIsNicknameModalOpen(true)}
+                        >
+                          닉네임 변경
+                        </button>
+                        <Modal
+                          isOpen={isNicknameModalOpen}
+                          closeModal={() => setIsNicknameModalOpen(false)}
+                        >
+                          <SettingsModalNicknameChange
+                            closeModal={() => setIsNicknameModalOpen(false)}
+                          />
+                        </Modal>
+                      </div>
+                      <div className="flex justify-center py-1" role="none">
+                        <button
+                          className="block px-4 py-2 text-sm text-center text-gray-700"
+                          role="menuitem"
+                          tabIndex="-1"
+                          id="menu-item-3"
+                          onClick={() => setIsPasswordModalOpen(true)}
+                        >
+                          비밀번호 변경
+                        </button>
+                        <Modal
+                          isOpen={isPasswordModalOpen}
+                          closeModal={() => setIsPasswordModalOpen(false)}
+                        >
+                          <SettingsModalPasswordChange
+                            closeModal={() => setIsPasswordModalOpen(false)}
+                          />
+                        </Modal>
+                      </div>
+                    </div>
+                    <div className="p-3 flex justify-center" role="none">
+                      <Button
+                        text={"로그아웃"}
+                        color={"yellow2"}
+                        onClick={handleLogout}
+                      />
+                    </div>
                   </div>
-                  <div className="py-1" role="none">
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-center text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="menu-item-2"
-                    >
-                      닉네임 변경
-                    </a>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-center text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="menu-item-3"
-                    >
-                      비밀번호 변경
-                    </a>
-                  </div>
-                  <div className="p-3 flex justify-center" role="none">
-                    <Button text={"로그아웃"} color={"yellow2"} />
-                  </div>
-                </div>
+                )}
               </div>
             </div>
             <Link to={`/profile/${loginId}`}>

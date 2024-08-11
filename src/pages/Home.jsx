@@ -11,7 +11,6 @@ import HomeCenterNoCompetitionBeforeLogin from "../components/Home/HomeCenterNoC
 import HomeBottom from "../components/Home/HomeBottom";
 import Input from "../components/Input";
 import Modal from "../components/Modal";
-import SettingsModal from "../components/SettingsModal/SettingsModal";
 
 import useCompetitionInfoStore from "../store/useCompetitionInfoStore";
 import useLoginUserInfoStore from "../store/useLoginUserInfoStore";
