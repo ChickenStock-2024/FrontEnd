@@ -22,18 +22,6 @@ const handleDate = (strDate) => {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 };
 
-// const priceFormat = (str) => {
-//   const comma = (str) => {
-//     str = String(str);
-//     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-//   };
-//   const uncomma = (str) => {
-//     str = String(str);
-//     return str.replace(/[^\d]+/g, "");
-//   };
-//   return comma(uncomma(str));
-// };
-
 const Profile = () => {
   // # 1.0. 현재 접속한 페이지의 url에서 profilePageId 가져오기
   const { profilePageId } = useParams();
@@ -51,7 +39,15 @@ const Profile = () => {
     (state) => state.clearProfilePageInfo
   );
 
-  // # 1.3. profilePageInfo 불러오기
+  // # 1.3. 다른 유저의 프로필 페이지로 이동시, 기존 CompetitionItems 초기화 후 CompetitionItems 업데이트
+  const setCompetitionItems = useProfilePageInfoStore(
+    (state) => state.setCompetitionItems
+  );
+  const clearCompetitionItems = useProfilePageInfoStore(
+    (state) => state.clearCompetitionItems
+  );
+
+  // # 1.4. profilePageInfo 불러오기
   const profilePageInfo = useProfilePageInfoStore(
     (state) => state.profilePageInfo
   );
@@ -60,6 +56,7 @@ const Profile = () => {
     console.log("접속한 profilePageId: ", profilePageId);
     console.log("접속한 유저 loginId: ", loginId);
     clearProfilePageInfo();
+    clearCompetitionItems();
     getUserInfo(profilePageId);
   }, [profilePageId]);
 
@@ -72,22 +69,43 @@ const Profile = () => {
   const getUserInfo = async () => {
     try {
       // # 2.0. getUserInfo Axios
-      const response = await defaultInstance.get(`/user/${profilePageId}`);
+      const response1 = await defaultInstance.get(`/user/${profilePageId}`);
       // # 2.1. Axios의 응답 객체에서 프로필 페이지 profilePageInfo 추출
-      setProfilePageInfo({
+      await setProfilePageInfo({
         ...profilePageInfo,
-        profilePageMemberId: response.data.memberId,
-        nickname: response.data.nickname,
-        tier: response.data.tier,
+        profilePageMemberId: response1.data.memberId,
+        nickname: response1.data.nickname,
+        tier: response1.data.tier,
         // profileImg: response.data.profileImg,
       });
       // # 2.2. profilePageInfo 가져오기 완료 알림
       alert("getUserInfo 완료");
-      console.log(response);
+      console.log(response1);
     } catch (error) {
       console.log(error);
       alert(
         "프로필 페이지 로딩에 필요한 정보 조회에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
+    try {
+      // console.log(
+      //   "프로필 히스토리탭 대회 데이터 가져오기 전 competitionItems: ",
+      //   competitionItems
+      // );
+      console.log(profilePageInfo.profilePageMemberId);
+      // # 2.0. Axios의 응답 객체에서 직접 competitionItems 추출
+      const response2 = await defaultInstance.get(
+        `/competition/all/${profilePageInfo.profilePageMemberId}`
+      );
+      console.log(response2);
+      await setCompetitionItems(response2.data);
+      // # 2.1. Axios getCompetitionAll 완료 알림
+      alert("대회 데이터 전체 가져오기 완료~!!");
+    } catch (error) {
+      console.log(error);
+      alert(
+        "대회 데이터 전체 가져오기에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
     }
@@ -130,6 +148,7 @@ const Profile = () => {
           <ProfileHistoryTab
             activeTabOption={activeTabOption}
             handleDate={handleDate}
+            profilePageId={profilePageId}
             // priceFormat={priceFormat}
           />
         ) : (

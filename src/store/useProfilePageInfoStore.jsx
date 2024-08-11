@@ -18,6 +18,7 @@ const useProfilePageInfoStore = create(
       tier: "",
       profileImg: "",
     },
+    competitionItems: [],
 
     // 함수를 사용하여 set사용시 상태 가져와 변경가능
     setProfilePageInfo: (profilePageInfo) => set({ profilePageInfo }),
@@ -30,6 +31,9 @@ const useProfilePageInfoStore = create(
           profileImg: "",
         },
       }),
+
+    setCompetitionItems: (competitionItems) => set({ competitionItems }),
+    clearCompetitionItems: () => set([]),
   })
   // {
   //   name: "profilePageInfo", // name of the item in the storage (must be unique)
