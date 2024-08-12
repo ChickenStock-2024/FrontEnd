@@ -9,28 +9,27 @@ const useLoginUserInfoStore = create(
       loginUserInfo: {
         loginId: null,
         isLogined: false,
-        isCompParticipant: true,
+        isCompParticipant: false,
         nickname: "",
         rank: "",
+        accountId: null,
         balance: 10000000,
         rating: "",
         tier: "",
         profileImg: "",
       },
 
-      // 함수를 사용하여 set사용시 상태 가져와 변경가능
+      // LoginUserInfo 관련데이터, set, clear 함수로 변경가능
       setLoginUserInfo: (loginUserInfo) => set({ loginUserInfo }),
-      // updateLoginId: (val) => set((state) => ({ loginId: val })),
-      // update: () => set((state) => ({ bears: state.bears + 1 })),
-      // removeloginUserInfo: () => set({ bears: 0 }),
       clearLoginUserInfo: () =>
         set({
           loginUserInfo: {
             loginId: null,
             isLogined: false,
-            isCompParticipant: true,
+            isCompParticipant: false,
             nickname: "",
             rank: "",
+            accountId: null,
             balance: 10000000,
             rating: "",
             tier: "",

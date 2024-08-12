@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Toggle = () => {
+const Toggle = ({ toggleSwitch }) => {
   const [toggle, setToggle] = useState(true);
   const toggleClass = " transform translate-x-6";
 
@@ -9,17 +9,18 @@ const Toggle = () => {
     <div
       className={
         "w-14 h-7 flex items-center rounded-full p-1 cursor-pointer shadow-md" +
-        (toggle ? " bg-gray-300" : " bg-yellow2")
+        (toggle ? " bg-yellow2" : " bg-gray-300")
       }
       onClick={() => {
         setToggle(!toggle);
+        toggleSwitch();
       }}
     >
       {/* Switch */}
       <div
         className={
           "bg-white h-6 w-6 rounded-full shadow-md transform" +
-          (toggle ? null : toggleClass)
+          (toggle ? toggleClass : null)
         }
       ></div>
     </div>

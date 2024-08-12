@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { defaultInstance } from "../../api/axios";
 
-const SettingsModalPasswordChange = () => {
+const SettingsModalPasswordChange = ({ closeModal }) => {
   // # 3.1. changePassword 상태관리
   const [changePassword, setChangePassword] = useState({
     oldPassword: "",
@@ -34,13 +34,28 @@ const SettingsModalPasswordChange = () => {
       // # 3.5.1. 비밀번호 변경 완료 알림
       alert("비밀번호 변경 완료~!!");
 
+      // # 3.5.2. changePassword input값 초기화
+      setChangePassword({
+        oldPassword: "",
+        newPassword: "",
+        newPasswordCheck: "",
+      });
+
       // # 5.3. 비밀번호 변경 완료 후, 모달 창 닫기!
+      closeModal();
     } catch (error) {
       console.log(error);
       alert(
         "비밀번호 변경에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
+      // # 3.5.2. changePassword input값 초기화
+      setChangePassword({
+        oldPassword: "",
+        newPassword: "",
+        newPasswordCheck: "",
+      });
+      closeModal();
     }
   };
 
