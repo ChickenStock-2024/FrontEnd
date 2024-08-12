@@ -188,7 +188,7 @@ const ProfileHistoryTab = ({ handleDate }) => {
                 </div>
                 <div className="block text-right">
                   <div>순위: {competitionItem.rank}위</div>
-                  <div>레이팅 변동: {competitionItem.rating_change}</div>
+                  <div>레이팅 변동: {competitionItem.ratingChange}</div>
                   <div>
                     수익률: {(competitionItem.balance - 1000000) / 10000}% (
                     {(competitionItem.balance - 1000000).toLocaleString()}원)
@@ -204,7 +204,7 @@ const ProfileHistoryTab = ({ handleDate }) => {
             <ProfileHistoryTabModal
               show={showModal}
               onClose={handleCloseModal}
-              competitionItem={selectedCompetition}
+              // competitionItem={selectedCompetition}
               handleDate={handleDate}
               // priceFormat={priceFormat}
             />

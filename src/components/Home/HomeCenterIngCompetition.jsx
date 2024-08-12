@@ -6,8 +6,8 @@ import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 const HomeCenterIngCompetitionAfterLoginIsCompParticipant = () => {
   const nav = useNavigate();
   const onClick = () => {
-    nav("/trading");
-    // 대회로 nav
+    nav("/trading/1");
+    // 대회페이지로 nav
   };
 
   // 데이터

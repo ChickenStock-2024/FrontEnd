@@ -8,10 +8,10 @@ const useCompetitionInfoStore = create(
       // 상태선언
       competitionInfo: {
         ingCompetition: true,
-        competitionId: "",
-        title: "XX회 정기대회",
-        startAt: "",
-        endAt: "",
+        competitionId: 1,
+        title: "01회 정기대회",
+        startAt: "2024-07-15T08:00:00.000Z",
+        endAt: "2024-07-19T15:50:00.000Z",
       },
 
       // 함수를 사용하여 set사용시 상태 가져와 변경가능
@@ -21,7 +21,7 @@ const useCompetitionInfoStore = create(
         set({
           competitionInfo: {
             ingCompetition: true,
-            competitionId: "",
+            competitionId: 1,
             title: "XX회 정기대회",
             startAt: "",
             endAt: "",

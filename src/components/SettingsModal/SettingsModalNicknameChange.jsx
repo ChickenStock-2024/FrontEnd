@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { defaultInstance } from "../../api/axios";
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 
-const SettingsModalNicknameChange = () => {
+const SettingsModalNicknameChange = ({ closeModal }) => {
   const nav = useNavigate();
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
   const setLoginUserInfo = useLoginUserInfoStore(
@@ -76,12 +76,14 @@ const SettingsModalNicknameChange = () => {
       console.log("닉네임 변경 전: ", loginUserInfo.nickname);
 
       // # 2.5.3. 닉네임 변경 완료 후, 모달 창 닫기!
+      closeModal();
     } catch (error) {
       console.log(error);
       alert(
         "닉네임 변경에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
+      console.log();
     }
   };
   // 2.6. 닉네임 변경 폼 제출 시
