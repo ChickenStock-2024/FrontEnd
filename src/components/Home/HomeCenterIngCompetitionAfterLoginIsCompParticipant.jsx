@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 
-import tierBadgeIcon from "../../assets/userTierBadge.png";
+import tierBadgeIcon from "../../assets/Gold.svg";
 
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
