@@ -161,7 +161,7 @@ const LoginForm = () => {
       </form>
 
       {/* 비밀번호찾기 회원가입 */}
-      <div className="w-72 flex flec-row justify-evenly items-center text-center text-base text-gray-500">
+      <div className="w-72 flex flex-row justify-evenly items-center text-center text-base text-gray-500">
         <div className="flex-1 text-center">비밀번호 찾기</div>
         <span> | </span>
         <div role="button" className="flex-1 text-center">
