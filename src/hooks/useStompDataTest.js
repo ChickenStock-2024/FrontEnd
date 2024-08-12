@@ -2,7 +2,7 @@ import * as StompJs from "@stomp/stompjs";
 import { useEffect, useState } from "react";
 import useStockDataStore from "../store/useStockDataStore";
 
-const useStompDataTest = () => {
+const useStompDataTest = (stockId) => {
   const { setHokaData, setStockInfo } = useStockDataStore();
 
   useEffect(() => {
@@ -21,12 +21,12 @@ const useStompDataTest = () => {
     });
 
     client.onConnect = () => {
-      client.subscribe("/stock-hoka", (message) => {
+      client.subscribe(`/stock-hoka/${stockId}`, (message) => {
         const newMessage = JSON.parse(message.body);
         setHokaData(newMessage);
       });
 
-      client.subscribe("/stock-purchase", (message) => {
+      client.subscribe(`/stock-purchase/${stockId}`, (message) => {
         const newMessage = JSON.parse(message.body);
         setStockInfo(newMessage);
       });

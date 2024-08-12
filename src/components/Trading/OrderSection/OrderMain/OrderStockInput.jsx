@@ -9,9 +9,10 @@ const OrderStockInput = ({
   price,
   quantity,
   selectedPrice,
-  selectedPriceState,
   setSelectedPriceState,
   marketPrice,
+  isMarketPrice,
+  setIsMarketPrice,
 }) => {
   // 임의의 초기 잔고
   const myAccount = 1000000;
@@ -26,7 +27,7 @@ const OrderStockInput = ({
   // 입력할 수 있는 최대 가격
   const maxPrice = Math.floor(myAccount / quantity);
 
-  const [isMarketPrice, setIsMarketPrice] = useState(false);
+  // const [isMarketPrice, setIsMarketPrice] = useState(false);
 
   useEffect(() => {
     setPrice(selectedPrice);

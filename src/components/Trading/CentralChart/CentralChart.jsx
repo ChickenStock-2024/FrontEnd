@@ -1,6 +1,5 @@
 import React from "react";
 import StockSearch from "./StockSearch";
-import Input from "../../Input";
 import StockChart from "./StockChart";
 
 const CentralChart = () => {

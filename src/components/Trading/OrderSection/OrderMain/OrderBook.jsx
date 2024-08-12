@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef, useMemo, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import useStompDataTest from "../../../../hooks/useStompDataTest";
 import useStockDataStore from "../../../../store/useStockDataStore";
 import OrderBookStockPrice from "./OrderBookStockPrice";
@@ -93,7 +94,9 @@ const OrderBook = ({
     },
   ];
 
-  useStompDataTest();
+  const { stockId } = useParams();
+
+  useStompDataTest(stockId);
   const hokaData = useStockDataStore((state) => state.hokaData);
   const offers = hokaData.offers || [];
   const bids = hokaData.bids || [];
