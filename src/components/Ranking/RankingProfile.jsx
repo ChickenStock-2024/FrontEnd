@@ -34,7 +34,7 @@ const RankingProfile = ({ parameter }) => {
     }
   };
 
-  const rating = 2000;
+  const rating = 1400;
   const tier = calculateTier(rating);
 
   return (
@@ -48,20 +48,18 @@ const RankingProfile = ({ parameter }) => {
             alt="userProfileImage"
           />
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center">
-            <img
-              className="rounded-full w-5 h-5 mr-2"
-              src="src\assets\userTierBadge.png"
-              alt="userTierBadge"
-            />
-            <TierBadge tier={tier} />
-            {/* 티어 계산해서 올바른 이미지 출력 */}
-            <div className="font-bold">
-              {userInfo.tier} | {userInfo.latestRating}
+            <div className="w-8 h-8 mx-2">
+              {/* 티어 계산해서 올바른 이미지 출력 */}
+              <TierBadge tier={tier} />
+            </div>
+            {/* api로 받은 제대로 된 데이터 출력 */}
+            <div className="text-xl font-bold">
+              {tier} | {rating}
             </div>
           </div>
-          <h2 className="text-3xl font-bold">{userInfo.nickname}</h2>
+          <h2 className="text-4xl font-bold">{userInfo.nickname}</h2>
           {/* <span>대회 {userInfo.competitionCount}회 참여</span> */}
           {/* <span>
             {userInfo.earningRate}%(+{userInfo.earnings})
