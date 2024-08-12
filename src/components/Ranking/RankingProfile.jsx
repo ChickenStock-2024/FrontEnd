@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import RankingProfileRank from "./RankingProfileRank";
 import { defaultInstance } from "../../api/axios";
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
+import { calculateTier } from "../../utils/tierCalculator";
+import TierBadge from "../TierBadge";
 
 const RankingProfile = ({ parameter }) => {
   // const userInfo = {
@@ -32,6 +34,9 @@ const RankingProfile = ({ parameter }) => {
     }
   };
 
+  const rating = 2000;
+  const tier = calculateTier(rating);
+
   return (
     <div className="flex justify-between gap-8 px-36 py-6 bg-yellow3 rounded-2xl min-w-max">
       <div className="flex-1 flex justify-center items-center gap-8 min-w-max">
@@ -50,6 +55,7 @@ const RankingProfile = ({ parameter }) => {
               src="src\assets\userTierBadge.png"
               alt="userTierBadge"
             />
+            <TierBadge tier={tier} />
             {/* 티어 계산해서 올바른 이미지 출력 */}
             <div className="font-bold">
               {userInfo.tier} | {userInfo.latestRating}
