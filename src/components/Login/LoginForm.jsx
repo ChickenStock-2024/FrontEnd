@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { defaultInstance } from "../../api/axios";
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
+import useNotificationInfoStore from "../../store/useNotificationInfoStore";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
@@ -18,6 +19,12 @@ const LoginForm = () => {
     (state) => state.competitionInfo
   );
   const setCompetitionInfo = useCompetitionInfoStore(
+    (state) => state.competitionInfo
+  );
+  const notificationInfo = useNotificationInfoStore(
+    (state) => state.competitionInfo
+  );
+  const setNotificationInfo = useNotificationInfoStore(
     (state) => state.competitionInfo
   );
 
@@ -57,21 +64,28 @@ const LoginForm = () => {
       });
       // # 2.1. 로그인 완료 알림
       alert("로그인 완료~!!");
-      console.log(response);
+      console.log("로그인 후 로그인 유저 인포: ", response);
 
       // # 2.2. 로그인 상태 업데이트
       console.log("loginUserInfo변경 전: ", loginUserInfo.loginId);
       console.log("loginUserInfo변경 전: ", loginUserInfo.nickname);
       console.log("loginUserInfo변경 전: ", loginUserInfo.isLogined);
 
-      setLoginUserInfo({
+      await setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
         nickname: response.data.nickName,
         isLogined: true,
       });
 
+      // await setNotificationInfo({
+      //   ...setNotificationInfo,
+      //   webNotification: response.data.web_noti,
+      //   kakaoNotification: response.data.kakaotalk_noti,
+      // });
+
       console.log(loginUserInfo);
+      console.log(notificationInfo);
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
@@ -81,33 +95,33 @@ const LoginForm = () => {
           (error.response ? error.response.data.message : error.message)
       );
     }
-    try {
-      const response = await defaultInstance.get("/competition");
-      // # 3.1. ingCompetition 완료 알림
-      alert("현재 대회 개최 유무 get 완료~!!");
-      console.log(response);
+    //   try {
+    //     const response = await defaultInstance.get("/competition");
+    //     // # 3.1. ingCompetition 완료 알림
+    //     alert("현재 대회 개최 유무 get 완료~!!");
+    //     console.log(response);
 
-      // # 3.2. ingCompetition 상태 업데이트
-      await setCompetitionInfo({
-        ...competitionInfo,
-        ingCompetition: response.data.ingCompetition,
-        competitionId: response.data.competition_id,
-        title: response.data.title,
-        startAt: response.data.start_at,
-        endAt: response.data.end_at,
-      });
+    //     // # 3.2. ingCompetition 상태 업데이트
+    //     await setCompetitionInfo({
+    //       ...competitionInfo,
+    //       ingCompetition: response.data.ingCompetition,
+    //       competitionId: response.data.competition_id,
+    //       title: response.data.title,
+    //       startAt: response.data.start_at,
+    //       endAt: response.data.end_at,
+    //     });
 
-      console.log("진행 대회 정보 조회 완료: ", competitionInfo);
+    //     console.log("진행 대회 정보 조회 완료: ", competitionInfo);
 
-      // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
-      nav("/");
-    } catch (error) {
-      console.log(error);
-      alert(
-        "진행 대회 정보 조회에 실패했습니다: " +
-          (error.response ? error.response.data.message : error.message)
-      );
-    }
+    //     // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
+    //     nav("/");
+    //   } catch (error) {
+    //     console.log(error);
+    //     alert(
+    //       "진행 대회 정보 조회에 실패했습니다: " +
+    //         (error.response ? error.response.data.message : error.message)
+    //     );
+    //   }
   };
 
   return (
