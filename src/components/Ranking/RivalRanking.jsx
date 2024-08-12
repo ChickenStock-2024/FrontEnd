@@ -1,9 +1,11 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import RankingProfile from "./RankingProfile";
 import RankingList from "./RankingList";
+import { defaultInstance } from "../../api/axios";
 
 const RivalRanking = () => {
-  const memberList = [
+  const memberList2 = [
     {
       member_id: 1,
       rank: "11",
@@ -54,12 +56,30 @@ const RivalRanking = () => {
     },
   ];
   const memberListLength = 100;
+
+  const [memberList, setMemberList] = useState([]);
+
+  useEffect(() => {
+    getRankingRival();
+  }, []);
+
+  const getRankingRival = async () => {
+    try {
+      const response = defaultInstance.get("/ranking/rival", {
+        params: { offset: 1 },
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       {/* 여기서 친구 랭킹 api호출 */}
       {/* 친구 리스트의 길이 넘겨주기 */}
       <RankingProfile parameter={`친구 ${memberListLength}`} />
-      <RankingList memberList={memberList} />
+      {/* <RankingList memberList={memberList} /> */}
     </div>
   );
 };
