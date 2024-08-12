@@ -107,7 +107,6 @@ const LoginForm = () => {
         "진행 대회 정보 조회에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
-      nav("/");
     }
   };
 
