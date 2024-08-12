@@ -13,6 +13,7 @@ const OrderStock = ({
   setActiveTabMarket,
 }) => {
   const [activeTabOption, setActiveTabOption] = useState("");
+  const [isMarketPrice, setIsMarketPrice] = useState(false);
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
     setActiveTabMarket(data);
@@ -21,9 +22,21 @@ const OrderStock = ({
   const selectedSection = (tabOption) => {
     switch (tabOption) {
       case "sell":
-        return <OrderStockSell price={price} quantity={quantity} />;
+        return (
+          <OrderStockSell
+            price={price}
+            quantity={quantity}
+            isMarketPrice={isMarketPrice}
+          />
+        );
       case "buy":
-        return <OrderStockBuy price={price} quantity={quantity} />;
+        return (
+          <OrderStockBuy
+            price={price}
+            quantity={quantity}
+            isMarketPrice={isMarketPrice}
+          />
+        );
       default:
         null;
     }
@@ -45,6 +58,8 @@ const OrderStock = ({
         selectedPriceState={selectedPriceState}
         setSelectedPriceState={setSelectedPriceState}
         marketPrice={marketPrice}
+        isMarketPrice={isMarketPrice}
+        setIsMarketPrice={setIsMarketPrice}
       />
       {selectedSection(activeTabOption)}
     </div>

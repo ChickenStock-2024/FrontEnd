@@ -5,7 +5,7 @@ import useStockDataStore from "../store/useStockDataStore";
 import OrderBookStockPrice from "./Trading/OrderSection/OrderMain/OrderBookStockPrice";
 
 const WebSocketTest = () => {
-  useStompDataTest();
+  useStompDataTest("005930");
 
   const offers = useStockDataStore((state) => state.hokaData.offers) || [];
   const bids = useStockDataStore((state) => state.hokaData.bids) || [];
@@ -18,7 +18,7 @@ const WebSocketTest = () => {
 
   return (
     <>
-      <div className="text-2xl mb-5 text-center">
+      <div className="text-2xl mb-5 text-center pt-24">
         실시간 데이터 테스트 페이지
       </div>
       <div className="flex justify-around">

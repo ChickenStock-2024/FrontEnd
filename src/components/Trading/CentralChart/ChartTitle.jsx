@@ -31,10 +31,10 @@ const ChartTitle = ({ stockId }) => {
     <div className="flex justify-between items-center mx-2 my-6">
       {/* 종목 이름 */}
       <div className="flex gap-3">
-        <div className="bg-blue-700 w-8 h-8 rounded-full text-white text-center">
+        {/* <div className="bg-blue-700 w-8 h-8 rounded-full text-white text-center">
           삼성
-        </div>
-        <companyLogo />
+        </div> */}
+        <img src={companyLogo} alt="" className="w-8 h-8 rounded-full" />
         <h2 className="text-2xl font-bold">
           {stockId}번 회사: {mokData.company}
         </h2>
@@ -44,7 +44,9 @@ const ChartTitle = ({ stockId }) => {
       {/* 등락 부호에 따라 색상, 화살표 지정 */}
       {/* 가격 등락 부분 */}
       <div className={`flex gap-4 items-center ${txtColor}`}>
-        <span className="text-2xl font-bold">{stockInfo.currentPrice}</span>
+        <span className="text-2xl font-bold">
+          {parseInt(stockInfo.currentPrice).toLocaleString()}
+        </span>
         <span className="text-lg font-bold">
           {plusSign}
           {stockInfo.changeRate}%
