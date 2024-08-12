@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { defaultInstance } from "../../api/axios";
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
+import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 
 import LogoNameImage from "../../assets/logoName.svg";
 import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
@@ -12,6 +13,12 @@ const LoginForm = () => {
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
   const setLoginUserInfo = useLoginUserInfoStore(
     (state) => state.setLoginUserInfo
+  );
+  const competitionInfo = useCompetitionInfoStore(
+    (state) => state.competitionInfo
+  );
+  const setCompetitionInfo = useCompetitionInfoStore(
+    (state) => state.competitionInfo
   );
 
   // 로그인 정보(유저가 로그인 창에서 입력한 email, password, fcm토큰)
@@ -66,8 +73,6 @@ const LoginForm = () => {
 
       console.log(loginUserInfo);
 
-      // # 2.3. 로그인 완료 후, 메인 페이지로 이동!
-      nav("/");
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
       console.log(error);
@@ -75,6 +80,34 @@ const LoginForm = () => {
         "로그인에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
+    }
+    try {
+      const response = await defaultInstance.get("/competition");
+      // # 3.1. ingCompetition 완료 알림
+      alert("현재 대회 개최 유무 get 완료~!!");
+      console.log(response);
+
+      // # 3.2. ingCompetition 상태 업데이트
+      await setCompetitionInfo({
+        ...competitionInfo,
+        ingCompetition: response.data.ingCompetition,
+        competitionId: response.data.competition_id,
+        title: response.data.title,
+        startAt: response.data.start_at,
+        endAt: response.data.end_at,
+      });
+
+      console.log("진행 대회 정보 조회 완료: ", competitionInfo);
+
+      // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
+      nav("/");
+    } catch (error) {
+      console.log(error);
+      alert(
+        "진행 대회 정보 조회에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+      nav("/");
     }
   };
 

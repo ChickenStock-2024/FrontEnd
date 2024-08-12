@@ -16,7 +16,6 @@ const useLoginUserInfoStore = create(
         balance: 10000000,
         rating: "",
         tier: "",
-        profileImg: "",
       },
 
       // LoginUserInfo 관련데이터, set, clear 함수로 변경가능
@@ -26,14 +25,13 @@ const useLoginUserInfoStore = create(
           loginUserInfo: {
             loginId: null,
             isLogined: false,
-            isCompParticipant: false,
+            isCompParticipant: true,
             nickname: "",
             rank: "",
             accountId: null,
             balance: 10000000,
             rating: "",
             tier: "",
-            profileImg: "",
           },
         }),
     }),

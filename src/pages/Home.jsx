@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import HomeCompetitionInfo from "../components/Home/HomeCompetitionInfo";
 import HomeCenterIngCompetitionAfterLoginIsCompParticipant from "../components/Home/HomeCenterIngCompetitionAfterLoginIsCompParticipant";
@@ -14,6 +14,12 @@ import Modal from "../components/Modal";
 
 import useCompetitionInfoStore from "../store/useCompetitionInfoStore";
 import useLoginUserInfoStore from "../store/useLoginUserInfoStore";
+
+// Date converted to YYYY. MM. DD format
+const handleDate = (strDate) => {
+  const date = new Date(strDate);
+  return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
+};
 
 const Home = () => {
   const ingCompetition = useCompetitionInfoStore(
@@ -34,7 +40,7 @@ const Home = () => {
   return (
     <div className="flex flex-col h-screen pt-24">
       <div className="flex-none">
-        <HomeCompetitionInfo />
+        <HomeCompetitionInfo handleDate={handleDate} />
       </div>
       <div className="flex-none">
         {ingCompetition ? (
