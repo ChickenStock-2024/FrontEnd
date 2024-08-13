@@ -17,7 +17,7 @@ const TotalRanking = () => {
       const response = await defaultInstance.get("/ranking/all", {
         params: { offset: page },
       });
-      console.log(response.data);
+      // console.log(response.data);
       setMemberList(response.data.memberList);
     } catch (error) {
       console.log(error);

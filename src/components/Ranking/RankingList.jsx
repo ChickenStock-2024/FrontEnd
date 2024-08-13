@@ -12,7 +12,6 @@ function EachRanking({ user }) {
         <div className="font-bold">{user.ranking}위</div>
         {/* 이 부분을 클릭했을 때 각 프로필로 라우팅 되어야 함 */}
         {/* <div className="col-span-3 text-left flex gap-2 items-center"> */}
-        {/* <img src={profileImage} alt="" className="rounded-full w-6 h-6" /> */}
         <Link
           to={`/profile/${user.memberId}`}
           className="col-span-3 text-left flex gap-2 items-center"
@@ -20,6 +19,7 @@ function EachRanking({ user }) {
           <div className="w-8 h-8">
             <TierBadge tier={tier} />
           </div>
+          {/* <img src={user.imgUrl} alt="" className="rounded-full w-8 h-8" /> */}
           <div>{user.nickname}</div>
         </Link>
         {/* </div> */}
