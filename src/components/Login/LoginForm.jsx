@@ -28,9 +28,6 @@ const LoginForm = () => {
     (state) => state.setNotificationInfo
   );
 
-  // 카카오 로그인 새로운 탭 열기
-  const openNewWindow = () => {};
-
   // 로그인 정보(유저가 로그인 창에서 입력한 email, password, fcm토큰)
   // # 1.1. inputData 상태관리
   const [inputData, setInputData] = useState({
@@ -89,6 +86,7 @@ const LoginForm = () => {
 
       console.log(loginUserInfo);
       console.log(notificationInfo);
+      nav("/");
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
