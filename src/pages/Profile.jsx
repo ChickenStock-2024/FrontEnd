@@ -69,7 +69,7 @@ const Profile = () => {
     try {
       // # 3.0. Axios의 응답 객체에서 직접 isRival 추출
       const response2 = await defaultInstance.get(`/rival/${profilePageId}`);
-      await setProfilePageInfo({
+      setProfilePageInfo({
         ...profilePageInfo,
         isRival: response2.data.isRival,
       });
@@ -141,7 +141,11 @@ const Profile = () => {
               className={`absolute bottom-10 right-40 ${profilePageId == loginId ? "hidden" : ""}`}
             >
               {/* <div className="absolute bottom-10 right-40 "> */}
-              <Button text={"라이벌 등록"} color={"yellow3"} />
+              <Button
+                text={`${profilePageInfo.isRival ? "라이벌 등록" : "라이벌 삭제"}`}
+                color={`${profilePageInfo.isRival ? "yellow3" : "yellow1"}`}
+              />
+              {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
               {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
             </div>
           </div>

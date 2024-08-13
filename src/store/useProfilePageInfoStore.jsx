@@ -18,7 +18,7 @@ const useProfilePageInfoStore = create(
       rating: "",
       tier: "",
       profileImg: "",
-      isRival: true,
+      isRival: null,
     },
     competitionItems: [],
 
@@ -32,7 +32,7 @@ const useProfilePageInfoStore = create(
           rating: "",
           tier: "",
           profileImg: "",
-          isRival: true,
+          isRival: null,
         },
       }),
 
