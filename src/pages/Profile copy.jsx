@@ -143,25 +143,19 @@ const Profile = () => {
           </div>
           <div className="h-44"></div>
           <div className="flex flex-row justify-between">
-            <div className="absolute top-0 left-40">
+            <div className="absolute top-0 left-40 font-yellow2">
               <ProfileUserInfo />
             </div>
-            <div>
-              {profilePageId === loginId ? (
-                ""
-              ) : (
-                <div
-                  className={`absolute bottom-10 right-40 ${profilePageId == loginId ? "hidden" : ""}`}
-                >
-                  {/* <div className="absolute bottom-10 right-40 "> */}
-                  <Button
-                    text={`${profilePageInfo.isRival ? "라이벌 삭제" : "라이벌 등록"}`}
-                    color={`${profilePageInfo.isRival ? "yellow1" : "yellow3"}`}
-                  />
-                  {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
-                  {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
-                </div>
-              )}
+            <div
+              className={`absolute bottom-10 right-40 ${profilePageId == loginId ? "hidden" : ""}`}
+            >
+              {/* <div className="absolute bottom-10 right-40 "> */}
+              <Button
+                text={`${profilePageInfo.isRival ? "라이벌 삭제" : "라이벌 등록"}`}
+                color={`${profilePageInfo.isRival ? "yellow1" : "yellow3"}`}
+              />
+              {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
+              {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
             </div>
           </div>
         </div>
