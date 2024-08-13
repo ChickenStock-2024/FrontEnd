@@ -51,6 +51,14 @@ const Profile = () => {
     (state) => state.profilePageInfo
   );
 
+  useEffect(() => {
+    console.log("접속한 profilePageId: ", profilePageId);
+    console.log("접속한 유저 loginId: ", loginId);
+    clearProfilePageInfo();
+    clearCompetitionItems();
+    getUserInfo(profilePageId);
+  }, [profilePageId]);
+
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
@@ -120,31 +128,6 @@ const Profile = () => {
     }
   };
 
-  const deleteRival = async () => {
-    const response = await defaultInstance.delete(`/rival/${profilePageId}`);
-    console.log("deleteRival response: ", response);
-  };
-
-  const postRival = async () => {
-    const response = await defaultInstance.post(`/rival/${profilePageId}`);
-    console.log("postRival response: ", response);
-  };
-
-  const clickRivalDelete = () => {
-    deleteRival();
-  };
-
-  const clickRivalPost = () => {
-    postRival();
-  };
-  useEffect(() => {
-    console.log("접속한 profilePageId: ", profilePageId);
-    console.log("접속한 유저 loginId: ", loginId);
-    clearProfilePageInfo();
-    clearCompetitionItems();
-    getUserInfo(profilePageId);
-  }, [profilePageId]);
-
   return (
     <div className="pt-24">
       <section>
@@ -160,32 +143,25 @@ const Profile = () => {
           </div>
           <div className="h-44"></div>
           <div className="flex flex-row justify-between">
-            <div className="absolute top-0 left-40 font-yellow2">
+            <div className="absolute top-0 left-40">
               <ProfileUserInfo />
             </div>
-
-            <div className="absolute bottom-10 right-40">
-              {profilePageId == loginId ? (
+            <div>
+              {profilePageId === loginId ? (
                 ""
-              ) : !profilePageInfo.isRival ? (
-                <Button
-                  text={"라이벌 삭제"}
-                  color={"yellow3"}
-                  onclick={() => {
-                    clickRivalDelete();
-                  }}
-                />
               ) : (
-                <Button
-                  text={"라이벌 등록"}
-                  onclick={() => {
-                    clickRivalPost();
-                  }}
-                />
+                <div
+                  className={`absolute bottom-10 right-40 ${profilePageId == loginId ? "hidden" : ""}`}
+                >
+                  {/* <div className="absolute bottom-10 right-40 "> */}
+                  <Button
+                    text={`${profilePageInfo.isRival ? "라이벌 삭제" : "라이벌 등록"}`}
+                    color={`${profilePageInfo.isRival ? "yellow1" : "yellow3"}`}
+                  />
+                  {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
+                  {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
+                </div>
               )}
-
-              {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
-              {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
             </div>
           </div>
         </div>
