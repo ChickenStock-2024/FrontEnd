@@ -67,42 +67,51 @@ const Profile = () => {
   // # 2. 프로필 페이지 렌더링 시,
   const getUserInfo = async () => {
     try {
+      // # 2.0. Axios의 응답 객체에서 프로필 페이지 profilePageInfo 추출
+      const response1 = await defaultInstance.get(`/user/${profilePageId}`);
+
       // # 3.0. Axios의 응답 객체에서 직접 isRival 추출
       const response2 = await defaultInstance.get(`/rival/${profilePageId}`);
+
       setProfilePageInfo({
-        ...profilePageInfo,
-        isRival: response2.data.isRival,
-      });
-      console.log("isRival response :", response2);
-      // # 3.1. isRival 추출 완료 알림
-      alert("라이벌 데이터 가져오기 완료~!!");
-    } catch (error) {
-      alert(
-        "라이벌 데이터  가져오기에 실패했습니다: " +
-          (error.response ? error.response.data.message : error.message)
-      );
-    }
-    try {
-      // # 2.0. getUserInfo Axios
-      const response1 = await defaultInstance.get(`/user/${profilePageId}`);
-      // # 2.1. Axios의 응답 객체에서 프로필 페이지 profilePageInfo 추출
-      await setProfilePageInfo({
-        ...profilePageInfo,
         profilePageMemberId: response1.data.memberId,
         nickname: response1.data.nickname,
         rating: response1.data.rating,
         tier: calculateTier(response1.data.rating),
         profileImg: response1.data.imgUrl,
+        isRival: response2.data.isRival,
       });
-      // # 2.2. profilePageInfo 가져오기 완료 알림
-      alert("getUserInfo 완료");
-      alert("profileImg: ", profilePageInfo.profileImg);
+
+      // # 3.1. getUserInfo 추출 완료 알림
+      alert("라이벌 데이터와 profilePageInfo 가져오기 완료~!!");
     } catch (error) {
       alert(
-        "프로필 페이지 로딩에 필요한 정보 조회에 실패했습니다: " +
+        "라이벌 데이터와 profilePageInfo 가져오기에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
     }
+    // console.log("profilePageInfo", profilePageInfo);
+    // try {
+    //   // // # 2.0. getUserInfo Axios
+    //   // const response1 = await defaultInstance.get(`/user/${profilePageId}`);
+    //   // // # 2.1. Axios의 응답 객체에서 프로필 페이지 profilePageInfo 추출
+    //   // setProfilePageInfo({
+    //   //   ...profilePageInfo,
+    //   //   profilePageMemberId: response1.data.memberId,
+    //   //   nickname: response1.data.nickname,
+    //   //   rating: response1.data.rating,
+    //   //   tier: calculateTier(response1.data.rating),
+    //   //   profileImg: response1.data.imgUrl,
+    //   // });
+    //   // // # 2.2. profilePageInfo 가져오기 완료 알림
+    //   // alert("getUserInfo 완료");
+    //   // alert("profileImg: ", profilePageInfo.profileImg);
+    // } catch (error) {
+    //   alert(
+    //     "프로필 페이지 로딩에 필요한 정보 조회에 실패했습니다: " +
+    //       (error.response ? error.response.data.message : error.message)
+    //   );
+    // }
     try {
       // # 4.0. Axios의 응답 객체에서 직접 competitionItems 추출
       const response3 = await defaultInstance.get(
