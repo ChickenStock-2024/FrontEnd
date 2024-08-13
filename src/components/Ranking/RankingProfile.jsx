@@ -23,7 +23,7 @@ const RankingProfile = ({ parameter }) => {
     }
   };
 
-  const rating = 1400;
+  const rating = 1200;
   const tier = calculateTier(rating);
 
   return (

@@ -5,6 +5,7 @@ import { calculateTier } from "../../utils/tierCalculator";
 
 function EachRanking({ user }) {
   const tier = calculateTier(user.rating);
+  const cumProfitRate = (user.profit / (user.competitionCount * 1000000)) * 100;
   return (
     <div className="grid grid-cols-4 text-center py-3 items-center">
       <div className="grid grid-cols-4 items-center">
@@ -13,7 +14,7 @@ function EachRanking({ user }) {
         {/* <div className="col-span-3 text-left flex gap-2 items-center"> */}
         {/* <img src={profileImage} alt="" className="rounded-full w-6 h-6" /> */}
         <Link
-          to={`/profile/${user.member_id}`}
+          to={`/profile/${user.memberId}`}
           className="col-span-3 text-left flex gap-2 items-center"
         >
           <div className="w-8 h-8">
@@ -23,9 +24,11 @@ function EachRanking({ user }) {
         </Link>
         {/* </div> */}
       </div>
-      <div>수익률(수익금)</div>
+      <div>
+        {user.profit.toLocaleString()}원 ({cumProfitRate}%)
+      </div>
       <div>{user.rating}</div>
-      <div>{user.competition_count}</div>
+      <div>{user.competitionCount}</div>
     </div>
   );
 }
