@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chickenstock-front
+    image: yijy001/chickenstock-front
+    ports:
+      - 8000:80
