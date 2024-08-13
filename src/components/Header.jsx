@@ -61,7 +61,7 @@ const Header = () => {
           </div>
           <nav className="ml-auto flex flex-wrap items-center text-base justify-center">
             {/* <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center"> */}
-            <Link to={"/trading/1"}>
+            <Link to={"/trading/005930"}>
               <span className="mr-5 hover:text-gray-900">대회</span>
             </Link>
             <Link to={"/ranking"}>

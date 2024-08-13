@@ -30,8 +30,6 @@ const Profile = () => {
   // # 1.1. 현재 접속한 유저의 loginId 가져오기
   const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
 
-  // const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
-
   // # 1.2. 다른 유저의 프로필 페이지로 이동시, 기존 profilePageInfo 초기화 후 profilePageInfo 업데이트
   const setProfilePageInfo = useProfilePageInfoStore(
     (state) => state.setProfilePageInfo
@@ -89,12 +87,27 @@ const Profile = () => {
       );
     }
     try {
-      // # 2.0. Axios의 응답 객체에서 직접 competitionItems 추출
-      const response2 = await defaultInstance.get(
+      // # 3.0. Axios의 응답 객체에서 직접 isRival 추출
+      const response2 = await defaultInstance.get(`/rival/${profilePageId}`);
+      await setProfilePageInfo({
+        ...profilePageInfo,
+        isRival: response2.data.is_rival,
+      });
+      // # 3.1. isRival 추출 완료 알림
+      alert("라이벌 데이터 가져오기 완료~!!");
+    } catch (error) {
+      alert(
+        "라이벌 데이터  가져오기에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
+    try {
+      // # 4.0. Axios의 응답 객체에서 직접 competitionItems 추출
+      const response3 = await defaultInstance.get(
         `/competition/all/${profilePageId}`
       );
-      await setCompetitionItems(response2.data);
-      // # 2.1. Axios getCompetitionAll 완료 알림
+      await setCompetitionItems(response3.data);
+      // # 4.1. Axios getCompetitionAll 완료 알림
       alert("대회 데이터 전체 가져오기 완료~!!");
     } catch (error) {
       alert(

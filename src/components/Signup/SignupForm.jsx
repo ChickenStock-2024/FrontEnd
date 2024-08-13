@@ -150,6 +150,24 @@ const SignupForm = () => {
     }
   };
 
+  // # 6. kakao 로그인 axios
+  const getKakaoLogin = async () => {
+    try {
+      console.log("kakao 로그인 전: ");
+
+      // Axios의 응답 객체에서 직접 checkedNickname 추출
+      const response = await defaultInstance.get("/auth/login/kakao");
+
+      alert("kakao 로그인 완료~!!");
+      console.log("kakao 로그인 response: ", response);
+    } catch (error) {
+      console.log(error);
+      alert(
+        "kakao 로그인 중 오류: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
+  };
   return (
     <div className="flex flex-col w-full items-center justify-center pt-14 pb-20 gap-3">
       {/* 로고 */}
@@ -265,7 +283,14 @@ const SignupForm = () => {
 
       {/* 카카오  회원가입 */}
       <div className="w-72 flex justify-center h-11 items-center">
-        <button>
+        <button
+          onClick={() => {
+            window.open(
+              "https://chickenstock.givendragon.site/api/auth/login/kakao",
+              "newWindow"
+            );
+          }}
+        >
           <img src={kakaoSignupImage} />
         </button>
       </div>

@@ -19,14 +19,17 @@ const LoginForm = () => {
     (state) => state.competitionInfo
   );
   const setCompetitionInfo = useCompetitionInfoStore(
-    (state) => state.competitionInfo
+    (state) => state.setCompetitionInfo
   );
   const notificationInfo = useNotificationInfoStore(
-    (state) => state.competitionInfo
+    (state) => state.notificationInfo
   );
   const setNotificationInfo = useNotificationInfoStore(
-    (state) => state.competitionInfo
+    (state) => state.setNotificationInfo
   );
+
+  // 카카오 로그인 새로운 탭 열기
+  const openNewWindow = () => {};
 
   // 로그인 정보(유저가 로그인 창에서 입력한 email, password, fcm토큰)
   // # 1.1. inputData 상태관리
@@ -78,11 +81,11 @@ const LoginForm = () => {
         isLogined: true,
       });
 
-      // await setNotificationInfo({
-      //   ...setNotificationInfo,
-      //   webNotification: response.data.web_noti,
-      //   kakaoNotification: response.data.kakaotalk_noti,
-      // });
+      await setNotificationInfo({
+        ...notificationInfo,
+        webNotification: response.data.webNoti,
+        kakaoNotification: response.data.kakaotalkNoti,
+      });
 
       console.log(loginUserInfo);
       console.log(notificationInfo);
@@ -195,7 +198,11 @@ const LoginForm = () => {
 
       {/* 카카오로그인 */}
       <div className="w-72 flex justify-center h-11 items-center">
-        <button>
+        <button
+          onClick={() => {
+            window.open("http://localhost:5173/kakaoLogin", "newWindow");
+          }}
+        >
           <img src={KaKaoLoginImage} />
         </button>
       </div>

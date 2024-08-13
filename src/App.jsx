@@ -11,6 +11,7 @@ import Ranking from "./pages/Ranking";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import WebSocketTest from "./components/WebSocketTest";
+import KakaoLogin from "./components/Login/KakaoLogin";
 
 NotificationInApp();
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/profile/:profilePageId" element={<Profile />} />
         <Route path="/test" element={<WebSocketTest />} />
+        <Route path="/kakaoLogin" element={<KakaoLogin />} />
       </Routes>
     </div>
   );
