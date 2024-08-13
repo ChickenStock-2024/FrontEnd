@@ -1,10 +1,12 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import RankingProfile from "./RankingProfile";
 import RankingList from "./RankingList";
+import { defaultInstance } from "../../api/axios";
 
 const TotalRanking = () => {
   // api 호출해서 멤버리스트를 셋팅
-  const memberList = [
+  const memberList2 = [
     {
       member_id: 12,
       rank: "11",
@@ -54,6 +56,24 @@ const TotalRanking = () => {
       competition_count: "3",
     },
   ];
+
+  const [memberList, setMemberList] = useState([]);
+
+  useEffect(() => {
+    getRankingTotal();
+  }, []);
+
+  const getRankingTotal = async () => {
+    try {
+      const response = await defaultInstance.get("/ranking/all", {
+        params: { offset: 1 },
+      });
+      console.log(response.data);
+      setMemberList(response.data.memberList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="min-w-max">

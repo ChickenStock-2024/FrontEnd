@@ -8,7 +8,7 @@ function EachRanking({ user }) {
   return (
     <div className="grid grid-cols-4 text-center py-3 items-center">
       <div className="grid grid-cols-4 items-center">
-        <div className="font-bold">{user.rank}위</div>
+        <div className="font-bold">{user.ranking}위</div>
         {/* 이 부분을 클릭했을 때 각 프로필로 라우팅 되어야 함 */}
         {/* <div className="col-span-3 text-left flex gap-2 items-center"> */}
         {/* <img src={profileImage} alt="" className="rounded-full w-6 h-6" /> */}
