@@ -31,10 +31,10 @@ const SettingsModal = ({ closeModal }) => {
       console.log("WebNotificationOn: ", WebNotificationOn);
       const response = await defaultInstance.post("/user/noti/web");
       alert("Web 알림 설정 변경 완료~!!");
-      console.log(response.data.web_noti);
+      console.log("Web 알림 설정 response: ", response.data);
       await setNotificationInfo({
-        ...setNotificationInfo,
-        webNotification: response.data.web_noti,
+        ...notificationInfo,
+        webNotification: response.data.webNoti,
       });
       console.log(
         "webNotification 변경 후: ",
@@ -43,10 +43,10 @@ const SettingsModal = ({ closeModal }) => {
       closeModal();
     } catch (error) {
       console.log(error);
-      setNotificationInfo({
-        ...notificationInfo,
-        webNotification: WebNotificationOn,
-      });
+      // setNotificationInfo({
+      //   ...notificationInfo,
+      //   webNotification: WebNotificationOn,
+      // });
       console.log(
         "webNotification 변경 후: ",
         notificationInfo.webNotification
@@ -72,10 +72,10 @@ const SettingsModal = ({ closeModal }) => {
       console.log("KakaoNotificationOn: ", KakaoNotificationOn);
       const response = await defaultInstance.post("/user/noti/kakaotalk");
       alert("Kakao 알림 설정 변경 완료~!!");
-      console.log(response.data.kakaotalk_noti);
+      console.log("Kakao 알림 설정 response: ", response.data);
       await setNotificationInfo({
-        ...setNotificationInfo,
-        kakaoNotification: response.data.kakaotalk_noti,
+        ...notificationInfo,
+        kakaoNotification: response.data.kakaotalkNoti,
       });
       console.log(
         "kakaoNotification 변경 후: ",
@@ -84,14 +84,14 @@ const SettingsModal = ({ closeModal }) => {
       closeModal();
     } catch (error) {
       console.log(error);
-      setNotificationInfo({
-        ...notificationInfo,
-        kakaoNotification: KakaoNotificationOn,
-      });
-      console.log(
-        "kakaoNotification 변경 후: ",
-        notificationInfo.kakaoNotification
-      );
+      // setNotificationInfo({
+      //   ...notificationInfo,
+      //   kakaoNotification: KakaoNotificationOn,
+      // });
+      // console.log(
+      //   "kakaoNotification 변경 후: ",
+      //   notificationInfo.kakaoNotification
+      // );
       alert(
         "카카오 알림 설정 변경에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
