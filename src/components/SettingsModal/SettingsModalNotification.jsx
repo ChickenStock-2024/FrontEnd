@@ -32,7 +32,7 @@ const SettingsModal = ({ closeModal }) => {
       const response = await defaultInstance.post("/user/noti/web");
       alert("Web 알림 설정 변경 완료~!!");
       console.log("Web 알림 설정 response: ", response.data);
-      await setNotificationInfo({
+      setNotificationInfo({
         ...notificationInfo,
         webNotification: response.data.webNoti,
       });
@@ -73,7 +73,7 @@ const SettingsModal = ({ closeModal }) => {
       const response = await defaultInstance.post("/user/noti/kakaotalk");
       alert("Kakao 알림 설정 변경 완료~!!");
       console.log("Kakao 알림 설정 response: ", response.data);
-      await setNotificationInfo({
+      setNotificationInfo({
         ...notificationInfo,
         kakaoNotification: response.data.kakaotalkNoti,
       });
@@ -108,6 +108,7 @@ const SettingsModal = ({ closeModal }) => {
           <div className="flex justify-between border-b py-2 mb-2">
             <span>웹 알림</span>
             <Toggle
+              toggleDefault={notificationInfo.webNotification}
               toggleSwitch={() => {
                 SetWebNotificationOn(WebNotificationOn);
                 postWebNotification();
@@ -117,6 +118,7 @@ const SettingsModal = ({ closeModal }) => {
           <div className="flex justify-between border-b py-2 mb-2">
             <span>카카오톡 알림</span>
             <Toggle
+              toggleDefault={notificationInfo.kakaoNotification}
               toggleSwitch={() => {
                 SetKakaoNotificationOn(KakaoNotificationOn);
                 postKakaoNotification();
