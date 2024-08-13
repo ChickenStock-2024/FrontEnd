@@ -1,24 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import companyLogo from "./../../assets/005930.png";
 
 const holdingStockList = {
   balance: "5600459",
   holding_list: [
     {
-      stock_id: 1,
+      stock_id: "005930",
       company_title: "삼성전자",
       price: 54643524,
       volume: 534,
     },
     {
-      stock_id: 2,
-      company_title: "LG",
-      price: 546494,
-      volume: 50,
-    },
-    {
-      stock_id: 3,
-      company_title: "카카오",
+      stock_id: "009150",
+      company_title: "삼성전기",
       price: 546494,
       volume: 50,
     },
@@ -34,12 +29,13 @@ const StockList = () => {
       {/* 반복할 부분 */}
       {holdingStockList.holding_list.map((holding, index) => (
         <Link to={`/trading/${holding.stock_id}`} key={index}>
-          <div className="flex justify-between border-b p-2">
+          <div className="flex justify-between border-b p-4">
             <div className="flex gap-2">
-              <div className="bg-blue-500 w-6 h-6 rounded-full"></div>
+              {/* <div className="bg-blue-500 w-6 h-6 rounded-full"></div> */}
+              <img src={companyLogo} alt="" className="w-6 h-6 rounded-full" />
               <div>{holding.company_title}</div>
             </div>
-            <div className="text-sm">XXX원</div>
+            {/* <div className="text-sm">XXX원</div> */}
           </div>
         </Link>
       ))}
