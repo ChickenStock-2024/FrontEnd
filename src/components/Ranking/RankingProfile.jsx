@@ -7,16 +7,6 @@ import { calculateTier } from "../../utils/tierCalculator";
 import TierBadge from "../TierBadge";
 
 const RankingProfile = ({ parameter }) => {
-  // const userInfo = {
-  //   nickname: "치킨엔젤",
-  //   tier: "플래티넘 5",
-  //   rank: 23,
-  //   latestRating: +2340,
-  //   earningRate: "30",
-  //   earnings: "300,000",
-  //   competitionCount: 3,
-  // };
-
   const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
 
   const [userInfo, setUserInfo] = useState({});
@@ -28,13 +18,12 @@ const RankingProfile = ({ parameter }) => {
     try {
       const response = await defaultInstance.get(`/user/${loginId}`);
       setUserInfo(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const rating = 2000;
+  const rating = 1400;
   const tier = calculateTier(rating);
 
   return (
@@ -48,26 +37,25 @@ const RankingProfile = ({ parameter }) => {
             alt="userProfileImage"
           />
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center">
-            <img
-              className="rounded-full w-5 h-5 mr-2"
-              src="src\assets\userTierBadge.png"
-              alt="userTierBadge"
-            />
-            <TierBadge tier={tier} />
-            {/* 티어 계산해서 올바른 이미지 출력 */}
-            <div className="font-bold">
-              {userInfo.tier} | {userInfo.latestRating}
+            <div className="w-8 h-8 mx-2">
+              {/* 티어 계산해서 올바른 이미지 출력 */}
+              <TierBadge tier={tier} />
+            </div>
+            {/* api로 받은 제대로 된 데이터 출력 */}
+            <div className="text-xl font-bold">
+              {tier} | {rating}
             </div>
           </div>
-          <h2 className="text-3xl font-bold">{userInfo.nickname}</h2>
+          <h2 className="text-4xl font-bold">{userInfo.nickname}</h2>
           {/* <span>대회 {userInfo.competitionCount}회 참여</span> */}
           {/* <span>
             {userInfo.earningRate}%(+{userInfo.earnings})
           </span> */}
         </div>
       </div>
+      {/* 내 순위를 계산해서 보내주기 */}
       <RankingProfileRank rank={userInfo.rank} parameter={parameter} />
     </div>
   );

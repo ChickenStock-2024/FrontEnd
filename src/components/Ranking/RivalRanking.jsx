@@ -55,7 +55,7 @@ const RivalRanking = () => {
       competition_count: "3",
     },
   ];
-  const memberListLength = 100;
+  // const memberListLength = 100;
 
   const [memberList, setMemberList] = useState([]);
 
@@ -69,16 +69,18 @@ const RivalRanking = () => {
         params: { offset: 1 },
       });
       console.log(response.data);
+      setMemberList((await response).data.member_list);
+      console.log(memberList);
     } catch (error) {
       console.log(error);
+      console.log(memberList);
     }
   };
 
   return (
-    <div>
-      {/* 여기서 친구 랭킹 api호출 */}
+    <div className="min-w-max">
       {/* 친구 리스트의 길이 넘겨주기 */}
-      <RankingProfile parameter={`친구 ${memberListLength}`} />
+      <RankingProfile parameter={`친구 ${memberList.length}`} />
       {/* <RankingList memberList={memberList} /> */}
     </div>
   );

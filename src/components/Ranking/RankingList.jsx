@@ -1,18 +1,27 @@
 import React from "react";
-import profileImage from "../../assets/userProfileImage_쑤.png";
-import userTierBadge from "../../assets/userTierBadge.png";
+import { Link } from "react-router-dom";
+import TierBadge from "../TierBadge";
+import { calculateTier } from "../../utils/tierCalculator";
 
 function EachRanking({ user }) {
+  const tier = calculateTier(user.rating);
   return (
-    <div className="grid grid-cols-4 text-center py-3">
-      <div className="grid grid-cols-4">
-        <div className="font-bold">{user.rank}위</div>
+    <div className="grid grid-cols-4 text-center py-3 items-center">
+      <div className="grid grid-cols-4 items-center">
+        <div className="font-bold">{user.ranking}위</div>
         {/* 이 부분을 클릭했을 때 각 프로필로 라우팅 되어야 함 */}
-        <div className="col-span-3 text-left flex gap-2 items-center">
-          <img src={profileImage} alt="" className="rounded-full w-6 h-6" />
-          <img src={userTierBadge} alt="" className="rounded-full w-6 h-6" />
+        {/* <div className="col-span-3 text-left flex gap-2 items-center"> */}
+        {/* <img src={profileImage} alt="" className="rounded-full w-6 h-6" /> */}
+        <Link
+          to={`/profile/${user.member_id}`}
+          className="col-span-3 text-left flex gap-2 items-center"
+        >
+          <div className="w-8 h-8">
+            <TierBadge tier={tier} />
+          </div>
           <div>{user.nickname}</div>
-        </div>
+        </Link>
+        {/* </div> */}
       </div>
       <div>수익률(수익금)</div>
       <div>{user.rating}</div>
@@ -22,17 +31,16 @@ function EachRanking({ user }) {
 }
 
 const RankingList = ({ memberList }) => {
-  console.log(memberList);
+  // console.log(memberList);
 
   return (
     <div className="mx-12">
-      {/* 랭킹 리스트 label -> 글씨 크게, 볼드, 마진*/}
       <div className="grid grid-cols-4 text-center text-lg font-bold py-4 mt-2">
         <div className="grid grid-cols-4">
           <div>순위</div>
           <div className="col-span-3 text-left">닉네임</div>
         </div>
-        <div>수익률(수익금)</div>
+        <div>누적수익금(수익률)</div>
         <div>레이팅</div>
         <div>대회 참여 횟수</div>
       </div>
