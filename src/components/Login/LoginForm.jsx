@@ -71,14 +71,14 @@ const LoginForm = () => {
       console.log("loginUserInfo변경 전: ", loginUserInfo.nickname);
       console.log("loginUserInfo변경 전: ", loginUserInfo.isLogined);
 
-      await setLoginUserInfo({
+      setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
         nickname: response.data.nickName,
         isLogined: true,
       });
 
-      await setNotificationInfo({
+      setNotificationInfo({
         ...notificationInfo,
         webNotification: response.data.webNoti,
         kakaoNotification: response.data.kakaotalkNoti,

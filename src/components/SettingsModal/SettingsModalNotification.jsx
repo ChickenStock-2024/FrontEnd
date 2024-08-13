@@ -58,6 +58,13 @@ const SettingsModal = ({ closeModal }) => {
       closeModal();
     }
   };
+  // useEffect(() => {
+  //   console.log("접속한 profilePageId: ", profilePageId);
+  //   console.log("접속한 유저 loginId: ", loginId);
+  //   clearProfilePageInfo();
+  //   clearCompetitionItems();
+  //   getUserInfo(profilePageId);
+  // }, [profilePageId]);
 
   // # 1.2. Kakao알림 설정 axios
   const postKakaoNotification = async () => {
@@ -102,7 +109,7 @@ const SettingsModal = ({ closeModal }) => {
             <span>웹 알림</span>
             <Toggle
               toggleSwitch={() => {
-                SetWebNotificationOn(!WebNotificationOn);
+                SetWebNotificationOn(WebNotificationOn);
                 postWebNotification();
               }}
             />
@@ -111,7 +118,7 @@ const SettingsModal = ({ closeModal }) => {
             <span>카카오톡 알림</span>
             <Toggle
               toggleSwitch={() => {
-                SetKakaoNotificationOn(!KakaoNotificationOn);
+                SetKakaoNotificationOn(KakaoNotificationOn);
                 postKakaoNotification();
               }}
             />
