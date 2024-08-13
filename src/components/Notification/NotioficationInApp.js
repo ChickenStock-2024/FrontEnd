@@ -8,14 +8,13 @@ const NotificationInApp = () => {
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyD-75FRsaAEs1znFjbXmsmVDAzJpw8WToo",
-    authDomain: "chickenstock-noti.firebaseapp.com",
-    projectId: "chickenstock-noti",
-    storageBucket: "chickenstock-noti.appspot.com",
-
-    messagingSenderId: "218149229472",
-    appId: "1:218149229472:web:c08a13d6182b024689cac5",
-    measurementId: "G-B3P9Y23XX0",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
+    measurementId: import.meta.env.VITE_MEASUREMENT_ID,
   };
 
   // Initialize Firebase

@@ -5,12 +5,9 @@ importScripts(
 
 const firebaseConfig = {
   apiKey: "AIzaSyD-75FRsaAEs1znFjbXmsmVDAzJpw8WToo",
-  authDomain: "chickenstock-noti.firebaseapp.com",
   projectId: "chickenstock-noti",
-  storageBucket: "chickenstock-noti.appspot.com",
   messagingSenderId: "218149229472",
   appId: "1:218149229472:web:c08a13d6182b024689cac5",
-  measurementId: "G-B3P9Y23XX0",
 };
 firebase.initializeApp(firebaseConfig);
 
@@ -39,7 +36,7 @@ const messaging = firebase.messaging();
 self.addEventListener("notificationclick", (event) => {
   console.log("On notification click: ", event.notification.tag);
   event.notification.close();
-  const url = "http://localhost:5173/trading";
+  const url = "https://chickenstock.givendragon.site/trading";
 
   // This looks to see if the current is already open and
   // focuses if it is
