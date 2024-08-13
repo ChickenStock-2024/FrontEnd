@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { defaultInstance } from "../api/axios.jsx";
+import { calculateTier } from "../utils/tierCalculator.js";
 
 import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
 import useProfilePageInfoStore from "../store/useProfilePageInfoStore.jsx";
@@ -75,35 +76,27 @@ const Profile = () => {
         ...profilePageInfo,
         profilePageMemberId: response1.data.memberId,
         nickname: response1.data.nickname,
-        tier: response1.data.tier,
-        // profileImg: response.data.profileImg,
+        rating: response1.data.rating,
+        tier: calculateTier(response1.data.rating),
+        profileImg: response1.data.imgUrl,
       });
       // # 2.2. profilePageInfo 가져오기 완료 알림
       alert("getUserInfo 완료");
-      console.log(response1);
     } catch (error) {
-      console.log(error);
       alert(
         "프로필 페이지 로딩에 필요한 정보 조회에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
     }
     try {
-      // console.log(
-      //   "프로필 히스토리탭 대회 데이터 가져오기 전 competitionItems: ",
-      //   competitionItems
-      // );
-      console.log(profilePageId);
       // # 2.0. Axios의 응답 객체에서 직접 competitionItems 추출
       const response2 = await defaultInstance.get(
         `/competition/all/${profilePageId}`
       );
-      console.log(response2);
       await setCompetitionItems(response2.data);
       // # 2.1. Axios getCompetitionAll 완료 알림
       alert("대회 데이터 전체 가져오기 완료~!!");
     } catch (error) {
-      console.log(error);
       alert(
         "대회 데이터 전체 가져오기에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
