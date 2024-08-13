@@ -7,16 +7,6 @@ import { calculateTier } from "../../utils/tierCalculator";
 import TierBadge from "../TierBadge";
 
 const RankingProfile = ({ parameter }) => {
-  // const userInfo = {
-  //   nickname: "치킨엔젤",
-  //   tier: "플래티넘 5",
-  //   rank: 23,
-  //   latestRating: +2340,
-  //   earningRate: "30",
-  //   earnings: "300,000",
-  //   competitionCount: 3,
-  // };
-
   const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
 
   const [userInfo, setUserInfo] = useState({});
@@ -28,7 +18,6 @@ const RankingProfile = ({ parameter }) => {
     try {
       const response = await defaultInstance.get(`/user/${loginId}`);
       setUserInfo(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -66,6 +55,7 @@ const RankingProfile = ({ parameter }) => {
           </span> */}
         </div>
       </div>
+      {/* 내 순위를 계산해서 보내주기 */}
       <RankingProfileRank rank={userInfo.rank} parameter={parameter} />
     </div>
   );
