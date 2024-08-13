@@ -21,12 +21,12 @@ const kakaoLogin = () => {
   const getKakaoLogin = async () => {
     try {
       console.log("카카오 로그인 전");
+      window.open("https://chickenstock.givendragon.site/api/auth/login/kakao");
+      // // Axios의 응답 객체에서 직접 checkedEmail 추출
+      // const response = await defaultInstance.get("/auth/login/kakao");
 
-      // Axios의 응답 객체에서 직접 checkedEmail 추출
-      const response = await defaultInstance.get("/auth/login/kakao");
-
-      alert("카카오 로그인 완료~!!");
-      console.log("카카오 로그인 response: ", response.data);
+      // alert("카카오 로그인 완료~!!");
+      // console.log("카카오 로그인 response: ", response.data);
 
       // // 진행 상태 업데이트
 
