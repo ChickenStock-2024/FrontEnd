@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const BASE_URL = "http://10.13.13.2:8080";
-const BASE_URL = "https://chickenstock.givendragon.site/api";
+const BASE_URL = import.meta.env.VITE_SERVER_ROOT + "/api";
 
 // 토큰을 헤더에 넣지 않고, api요청 시
 const axiosApi = (url, options) => {
