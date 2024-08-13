@@ -1,4 +1,4 @@
-import profileImg from "../assets/dummy-profile-icon.png";
+// import profileImg from "../assets/dummy-profile-icon.png";
 
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -67,6 +67,22 @@ const Profile = () => {
   // # 2. 프로필 페이지 렌더링 시,
   const getUserInfo = async () => {
     try {
+      // # 3.0. Axios의 응답 객체에서 직접 isRival 추출
+      const response2 = await defaultInstance.get(`/rival/${profilePageId}`);
+      setProfilePageInfo({
+        ...profilePageInfo,
+        isRival: response2.data.isRival,
+      });
+      console.log("isRival response :", response2);
+      // # 3.1. isRival 추출 완료 알림
+      alert("라이벌 데이터 가져오기 완료~!!");
+    } catch (error) {
+      alert(
+        "라이벌 데이터  가져오기에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
+    try {
       // # 2.0. getUserInfo Axios
       const response1 = await defaultInstance.get(`/user/${profilePageId}`);
       // # 2.1. Axios의 응답 객체에서 프로필 페이지 profilePageInfo 추출
@@ -80,24 +96,10 @@ const Profile = () => {
       });
       // # 2.2. profilePageInfo 가져오기 완료 알림
       alert("getUserInfo 완료");
+      alert("profileImg: ", profilePageInfo.profileImg);
     } catch (error) {
       alert(
         "프로필 페이지 로딩에 필요한 정보 조회에 실패했습니다: " +
-          (error.response ? error.response.data.message : error.message)
-      );
-    }
-    try {
-      // # 3.0. Axios의 응답 객체에서 직접 isRival 추출
-      const response2 = await defaultInstance.get(`/rival/${profilePageId}`);
-      await setProfilePageInfo({
-        ...profilePageInfo,
-        isRival: response2.data.is_rival,
-      });
-      // # 3.1. isRival 추출 완료 알림
-      alert("라이벌 데이터 가져오기 완료~!!");
-    } catch (error) {
-      alert(
-        "라이벌 데이터  가져오기에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
     }
@@ -139,7 +141,11 @@ const Profile = () => {
               className={`absolute bottom-10 right-40 ${profilePageId == loginId ? "hidden" : ""}`}
             >
               {/* <div className="absolute bottom-10 right-40 "> */}
-              <Button text={"라이벌 등록"} color={"yellow3"} />
+              <Button
+                text={`${profilePageInfo.isRival ? "라이벌 등록" : "라이벌 삭제"}`}
+                color={`${profilePageInfo.isRival ? "yellow3" : "yellow1"}`}
+              />
+              {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
               {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
             </div>
           </div>
