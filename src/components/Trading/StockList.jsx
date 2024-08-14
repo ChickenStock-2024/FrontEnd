@@ -67,7 +67,7 @@ const stockList = [
 const StockList = () => {
   return (
     <div className="m-3">
-      <div className="font-bold border-b-2 border-black pb-3 mb-2 text-center">
+      <div className="font-bold border-b-2 border-black pb-3 my-6 text-center">
         전체 종목
       </div>
       {/* 반복할 부분 */}

@@ -41,59 +41,6 @@ const companyLogos = {
   257720: 실리콘투,
 };
 
-// const stockList = [
-//   {
-//     stockId: "005930",
-//     companyName: "삼성전자",
-//     logo: 삼성전자,
-//   },
-//   {
-//     stockId: "009150",
-//     companyName: "삼성전기",
-//     logo: 삼성전기,
-//   },
-//   {
-//     stockId: "000660",
-//     companyName: "SK하이닉스",
-//     logo: SK하이닉스,
-//   },
-//   {
-//     stockId: "299660",
-//     companyName: "셀리드",
-//     logo: 셀리드,
-//   },
-//   {
-//     stockId: "042700",
-//     companyName: "한미반도체",
-//     logo: 한미반도체,
-//   },
-//   {
-//     stockId: "035420",
-//     companyName: "NAVER",
-//     logo: NAVER,
-//   },
-//   {
-//     stockId: "035720",
-//     companyName: "카카오",
-//     logo: 카카오,
-//   },
-//   {
-//     stockId: "028300",
-//     companyName: "HLB",
-//     logo: HLB,
-//   },
-//   {
-//     stockId: "084650",
-//     companyName: "랩지노믹스",
-//     logo: 랩지노믹스,
-//   },
-//   {
-//     stockId: "257720",
-//     companyName: "실리콘투",
-//     logo: 실리콘투,
-//   },
-// ];
-
 const ChartTitle = () => {
   const stockInfo = useStockDataStore((state) => state.stockInfo);
   const { stockId } = useParams();
@@ -114,7 +61,7 @@ const ChartTitle = () => {
   }
 
   return (
-    <div className="flex justify-between items-center mx-8 my-6">
+    <div className="flex justify-between items-center mx-8 mt-3 mb-6">
       <div className="flex gap-3 items-center">
         <img
           src={companyLogos[stockId]}

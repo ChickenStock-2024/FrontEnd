@@ -1,6 +1,52 @@
 import React from "react";
+import { defaultInstance } from "../../../../api/axios";
 
-const StockBuyModal = ({ closeModal, price, quantity }) => {
+const StockBuyModal = ({ closeModal, price, quantity, isMarketPrice }) => {
+  console.log(price);
+  const orderBuyLimit = async () => {
+    try {
+      const response = await defaultInstance.post("/account/buy/limit", {
+        accountId: 1,
+        memberId: 1,
+        companyId: 1,
+        competitionId: 1,
+        unitCost: price,
+        volume: quantity,
+      });
+      console.log(response.data);
+      closeModal();
+    } catch (error) {
+      console.log(error);
+      alert(
+        "지정가 주문을 실패했습니다. " +
+          (error.response ? error.response.data.message : error.message)
+      );
+      closeModal();
+    }
+  };
+
+  const orderBuyMarket = async () => {
+    try {
+      const response = await defaultInstance.post("/account/buy/market", {
+        accountId: 1,
+        memberId: 1,
+        companyId: 1,
+        competitionId: 1,
+        unitCost: price,
+        volume: quantity,
+      });
+      console.log(response.data);
+      closeModal();
+    } catch (error) {
+      console.log(error);
+      alert(
+        "시장가 주문을 실패했습니다. " +
+          (error.response ? error.response.data.message : error.message)
+      );
+      closeModal();
+    }
+  };
+
   return (
     <div>
       {quantity == 0 ? (
@@ -49,7 +95,9 @@ const StockBuyModal = ({ closeModal, price, quantity }) => {
             </button>
             <button
               className="bg-red-500 rounded text-white font-bold py-2 w-full"
-              onClick={closeModal}
+              onClick={() => {
+                isMarketPrice ? orderBuyMarket() : orderBuyLimit();
+              }}
               // onClick에 주문 요청 보내기
             >
               예
