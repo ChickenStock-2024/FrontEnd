@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-const Toggle = ({ toggleSwitch }) => {
-  const [toggle, setToggle] = useState(true);
+const Toggle = ({ toggleDefault, toggleSwitch }) => {
+  const [toggle, setToggle] = useState(toggleDefault);
   const toggleClass = " transform translate-x-6";
 
   return (

@@ -204,7 +204,7 @@ const ProfileHistoryTab = ({ handleDate }) => {
             <ProfileHistoryTabModal
               show={showModal}
               onClose={handleCloseModal}
-              // competitionItem={selectedCompetition}
+              competitionItem={selectedCompetition}
               handleDate={handleDate}
               // priceFormat={priceFormat}
             />

@@ -113,7 +113,7 @@ const SignupForm = () => {
       const response = await defaultInstance.post("/auth/signup", {
         email: email,
         password: password,
-        password_check: passwordCheck,
+        passwordCheck: passwordCheck,
         nickname: nickname,
       });
       // # 5.1. 회원가입 완료 알림
@@ -122,7 +122,7 @@ const SignupForm = () => {
       // # 5.2. 진행 상태 업데이트
       setCheckedData({
         ...checkedData,
-        isSuccessed: true,
+        // isSuccessed: true,
       });
 
       // # 5.3. 회원가입 완료 후, 로그인 페이지로 이동!

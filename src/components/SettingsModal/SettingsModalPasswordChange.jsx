@@ -20,13 +20,13 @@ const SettingsModalPasswordChange = ({ closeModal }) => {
   // # 3.3. changePassword 구조분해 할당
   const { oldPassword, newPassword, newPasswordCheck } = changePassword;
 
-  // # 3.5. 닉네임 변경 axios
+  // # 3.5. 비밀번호 변경 axios
   const postPasswordChange = async () => {
     try {
-      console.log("닉네임 변경 전: ", changePassword);
+      console.log("비밀번호 변경 전: ", changePassword);
 
       // # 3.5.0. Axios 성공 실패 유무에 따른 처리
-      const response = await defaultInstance.post("/users", {
+      const response = await defaultInstance.post("/user", {
         oldPassword: oldPassword,
         newPassword: newPassword,
         newPasswordCheck: newPasswordCheck,

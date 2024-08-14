@@ -71,14 +71,14 @@ const LoginForm = () => {
       console.log("loginUserInfo변경 전: ", loginUserInfo.nickname);
       console.log("loginUserInfo변경 전: ", loginUserInfo.isLogined);
 
-      await setLoginUserInfo({
+      setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
         nickname: response.data.nickName,
         isLogined: true,
       });
 
-      await setNotificationInfo({
+      setNotificationInfo({
         ...notificationInfo,
         webNotification: response.data.webNoti,
         kakaoNotification: response.data.kakaotalkNoti,
@@ -86,7 +86,33 @@ const LoginForm = () => {
 
       console.log(loginUserInfo);
       console.log(notificationInfo);
-      nav("/");
+      try {
+        const response = await defaultInstance.get("/competition");
+        // # 3.1. ingCompetition 완료 알림
+        alert("현재 대회 개최 유무 get 완료~!!");
+        console.log("현재 대회 개최 유무 response: ", response);
+
+        // # 3.2. ingCompetition 상태 업데이트
+        await setCompetitionInfo({
+          ...competitionInfo,
+          ingCompetition: response.data.ingCompetition,
+          competitionId: response.data.competitionId,
+          title: response.data.title,
+          startAt: response.data.startAt,
+          endAt: response.data.endAt,
+        });
+
+        console.log("진행 대회 정보 조회 완료: ", competitionInfo);
+
+        // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
+        nav("/");
+      } catch (error) {
+        console.log(error);
+        alert(
+          "진행 대회 정보 조회에 실패했습니다: " +
+            (error.response ? error.response.data.message : error.message)
+        );
+      }
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
@@ -96,35 +122,18 @@ const LoginForm = () => {
           (error.response ? error.response.data.message : error.message)
       );
     }
-    //   try {
-    //     const response = await defaultInstance.get("/competition");
-    //     // # 3.1. ingCompetition 완료 알림
-    //     alert("현재 대회 개최 유무 get 완료~!!");
-    //     console.log(response);
-
-    //     // # 3.2. ingCompetition 상태 업데이트
-    //     await setCompetitionInfo({
-    //       ...competitionInfo,
-    //       ingCompetition: response.data.ingCompetition,
-    //       competitionId: response.data.competition_id,
-    //       title: response.data.title,
-    //       startAt: response.data.start_at,
-    //       endAt: response.data.end_at,
-    //     });
-
-    //     console.log("진행 대회 정보 조회 완료: ", competitionInfo);
-
-    //     // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
-    //     nav("/");
-    //   } catch (error) {
-    //     console.log(error);
-    //     alert(
-    //       "진행 대회 정보 조회에 실패했습니다: " +
-    //         (error.response ? error.response.data.message : error.message)
-    //     );
-    //   }
   };
 
+  // 4. 카카오 로그인
+  const clickKakao = () => {
+    console.log("카카오 로그인 전");
+    // window.open("http://localhost:5173/kakaoLogin", "newWindow");
+    window.open(`${import.meta.env.VITE_SERVER_ROOT}/kakaoLogin`, "newWindow");
+    alert("카카오 로그인 완료~!!");
+    console.log("카카오 로그인 response: ", response);
+    alert("카카오 로그인 완료~!!");
+    window.close();
+  };
   return (
     // <div className="flex flex-col w-full items-center justify-center pt-14 pb-20 gap-3 border-2 border-slate-200 rounded-xl">
     <div className="flex flex-col w-full items-center justify-center pt-14 pb-20 gap-3">
@@ -198,8 +207,14 @@ const LoginForm = () => {
       <div className="w-72 flex justify-center h-11 items-center">
         <button
           onClick={() => {
-            window.open("http://localhost:5173/kakaoLogin", "newWindow");
+            clickKakao();
           }}
+          // onClick={() => {
+          //   window.open(
+          //     `${import.meta.env.VITE_SERVER_ROOT}/kakaoLogin`,
+          //     "newWindow"
+          //   );
+          // }}
         >
           <img src={KaKaoLoginImage} />
         </button>
