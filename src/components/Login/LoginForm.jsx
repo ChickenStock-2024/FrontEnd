@@ -96,33 +96,33 @@ const LoginForm = () => {
           (error.response ? error.response.data.message : error.message)
       );
     }
-    //   try {
-    //     const response = await defaultInstance.get("/competition");
-    //     // # 3.1. ingCompetition 완료 알림
-    //     alert("현재 대회 개최 유무 get 완료~!!");
-    //     console.log(response);
+    try {
+      const response = await defaultInstance.get("/competition");
+      // # 3.1. ingCompetition 완료 알림
+      alert("현재 대회 개최 유무 get 완료~!!");
+      console.log("현재 대회 개최 유무 response: ", response);
 
-    //     // # 3.2. ingCompetition 상태 업데이트
-    //     await setCompetitionInfo({
-    //       ...competitionInfo,
-    //       ingCompetition: response.data.ingCompetition,
-    //       competitionId: response.data.competition_id,
-    //       title: response.data.title,
-    //       startAt: response.data.start_at,
-    //       endAt: response.data.end_at,
-    //     });
+      // # 3.2. ingCompetition 상태 업데이트
+      await setCompetitionInfo({
+        ...competitionInfo,
+        ingCompetition: response.data.ingCompetition,
+        competitionId: response.data.competitionId,
+        title: response.data.title,
+        startAt: response.data.startAt,
+        endAt: response.data.endAt,
+      });
 
-    //     console.log("진행 대회 정보 조회 완료: ", competitionInfo);
+      console.log("진행 대회 정보 조회 완료: ", competitionInfo);
 
-    //     // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
-    //     nav("/");
-    //   } catch (error) {
-    //     console.log(error);
-    //     alert(
-    //       "진행 대회 정보 조회에 실패했습니다: " +
-    //         (error.response ? error.response.data.message : error.message)
-    //     );
-    //   }
+      // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
+      nav("/");
+    } catch (error) {
+      console.log(error);
+      alert(
+        "진행 대회 정보 조회에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
   };
 
   return (

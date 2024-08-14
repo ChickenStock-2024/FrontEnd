@@ -113,7 +113,7 @@ const SignupForm = () => {
       const response = await defaultInstance.post("/auth/signup", {
         email: email,
         password: password,
-        password_check: passwordCheck,
+        passwordCheck: passwordCheck,
         nickname: nickname,
       });
       // # 5.1. 회원가입 완료 알림

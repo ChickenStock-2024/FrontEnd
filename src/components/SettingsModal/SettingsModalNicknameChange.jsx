@@ -62,7 +62,7 @@ const SettingsModalNicknameChange = ({ closeModal }) => {
       console.log("닉네임 변경 전: ", changeNickname);
 
       // # 2.5.0. Axios의 응답 객체에서 직접 checkedEmail 추출
-      const response = await defaultInstance.post("/auth/nickname", {
+      const response = await defaultInstance.post("/user/nickname", {
         nickname: newNickname,
       });
       // # 2.5.1. 닉네임 변경 완료 알림
