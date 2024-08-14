@@ -10,7 +10,7 @@ import LogoNameImage from "./../assets/logoName.svg";
 import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 
-import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
+import useLoginUserInfoStore from "../store/useLoginUserInfoStore.js";
 import SettingsModalNotification from "./SettingsModal/SettingsModalNotification.jsx";
 import SettingsModalNicknameChange from "./SettingsModal/SettingsModalNicknameChange.jsx";
 import SettingsModalPasswordChange from "./SettingsModal/SettingsModalPasswordChange.jsx";

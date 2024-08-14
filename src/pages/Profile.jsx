@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 import { defaultInstance } from "../api/axios.jsx";
 import { calculateTier } from "../utils/tierCalculator.js";
 
-import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
-import useProfilePageInfoStore from "../store/useProfilePageInfoStore.jsx";
+import useLoginUserInfoStore from "../store/useLoginUserInfoStore.js";
+import useProfilePageInfoStore from "../store/useProfilePageInfoStore.js";
 
 import Button from "../components/Button.jsx";
 
