@@ -22,9 +22,6 @@ FROM --platform=linux/amd64 nginx:stable-alpine as production-stage
 # 빌드한 app을 nginx container로 복사
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# copy nginx config file
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
 # expose port 80
 EXPOSE 80
 
