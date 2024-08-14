@@ -257,7 +257,10 @@ const ProfileHistoryTabModal = ({
               <div>거래 내역을 불러오는 데 오류가 발생했습니다: {error}</div>
             ) : (
               tradeHistoryInfos.map((tradeHistoryInfo, index) => (
-                <div className="flex gap-x-4 justify-between mb-2" key={index}>
+                <div
+                  className="flex gap-x-4 items-center justify-between mb-2"
+                  key={index}
+                >
                   <div className="flex-col text-right">
                     <div className="text-sm">
                       {handleDate(tradeHistoryInfo.createdAt)}
