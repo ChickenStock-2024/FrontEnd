@@ -42,7 +42,7 @@ const useStompDataTest = (stockId) => {
     return () => {
       client.deactivate();
     };
-  }, [setHokaData, setStockInfo]);
+  }, [setHokaData, setStockInfo, stockId]);
 };
 
 export default useStompDataTest;

@@ -13,7 +13,7 @@ function EachRanking({ user }) {
         {/* <div className="col-span-3 text-left flex gap-2 items-center"> */}
         {/* <img src={profileImage} alt="" className="rounded-full w-6 h-6" /> */}
         <Link
-          to={`/profile/${user.member_id}`}
+          to={`/profile/${user.memberId}`}
           className="col-span-3 text-left flex gap-2 items-center"
         >
           <div className="w-8 h-8">

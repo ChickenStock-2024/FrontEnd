@@ -1,4 +1,8 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import useStockDataStore from "./../../../store/useStockDataStore";
+import useLoginUserInfoStore from "./../../../store/useLoginUserInfoStore";
+import { defaultInstance } from "./../../../api/axios";
 
 const holdings = {
   balance: "5600459",
@@ -17,6 +21,25 @@ const holdings = {
 };
 
 const Account = () => {
+  const stockInfo = useStockDataStore((state) => state.stockInfo);
+  const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  const [holding, setHolding] = useState();
+
+  useEffect(() => {
+    getAccountInfo();
+  }, []);
+
+  const getAccountInfo = async () => {
+    try {
+      const response = await defaultInstance.get(
+        `account/${loginUserInfo.accountId}`
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="overflow-y-auto max-h-[450px] border border-red-300">
       {/* 총 수익률 */}
@@ -54,8 +77,12 @@ const Account = () => {
           <div className="grid grid-cols-5 gap-2 items-center text-right text-sm p-3">
             <div className="col-span-2 text-left">{holding.company_title}</div>
             <div>
-              <div>현재 가격 * {holding.volume}</div>
-              <div>총매입금액/주식수</div>
+              <div>
+                {(stockInfo.currentPrice * holding.volume).toLocaleString()}원
+              </div>
+              <div>
+                {Math.round(holding.price / holding.volume).toLocaleString()}원
+              </div>
             </div>
             <div>
               <div>평가수익금</div>

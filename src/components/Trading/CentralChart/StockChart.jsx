@@ -34,7 +34,7 @@ const volume = rawData.map(function (item) {
   return item[5];
 });
 
-const StockChart = () => {
+const StockChart = ({ stockId }) => {
   // 그래프 그리는 부분
   const [options, setOptions] = useState({
     legend: {
@@ -191,7 +191,7 @@ const StockChart = () => {
     ],
   });
 
-  const { stockId } = useParams();
+  // const { stockId } = useParams();
 
   return (
     <div>
