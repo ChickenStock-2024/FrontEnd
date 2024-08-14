@@ -5,7 +5,7 @@ import useProfilePageInfoStore from "../../../store/useProfilePageInfoStore";
 
 import ProfileUserInfoImage from "./ProfileUserInfoImage";
 // import profileImg from "../../../assets/dummy-profile-icon.png";
-import tierBadgeIcon from "../../../assets/userTierBadge.png";
+import TierBadge from "../../TierBadge";
 
 const ProfileUserInfo = () => {
   const profilePageInfo = useProfilePageInfoStore(
@@ -38,13 +38,16 @@ const ProfileUserInfo = () => {
               </div>
               <div className="flex items-center">
                 {/* <>{userInfo["tier"].split(" ")[0]}</> */}
-                <>{profilePageInfo.tier}</>
+                <div className="pr-2">{profilePageInfo.tier}</div>
                 <>
-                  <img
+                  <div className="w-5 h-5">
+                    <TierBadge tier={profilePageInfo.tier} />
+                  </div>
+                  {/* <img
                     className="rounded-full w-5 h-5 ml-2"
                     src={tierBadgeIcon}
                     alt="userTierBadge"
-                  />
+                  /> */}
                 </>
               </div>
             </section>

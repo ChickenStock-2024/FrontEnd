@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 import { imgInstance } from "../../../api/axios.jsx";
 
-import useProfilePageInfoStore from "../../../store/useProfilePageInfoStore.jsx";
-import useLoginUserInfoStore from "../../../store/useLoginUserInfoStore.jsx";
+import useProfilePageInfoStore from "../../../store/useProfilePageInfoStore.js";
+import useLoginUserInfoStore from "../../../store/useLoginUserInfoStore.js";
 
 import { TbPhotoEdit } from "react-icons/tb";
 

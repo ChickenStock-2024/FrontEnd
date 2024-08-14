@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 import { defaultInstance } from "../api/axios.jsx";
 import { calculateTier } from "../utils/tierCalculator.js";
 
-import useLoginUserInfoStore from "../store/useLoginUserInfoStore.jsx";
-import useProfilePageInfoStore from "../store/useProfilePageInfoStore.jsx";
+import useLoginUserInfoStore from "../store/useLoginUserInfoStore.js";
+import useProfilePageInfoStore from "../store/useProfilePageInfoStore.js";
 
 import Button from "../components/Button.jsx";
 
@@ -61,10 +61,11 @@ const Profile = () => {
     try {
       // # 2.0. Axios의 응답 객체에서 프로필 페이지 profilePageInfo 추출
       const response1 = await defaultInstance.get(`/user/${profilePageId}`);
+      console.log("프로필 페이지 profilePageInf response: ", response1);
 
       // # 3.0. Axios의 응답 객체에서 직접 isRival 추출
       const response2 = await defaultInstance.get(`/rival/${profilePageId}`);
-
+      console.log("isRival response: ", response2);
       setProfilePageInfo({
         profilePageMemberId: response1.data.memberId,
         nickname: response1.data.nickname,
@@ -121,15 +122,43 @@ const Profile = () => {
   };
 
   const deleteRival = async () => {
-    const response = await defaultInstance.delete(`/rival/${profilePageId}`);
-    console.log("deleteRival response: ", response);
+    try {
+      console.log(profilePageInfo.isRival);
+      const response = await defaultInstance.delete(`/rival/${profilePageId}`);
+      console.log("deleteRival response: ", response);
+      await setProfilePageInfo({
+        ...profilePageInfo,
+        isRival: "false",
+      });
+      console.log(profilePageInfo.isRival);
+      alert("라이벌 삭제 완료");
+    } catch (error) {
+      alert(
+        "라이벌 삭제에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
   };
 
   const postRival = async () => {
-    const response = await defaultInstance.post(`/rival/${profilePageId}`);
-    console.log("postRival response: ", response);
-  };
+    try {
+      console.log(profilePageInfo.isRival);
+      const response = await defaultInstance.post(`/rival/${profilePageId}`);
+      console.log("postRival response: ", response);
+      await setProfilePageInfo({
+        ...profilePageInfo,
+        isRival: "true",
+      });
+      console.log(profilePageInfo.isRival);
 
+      alert("라이벌 등록 완료");
+    } catch (error) {
+      alert(
+        "라이벌 등록에 실패했습니다: " +
+          (error.response ? error.response.data.message : error.message)
+      );
+    }
+  };
   const clickRivalDelete = () => {
     deleteRival();
   };
@@ -137,6 +166,7 @@ const Profile = () => {
   const clickRivalPost = () => {
     postRival();
   };
+
   useEffect(() => {
     console.log("접속한 profilePageId: ", profilePageId);
     console.log("접속한 유저 loginId: ", loginId);
@@ -167,22 +197,29 @@ const Profile = () => {
             <div className="absolute bottom-10 right-40">
               {profilePageId == loginId ? (
                 ""
-              ) : !profilePageInfo.isRival ? (
+              ) : profilePageInfo.isRival == "true" ? (
                 <Button
                   text={"라이벌 삭제"}
                   color={"yellow3"}
-                  onclick={() => {
-                    clickRivalDelete();
-                  }}
+                  onClick={clickRivalDelete}
                 />
               ) : (
-                <Button
-                  text={"라이벌 등록"}
-                  onclick={() => {
-                    clickRivalPost();
-                  }}
-                />
+                <Button text={"라이벌 등록"} onClick={clickRivalPost} />
               )}
+
+              {/* {profilePageId == loginId ? (
+                ""
+              ) : (
+                <>
+                  <Button
+                    text={"라이벌 삭제"}
+                    color={"yellow3"}
+                    onClick={clickRivalDelete}
+                  />
+
+                  <Button text={"라이벌 등록"} onClick={clickRivalPost} />
+                </>
+              )} */}
 
               {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
               {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
