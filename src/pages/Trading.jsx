@@ -2,8 +2,10 @@ import React from "react";
 import CentralChart from "../components/Trading/CentralChart/CentralChart";
 import StockList from "../components/Trading/StockList";
 import OrderSection from "../components/Trading/OrderSection/OrderSection";
+import { useParams } from "react-router-dom";
 
 const Trading = () => {
+  const { stockId } = useParams();
   return (
     <div className="flex pt-24 min-w-[1280px]">
       <div className="w-2/12">
