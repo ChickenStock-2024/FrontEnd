@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import QuantityButton from "./QuantityButton";
 import PriceToggle from "./PriceToggle";
+import useLoginUserinfoStore from "./../../../../store/useLoginUserInfoStore";
 
 const OrderStockInput = ({
   activeTabOption,
@@ -14,8 +15,10 @@ const OrderStockInput = ({
   isMarketPrice,
   setIsMarketPrice,
 }) => {
-  // 임의의 초기 잔고
-  const myAccount = 1000000;
+  // 스토어에서 로그인 유저의 잔고 가져오기
+  const myAccount = useLoginUserinfoStore(
+    (state) => state.loginUserInfo.balance || 1000000
+  );
 
   // 임의의 해당 종목 보유량
   const myQuantity = 200;
