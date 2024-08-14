@@ -118,15 +118,15 @@ const ChartTitle = () => {
 
   return (
     <div className="flex justify-between items-center mx-2 my-6">
-      {/* 종목 이름 */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 items-center">
         <img
           src={companyLogos[stockId]}
-          alt=""
+          alt="회사 로고"
           className="w-8 h-8 rounded-full"
         />
-        <h2 className="text-2xl font-bold">{companyNames[stockId]}</h2>
-        <div className="align-baseline">{stockInfo.stockCode}</div>
+        {/* 종목 이름 */}
+        <h2 className="text-3xl font-bold">{companyNames[stockId]}</h2>
+        <div className="text-lg">{stockInfo.stockCode}</div>
       </div>
 
       {/* 등락 부호에 따라 색상, 화살표 지정 */}

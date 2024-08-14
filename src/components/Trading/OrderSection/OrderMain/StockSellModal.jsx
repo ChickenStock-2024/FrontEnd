@@ -5,10 +5,12 @@ const StockSellModal = ({ closeModal, price, quantity, isMarketPrice }) => {
   const orderSellLimit = async () => {
     try {
       const response = await defaultInstance.post("/account/sell/limit", {
+        account_id: 10,
+        member_id: 5,
         company_id: 11,
-        competition_id: 6,
+        competition_id: 2,
         unit_cost: { price },
-        amount: { quantity },
+        volume: { quantity },
       });
       console.log(response.data);
       closeModal();
@@ -25,10 +27,12 @@ const StockSellModal = ({ closeModal, price, quantity, isMarketPrice }) => {
   const orderSellMarket = async () => {
     try {
       const response = await defaultInstance.post("/account/sell/market", {
+        account_id: 10,
+        member_id: 5,
         company_id: 11,
-        competition_id: 6,
-        unit_cost: { price },
-        amount: { quantity },
+        competition_id: 2,
+        unit_cost: 0,
+        volume: { quantity },
       });
       console.log(response.data);
       closeModal();
