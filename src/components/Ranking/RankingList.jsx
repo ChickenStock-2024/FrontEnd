@@ -5,7 +5,8 @@ import { calculateTier } from "../../utils/tierCalculator";
 
 function EachRanking({ user }) {
   const tier = calculateTier(user.rating);
-  const cumProfitRate = (user.profit / (user.competitionCount * 1000000)) * 100;
+  const cumProfitRate =
+    (user.profit / (user.competitionCount * 1000000)) * 100 || 0;
   return (
     <div className="grid grid-cols-4 text-center py-3 items-center">
       <div className="grid grid-cols-4 items-center">

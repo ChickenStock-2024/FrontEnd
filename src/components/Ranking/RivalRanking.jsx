@@ -6,6 +6,8 @@ import { defaultInstance } from "../../api/axios";
 
 const RivalRanking = () => {
   const [memberList, setMemberList] = useState([]);
+  const [myRanking, setMyRanking] = useState({});
+  const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -19,6 +21,8 @@ const RivalRanking = () => {
       });
       // console.log(response.data);
       setMemberList(response.data.memberList);
+      setMyRanking(response.data.myRanking);
+      setTotalCount(response.data.totalCount);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +38,7 @@ const RivalRanking = () => {
 
   return (
     <div className="min-w-max">
-      <RankingProfile parameter={`친구 ${memberList.length}`} />
+      <RankingProfile parameter={`친구 ${totalCount}`} myRanking={myRanking} />
       <RankingList memberList={memberList} />
 
       <div className="flex justify-center mt-4">

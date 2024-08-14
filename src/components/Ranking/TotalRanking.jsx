@@ -6,6 +6,8 @@ import { defaultInstance } from "../../api/axios";
 
 const TotalRanking = () => {
   const [memberList, setMemberList] = useState([]);
+  const [myRanking, setMyRanking] = useState({});
+  const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -17,12 +19,16 @@ const TotalRanking = () => {
       const response = await defaultInstance.get("/ranking/all", {
         params: { offset: page },
       });
-      // console.log(response.data);
+      console.log(response.data);
       setMemberList(response.data.memberList);
+      setMyRanking(response.data.myRanking);
+      setTotalCount(response.data.totalCount);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const totalPages = Math.ceil(totalCount / 10);
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -34,7 +40,7 @@ const TotalRanking = () => {
 
   return (
     <div className="min-w-max">
-      <RankingProfile parameter={`전체 ${memberList.length}`} />
+      <RankingProfile parameter={`전체 ${totalCount}`} myRanking={myRanking} />
       <RankingList memberList={memberList} />
 
       <div className="flex justify-center mt-4">
@@ -48,6 +54,7 @@ const TotalRanking = () => {
         <span className="px-4 py-2 font-bold ">{currentPage}</span>
         <button
           onClick={handleNextPage}
+          disabled={currentPage >= totalPages}
           className="px-4 py-2 rounded ml-2 hover:bg-yellow3"
         >
           다음
