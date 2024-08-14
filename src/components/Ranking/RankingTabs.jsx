@@ -10,10 +10,6 @@ const tabsData = [
     id: "rivalRanking",
     label: "친구 순위",
   },
-  // {
-  //   id: "nowRanking",
-  //   label: "실시간 대회 순위",
-  // },
 ];
 
 const RankingTabs = ({ getActiveTabOption }) => {

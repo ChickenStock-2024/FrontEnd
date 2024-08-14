@@ -5,83 +5,58 @@ import RankingList from "./RankingList";
 import { defaultInstance } from "../../api/axios";
 
 const RivalRanking = () => {
-  const memberList2 = [
-    {
-      member_id: 1,
-      rank: "11",
-      nickname: "치킨도리",
-      sum: "2948476",
-      rating: "2946",
-      competition_count: "4",
-    },
-    {
-      member_id: 5,
-      rank: "12",
-      nickname: "바나나프레소",
-      sum: "8743029",
-      rating: "2800",
-      competition_count: "3",
-    },
-    {
-      member_id: 3,
-      rank: "13",
-      nickname: "DAOU사업부",
-      sum: "1646352",
-      rating: "2800",
-      competition_count: "10",
-    },
-    {
-      member_id: 8,
-      rank: "20",
-      nickname: "유니콘",
-      sum: "4538296",
-      rating: "2392",
-      competition_count: "8",
-    },
-    {
-      member_id: 1,
-      rank: "11",
-      nickname: "치킨도리",
-      sum: "2948476",
-      rating: "2946",
-      competition_count: "4",
-    },
-    {
-      member_id: 5,
-      rank: "12",
-      nickname: "바나나프레소",
-      sum: "8743029",
-      rating: "2800",
-      competition_count: "3",
-    },
-  ];
-  // const memberListLength = 100;
-
   const [memberList, setMemberList] = useState([]);
+  const [myRanking, setMyRanking] = useState({});
+  const [totalCount, setTotalCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    getRankingRival();
-  }, []);
+    getRankingRival(currentPage);
+  }, [currentPage]);
 
-  const getRankingRival = async () => {
+  const getRankingRival = async (page) => {
     try {
-      const response = defaultInstance.get("/ranking/rival", {
-        params: { offset: 1 },
+      const response = await defaultInstance.get("/ranking/rival", {
+        params: { offset: page },
       });
-      console.log(response.data);
-      setMemberList((await response).data.member_list);
-      console.log(memberList);
+      // console.log(response.data);
+      setMemberList(response.data.memberList);
+      setMyRanking(response.data.myRanking);
+      setTotalCount(response.data.totalCount);
     } catch (error) {
       console.log(error);
-      console.log(memberList);
     }
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   return (
     <div className="min-w-max">
-      {/* 친구 리스트의 길이 넘겨주기 */}
-      <RankingProfile parameter={`친구 ${memberList.length}`} />
-      {/* <RankingList memberList={memberList} /> */}
+      <RankingProfile parameter={`친구 ${totalCount}`} myRanking={myRanking} />
+      <RankingList memberList={memberList} />
+
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className="px-4 py-2 rounded mr-2 hover:bg-yellow3"
+        >
+          이전
+        </button>
+        <span className="px-4 py-2 font-bold ">{currentPage}</span>
+        <button
+          onClick={handleNextPage}
+          className="px-4 py-2 rounded ml-2 hover:bg-yellow3"
+        >
+          다음
+        </button>
+      </div>
     </div>
   );
 };
