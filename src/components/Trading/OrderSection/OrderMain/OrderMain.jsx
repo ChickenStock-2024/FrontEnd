@@ -7,7 +7,7 @@ import { createContext, useState } from "react";
 export const PriceContext = createContext();
 
 const OrderMain = () => {
-  const { stockId } = useParams();
+  // const { stockId } = useParams();
   const [activeTabMarket, setActiveTabMarket] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedPriceState, setSelectedPriceState] = useState(null);

@@ -5,7 +5,7 @@ import OrderList from "./OrderList/OrderList";
 import Account from "./Account";
 import OrderContestInfo from "./OrderContestInfo";
 
-const OrderSection = () => {
+const OrderSection = ({ stockId }) => {
   const [activeTabOption, setActiveTabOption] = useState("");
   const getActiveTabOption = (data) => {
     setActiveTabOption(data);
