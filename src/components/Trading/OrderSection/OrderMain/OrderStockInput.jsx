@@ -15,7 +15,7 @@ const OrderStockInput = ({
   isMarketPrice,
   setIsMarketPrice,
 }) => {
-  // 임의의 초기 잔고
+  // 스토어에서 로그인 유저의 잔고 가져오기
   const myAccount = useLoginUserinfoStore(
     (state) => state.loginUserInfo.balance || 1000000
   );

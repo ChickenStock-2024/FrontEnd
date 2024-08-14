@@ -97,9 +97,6 @@ const companyLogos = {
 const ChartTitle = () => {
   const stockInfo = useStockDataStore((state) => state.stockInfo);
   const { stockId } = useParams();
-  // const logoImgLink = require(
-  //   `../../../assets/companylogo/${stockId}.png`
-  // ).default();
 
   let txtColor = "";
   let changeSign = "-";
@@ -117,7 +114,7 @@ const ChartTitle = () => {
   }
 
   return (
-    <div className="flex justify-between items-center mx-2 my-6">
+    <div className="flex justify-between items-center mx-8 my-6">
       <div className="flex gap-3 items-center">
         <img
           src={companyLogos[stockId]}
@@ -125,8 +122,8 @@ const ChartTitle = () => {
           className="w-8 h-8 rounded-full"
         />
         {/* 종목 이름 */}
-        <h2 className="text-3xl font-bold">{companyNames[stockId]}</h2>
-        <div className="text-lg">{stockInfo.stockCode}</div>
+        <h2 className="text-2xl font-bold">{companyNames[stockId]}</h2>
+        <div className="text-lg">{stockId}</div>
       </div>
 
       {/* 등락 부호에 따라 색상, 화살표 지정 */}
