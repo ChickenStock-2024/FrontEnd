@@ -3,7 +3,21 @@ import OrderStockTabs from "./OrderStockTabs";
 import OrderStockSell from "./OrderStockSell";
 import OrderStockBuy from "./OrderStockBuy";
 import OrderStockInput from "./OrderStockInput";
-import { useState, useContext } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
+const stockIdToCompanyId = {
+  "005930": 1,
+  "009150": 2,
+  "000660": 3,
+  299660: 4,
+  "042700": 5,
+  "035420": 6,
+  "035720": 7,
+  "028300": 8,
+  "084650": 9,
+  257720: 10,
+};
 
 const OrderStock = ({
   selectedPrice,
@@ -18,6 +32,7 @@ const OrderStock = ({
     setActiveTabOption(data);
     setActiveTabMarket(data);
   };
+  const { stockId } = useParams();
 
   const selectedSection = (tabOption) => {
     switch (tabOption) {
@@ -27,6 +42,7 @@ const OrderStock = ({
             price={price}
             quantity={quantity}
             isMarketPrice={isMarketPrice}
+            companyId={stockIdToCompanyId[stockId]}
           />
         );
       case "buy":
@@ -35,6 +51,7 @@ const OrderStock = ({
             price={price}
             quantity={quantity}
             isMarketPrice={isMarketPrice}
+            companyId={stockIdToCompanyId[stockId]}
           />
         );
       default:

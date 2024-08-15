@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Modal from "../../../Modal";
 import StockBuyModal from "./StockBuyModal";
+// import { useParams } from "react-router-dom";
 
-const OrderStockBuy = ({ price, quantity, isMarketPrice }) => {
+const OrderStockBuy = ({ price, quantity, isMarketPrice, companyId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -25,6 +26,7 @@ const OrderStockBuy = ({ price, quantity, isMarketPrice }) => {
           price={price}
           quantity={quantity}
           isMarketPrice={isMarketPrice}
+          companyId={companyId}
         />
       </Modal>
     </div>

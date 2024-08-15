@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "../../../Modal";
 import StockSellModal from "./StockSellModal";
 
-const OrderStockSell = ({ price, quantity, isMarketPrice }) => {
+const OrderStockSell = ({ price, quantity, isMarketPrice, companyId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -25,6 +25,7 @@ const OrderStockSell = ({ price, quantity, isMarketPrice }) => {
           price={price}
           quantity={quantity}
           isMarketPrice={isMarketPrice}
+          companyId={companyId}
         />
       </Modal>
     </div>
