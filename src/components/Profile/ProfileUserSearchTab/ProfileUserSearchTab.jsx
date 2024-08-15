@@ -15,7 +15,7 @@ const ProfileUserSearchTab = () => {
       const response = await defaultInstance.get(
         `/user/search?value=${search}`
       );
-      console.log("getSearchUsers response: ", response);
+      // console.log("getSearchUsers response: ", response);
       if (response.data.memberList.length == 0) {
         return null;
       } else {
@@ -24,7 +24,7 @@ const ProfileUserSearchTab = () => {
     } catch (error) {
       console.error(error);
       alert(
-        "유저 검색을 실패했습니다: " +
+        "유저 검색실패: " +
           (error.response ? error.response.data.message : error.message)
       );
       return null;
