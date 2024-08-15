@@ -113,8 +113,6 @@ const LoginForm = () => {
             (error.response ? error.response.data.message : error.message)
         );
       }
-
-      // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
       console.log(error);
       alert(
@@ -127,16 +125,7 @@ const LoginForm = () => {
   // 4. 카카오 로그인
   const clickKakao = () => {
     console.log("카카오 로그인 전");
-    // window.open("http://localhost:5173/kakaoLogin", "popup=yes");
-    // const options = "width=700, height=600, top=50, left=50, scrollbars=yes";
-    // window.open(
-    //   `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`,
-    //   "_blank"
-    //   // options
-    // );
-    // alert("카카오 로그인 후 완료~!!");
-    // window.location.reload();
-    // nav("/");
+
     window.location.href = `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`;
   };
 
