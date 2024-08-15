@@ -168,6 +168,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     console.log("접속한 profilePageId: ", profilePageId);
     console.log("접속한 유저 loginId: ", loginId);
     clearProfilePageInfo();
