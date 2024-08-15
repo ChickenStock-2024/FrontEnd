@@ -191,7 +191,7 @@ const Profile = () => {
           </div>
           <div className="h-44"></div>
           <div className="flex flex-row justify-between">
-            <div className="absolute top-0 left-40 font-yellow2">
+            <div className="absolute top-4 left-40 font-yellow2">
               <ProfileUserInfo />
             </div>
 
