@@ -45,8 +45,11 @@ const kakaoLogin = () => {
       setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
-        nickname: response.data.nickName,
         isLogined: true,
+        isCompParticipant: response.data.isCompParticipant,
+        nickname: response.data.nickname,
+        balance: response.data.balance,
+        rating: response.data.rating,
       });
 
       setNotificationInfo({
@@ -82,6 +85,7 @@ const kakaoLogin = () => {
           "진행 대회 정보 조회에 실패했습니다: " +
             (error.response ? error.response.data.message : error.message)
         );
+        window.close();
       }
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
