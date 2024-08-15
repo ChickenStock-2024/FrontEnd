@@ -25,7 +25,7 @@ const Home = () => {
   const check = window.localStorage.getItem("checkKaKaoUser");
   const checkObj = JSON.parse(check);
   console.log(checkObj);
-  const checkKaKaoUser = checkObj.state.checkKaKaoUser;
+  const checkKaKaoUser = checkObj.checkKaKaoUser;
   console.log("checkKaKaoUser", checkKaKaoUser);
 
   if (checkKaKaoUser === true) {

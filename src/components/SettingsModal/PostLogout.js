@@ -17,6 +17,8 @@ const PostLogout = async (nav, clearLoginUserInfo, setCheckKaKaoUser) => {
     nav("/");
   } catch (error) {
     console.log(error);
+    localStorage.clear();
+    sessionStorage.clear();
     alert(
       "로그아웃에 실패했습니다: " +
         (error.response ? error.response.data.message : error.message)
