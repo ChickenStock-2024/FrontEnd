@@ -134,7 +134,7 @@ const LoginForm = () => {
       "_blank"
       // options
     );
-    alert("카카오 로그인 후 완료~!!");
+    // alert("카카오 로그인 후 완료~!!");
     nav("/");
   };
   return (
