@@ -11,6 +11,8 @@ import { CgProfile } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 
 import useLoginUserInfoStore from "../store/useLoginUserInfoStore.js";
+import useKakaoLoginCheckStore from "../store/useKakaoLoginCheckStore";
+
 import SettingsModalNotification from "./SettingsModal/SettingsModalNotification.jsx";
 import SettingsModalNicknameChange from "./SettingsModal/SettingsModalNicknameChange.jsx";
 import SettingsModalPasswordChange from "./SettingsModal/SettingsModalPasswordChange.jsx";
@@ -23,8 +25,11 @@ const Header = () => {
   const clearLoginUserInfo = useLoginUserInfoStore(
     (state) => state.clearLoginUserInfo
   );
+  const setCheckKaKaoUser = useKakaoLoginCheckStore(
+    (state) => state.setCheckKaKaoUser
+  );
   const handleLogout = () => {
-    PostLogout(nav, clearLoginUserInfo);
+    PostLogout(nav, clearLoginUserInfo, setCheckKaKaoUser);
   };
 
   // 2. 설정 드롭다운 기능 관련

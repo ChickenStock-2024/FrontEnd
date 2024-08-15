@@ -1,7 +1,7 @@
 import { defaultInstance } from "../../api/axios";
 
 // 1. 로그아웃 클릭시, 로그아웃 axios
-const PostLogout = async (nav, clearLoginUserInfo) => {
+const PostLogout = async (nav, clearLoginUserInfo, setCheckKaKaoUser) => {
   try {
     const response = await defaultInstance.post("/auth/logout");
 
@@ -9,6 +9,7 @@ const PostLogout = async (nav, clearLoginUserInfo) => {
     clearLoginUserInfo();
     localStorage.clear();
     sessionStorage.clear();
+    setCheckKaKaoUser({ checkKaKaoUser: false });
 
     // # 1.2. 로그아웃 완료 알림
     alert("로그아웃 완료~!!");
@@ -16,9 +17,6 @@ const PostLogout = async (nav, clearLoginUserInfo) => {
     nav("/");
   } catch (error) {
     console.log(error);
-    clearLoginUserInfo();
-    localStorage.clear();
-    sessionStorage.clear();
     alert(
       "로그아웃에 실패했습니다: " +
         (error.response ? error.response.data.message : error.message)
