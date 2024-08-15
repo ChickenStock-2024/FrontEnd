@@ -5,6 +5,7 @@ import { defaultInstance } from "../../api/axios";
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 import useNotificationInfoStore from "../../store/useNotificationInfoStore";
+import useKakaoLoginCheckStore from "../../store/useKakaoLoginCheckStore";
 
 // window.open(
 //   "https://chickenstock.givendragon.site/api/auth/login/kakao",
@@ -29,6 +30,9 @@ const kakaoLogin = () => {
   const setNotificationInfo = useNotificationInfoStore(
     (state) => state.setNotificationInfo
   );
+  const setCheckKaKaoUser = useKakaoLoginCheckStore(
+    (state) => state.setCheckKaKaoUser
+  );
 
   // // 1. 카카오 로그인 이후 유저 정보 가져오는 axios
   const getInfoAfterKakaoLogin = async () => {
@@ -50,7 +54,6 @@ const kakaoLogin = () => {
         nickname: response.data.nickname,
         balance: response.data.balance,
         rating: response.data.rating,
-        kakaoUser: true,
       });
 
       setNotificationInfo({
@@ -79,6 +82,7 @@ const kakaoLogin = () => {
 
         // # 2.3. ingCompetition get 완료 후, 메인 페이지로 이동!
         // nav("/");
+
         window.close();
       } catch (error) {
         console.log(error);
@@ -86,6 +90,7 @@ const kakaoLogin = () => {
           "진행 대회 정보 조회에 실패했습니다: " +
             (error.response ? error.response.data.message : error.message)
         );
+        setCheckKaKaoUser({ checkKaKaoUser: true });
         window.close();
       }
 
