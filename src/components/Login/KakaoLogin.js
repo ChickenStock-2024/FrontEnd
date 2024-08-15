@@ -35,7 +35,9 @@ const kakaoLogin = () => {
     try {
       console.log("getInfoAfterKakaoLogin 전");
       // # 2.0. Axios의 응답 객체에서 직접 loginUserInfo 추출
-      const response = await defaultInstance.get("/api/user");
+      const response = await defaultInstance.get(
+        `${import.meta.env.VITE_SERVER_ROOT}/api/user`
+      );
 
       console.log("getInfoAfterKakaoLogin response: ", response);
 
