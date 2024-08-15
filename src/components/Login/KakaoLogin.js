@@ -35,7 +35,7 @@ const kakaoLogin = () => {
     try {
       console.log("getInfoAfterKakaoLogin 전");
       // # 2.0. Axios의 응답 객체에서 직접 loginUserInfo 추출
-      const response = await defaultInstance.get("/auth/login");
+      const response = await defaultInstance.get("/api/user");
 
       console.log("getInfoAfterKakaoLogin response: ", response);
 
@@ -55,7 +55,7 @@ const kakaoLogin = () => {
 
       try {
         // # 2.1. Axios의 응답 객체에서 직접 ingCompetition 추출
-        const response = await defaultInstance.get("/competition");
+        const response = await defaultInstance.get("/api/competition");
 
         console.log("현재 대회 개최 유무 response: ", response);
 
@@ -72,7 +72,8 @@ const kakaoLogin = () => {
         console.log("진행 대회 정보 조회 완료: ", competitionInfo);
 
         // # 2.3. ingCompetition get 완료 후, 메인 페이지로 이동!
-        nav("/");
+        // nav("/");
+        window.close();
       } catch (error) {
         console.log(error);
         alert(
