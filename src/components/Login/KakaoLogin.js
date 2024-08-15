@@ -35,7 +35,9 @@ const kakaoLogin = () => {
     try {
       console.log("getInfoAfterKakaoLogin 전");
       // # 2.0. Axios의 응답 객체에서 직접 loginUserInfo 추출
-      const response = await defaultInstance.get("/api/user");
+      const response = await defaultInstance.get(
+        `${import.meta.env.VITE_SERVER_ROOT}/api/user`
+      );
 
       console.log("getInfoAfterKakaoLogin response: ", response);
 
@@ -43,8 +45,11 @@ const kakaoLogin = () => {
       setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
-        nickname: response.data.nickName,
         isLogined: true,
+        isCompParticipant: response.data.isCompParticipant,
+        nickname: response.data.nickname,
+        balance: response.data.balance,
+        rating: response.data.rating,
       });
 
       setNotificationInfo({
@@ -55,7 +60,7 @@ const kakaoLogin = () => {
 
       try {
         // # 2.1. Axios의 응답 객체에서 직접 ingCompetition 추출
-        const response = await defaultInstance.get("/api/competition");
+        const response = await defaultInstance.get("/competition");
 
         console.log("현재 대회 개최 유무 response: ", response);
 
@@ -80,6 +85,7 @@ const kakaoLogin = () => {
           "진행 대회 정보 조회에 실패했습니다: " +
             (error.response ? error.response.data.message : error.message)
         );
+        window.close();
       }
 
       // alert(`안녕하세요, ${response.data.nickname}님`);

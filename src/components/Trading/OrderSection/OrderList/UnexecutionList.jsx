@@ -1,34 +1,73 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import useLoginUserInfoStore from "../../../../store/useLoginUserInfoStore.js";
+import { defaultInstance } from "../../../../api/axios.jsx";
+import {
+  삼성전자,
+  삼성전기,
+  SK하이닉스,
+  셀리드,
+  한미반도체,
+  NAVER,
+  카카오,
+  HLB,
+  랩지노믹스,
+  실리콘투,
+} from "./../../../../assets/companylogo/index.js";
+
+const companyLogos = {
+  삼성전자: 삼성전자,
+  삼성전기: 삼성전기,
+  SK하이닉스: SK하이닉스,
+  셀리드: 셀리드,
+  한미반도체: 한미반도체,
+  NAVER: NAVER,
+  카카오: 카카오,
+  HLB: HLB,
+  랩지노믹스: 랩지노믹스,
+  실리콘투: 실리콘투,
+};
 
 // 미체결 리스트 요청
 const unExecutionList = [
   {
-    company_name: "카카오",
-    price: "41000",
-    quantity: "1",
-    status: "매도요청",
-    created_at: "2022-07-23T12:54:20.1125",
+    companyName: "카카오",
+    price: "39000",
+    volume: "2",
+    status: "매도",
+    created_at: "2024-08-14T12:54:20.1125",
   },
   {
-    company_name: "삼성전자",
-    price: "83200",
-    quantity: "4",
-    status: "매수요청",
-    created_at: "2024-07-23T10:03:30.0007",
+    companyName: "삼성전자",
+    price: "75000",
+    volume: "4",
+    status: "매수",
+    created_at: "2024-08-14T10:03:30.0007",
   },
 ];
 
 const UnexecutionList = () => {
-  const priceFormat = (str) => {
-    const comma = (str) => {
-      str = String(str);
-      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-    };
-    const uncomma = (str) => {
-      str = String(str);
-      return str.replace(/[^\d]+/g, "");
-    };
-    return comma(uncomma(str));
+  const [unexecutionList, setUnexcutionList] = useState([]);
+  // const accountId = useLoginUserInfoStore(
+  //   (state) => state.loginUserInfo.isLogined
+  // );
+  // null 이라서 에러
+  const accountId = 1;
+
+  useEffect(() => {
+    getUnexecutionList(accountId);
+  }, [accountId]);
+
+  const getUnexecutionList = async (accountId) => {
+    try {
+      const response = await defaultInstance.get(
+        `/account/${accountId}/unexecution`
+      );
+      console.log(response.data);
+      setUnexcutionList(response.data.unexcutedStockInfos);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -39,22 +78,27 @@ const UnexecutionList = () => {
           className="flex gap-x-4 justify-between items-center mb-4"
           key={index}
         >
-          <div className="bg-indigo-600 rounded-full">img</div>
+          <img
+            src={companyLogos[unExecution.companyName]}
+            alt=""
+            className="w-8 h-8 rounded-full"
+          />
+
           <div className="flex-1">
-            <div className="font-semibold">{unExecution.company_name}</div>
+            <div className="font-semibold">{unExecution.companyName}</div>
             <div className="flex gap-2">
               <div
-                className={`text-xs ${unExecution.status.substr(0, 2) === "매수" ? "text-red-500" : "text-blue-500"}`}
+                className={`text-xs ${unExecution.status === "매수" ? "text-red-500" : "text-blue-500"}`}
               >
-                {unExecution.status.substr(0, 2)}
+                {unExecution.status}
               </div>
               <div className="font-light text-xs">
-                {priceFormat(unExecution.price)}원
+                {parseInt(unExecution.price).toLocaleString()}원
               </div>
-              <div className="font-light text-xs">{unExecution.quantity}주</div>
+              <div className="font-light text-xs">{unExecution.volume}주</div>
             </div>
           </div>
-          <div>X주 남음</div>
+          <button>⨉</button>
         </div>
       ))}
     </div>
