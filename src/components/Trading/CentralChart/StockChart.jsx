@@ -8,14 +8,14 @@ import ChartTitle from "./ChartTitle";
 const companyIdNames = {
   "005930": { companyId: 1, companyName: "삼성전자" },
   "009150": { companyId: 2, companyName: "삼성전기" },
-  "000660": { companyId: 1, companyName: "삼성전자" },
-  299660: { companyId: 1, companyName: "삼성전자" },
-  "042700": { companyId: 1, companyName: "삼성전자" },
-  "035420": { companyId: 1, companyName: "삼성전자" },
-  "035720": { companyId: 1, companyName: "삼성전자" },
-  "028300": { companyId: 1, companyName: "삼성전자" },
-  "084650": { companyId: 1, companyName: "삼성전자" },
-  257720: { companyId: 1, companyName: "삼성전자" },
+  "000660": { companyId: 3, companyName: "SK하이닉스" },
+  299660: { companyId: 4, companyName: "셀리드" },
+  "042700": { companyId: 5, companyName: "한미반도체" },
+  "035420": { companyId: 6, companyName: "NAVER" },
+  "035720": { companyId: 7, companyName: "카카오" },
+  "028300": { companyId: 8, companyName: "HLB" },
+  "084650": { companyId: 9, companyName: "랩지노믹스" },
+  257720: { companyId: 10, companyName: "실리콘투" },
 };
 
 // 이동평균(MA) 계산하는 함수
