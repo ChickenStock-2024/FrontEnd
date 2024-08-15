@@ -83,6 +83,7 @@ const kakaoLogin = () => {
         // # 2.3. ingCompetition get 완료 후, 메인 페이지로 이동!
         // nav("/");
         setCheckKaKaoUser({ checkKaKaoUser: true });
+        window.location.href = "/";
         // nav("/");
         // window.close();
       } catch (error) {
