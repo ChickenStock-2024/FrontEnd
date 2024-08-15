@@ -53,14 +53,14 @@ const SignupForm = () => {
   // # 3. 닉네임 중복 검사 axios
   const getNicknameChecked = async () => {
     try {
-      console.log("닉네임 중복 검사 전: ", checkedData);
+      // console.log("닉네임 중복 검사 전: ", checkedData);
 
       // Axios의 응답 객체에서 직접 checkedNickname 추출
       const response = await defaultInstance.get(`/auth/nickname/${nickname}`);
       const checkedNickname = response.data.nickname;
 
       alert("닉네임 중복 확인 완료~!!");
-      console.log("중복 확인 완료 닉네임: ", checkedNickname);
+      // console.log("중복 확인 완료 닉네임: ", checkedNickname);
 
       // 진행 상태 업데이트
       setCheckedData({
@@ -80,14 +80,14 @@ const SignupForm = () => {
   // # 4. 이메일 중복 검사 axios
   const getEmailChecked = async () => {
     try {
-      console.log("이메일 중복 검사 전: ", checkedData);
+      // console.log("이메일 중복 검사 전: ", checkedData);
 
       // Axios의 응답 객체에서 직접 checkedEmail 추출
       const response = await defaultInstance.get(`/auth/email/${email}`);
       const checkedEmail = response.data.email;
 
       alert("이메일 중복 확인 완료~!!");
-      console.log("중복 확인 완료 이메일: ", checkedEmail);
+      // console.log("중복 확인 완료 이메일: ", checkedEmail);
 
       // 진행 상태 업데이트
       setCheckedData({
@@ -107,7 +107,7 @@ const SignupForm = () => {
   // # 5. 회원가입 axios
   const postSignup = async () => {
     try {
-      console.log("회원가입 전: ", userData);
+      // console.log("회원가입 전: ", userData);
 
       // # 5.0. Axios의 응답 객체에서 직접 checkedEmail 추출
       const response = await defaultInstance.post("/auth/signup", {
@@ -153,13 +153,13 @@ const SignupForm = () => {
   // # 6. kakao 로그인 axios
   const getKakaoLogin = async () => {
     try {
-      console.log("kakao 로그인 전: ");
+      // console.log("kakao 로그인 전: ");
 
       // Axios의 응답 객체에서 직접 checkedNickname 추출
       const response = await defaultInstance.get("/auth/login/kakao");
 
       alert("kakao 로그인 완료~!!");
-      console.log("kakao 로그인 response: ", response);
+      // console.log("kakao 로그인 response: ", response);
     } catch (error) {
       console.log(error);
       alert(

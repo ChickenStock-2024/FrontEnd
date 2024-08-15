@@ -46,8 +46,8 @@ const Header = () => {
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
 
-  console.log("지금 로그인한 loginMemberId: ", loginId);
-  console.log(loginUserInfo);
+  // console.log("지금 로그인한 loginMemberId: ", loginId);
+  // console.log(loginUserInfo);
 
   return (
     <div>

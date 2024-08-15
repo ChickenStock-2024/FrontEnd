@@ -7,7 +7,12 @@ import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 
 const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
+  // const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  const memberId = useLoginUserInfoStore(
+    (state) => state.loginUserInfo.loginId
+  );
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+
   const setLoginUserInfo = useLoginUserInfoStore(
     (state) => state.setLoginUserInfo
   );
@@ -24,35 +29,36 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
   // # 1. account 생성 axios
   const postAccount = async () => {
     try {
-      console.log("대회 계좌 생성 전: ", loginUserInfo.accountId);
+      console.log(
+        "대회 계좌 생성 전: ",
+        memberId,
+        competitionInfo.competitionId
+      );
 
       // # 1.1. Axios의 응답 객체에서 accountId 추출
-      const response = await defaultInstance.post("/account", {
-        member_id: loginUserInfo.loginId,
-        competition_id: competitionInfo.competitionId,
+      const response = await defaultInstance.post("/competition", {
+        memberId: memberId,
+        competitionId: competitionInfo.competitionId,
       });
+      console.log("대회 계좌 생성 후: ", response);
+
       // # 1.2. 계좌 생성 완료 알림
       alert("계좌 생성 완료~!!");
-      console.log("대회 계좌 생성 후: ", response.data);
 
-      // setLoginUserInfo({
-      //   ...loginUserInfo,
-      //   accountId: response.data.account_id,
-      // });
+      setLoginUserInfo({
+        ...loginUserInfo,
+        accountId: response.data.accountId,
+        isCompParticipant: true,
+      });
 
       // console.log(loginUserInfo.accountId);
-      nav("/trading/1");
+      nav("/trading/005930");
       // 대회로 nav
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
       console.log(error);
-      setLoginUserInfo({
-        ...loginUserInfo,
-        accountId: 1,
-      });
 
-      console.log(loginUserInfo.accountId);
       alert(
         "계좌 생성에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)

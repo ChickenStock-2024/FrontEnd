@@ -31,7 +31,7 @@ const SettingsModalNicknameChange = ({ closeModal }) => {
   // # 2.4. 닉네임 중복 검사 axios
   const getNicknameChecked = async () => {
     try {
-      console.log("닉네임 중복 검사 전: ", newNickname);
+      // console.log("닉네임 중복 검사 전: ", newNickname);
 
       // Axios의 응답 객체에서 직접 checkedNickname 추출
       const response = await defaultInstance.get(
@@ -59,7 +59,7 @@ const SettingsModalNicknameChange = ({ closeModal }) => {
   // # 2.5. 닉네임 변경 axios
   const postNicknameChange = async () => {
     try {
-      console.log("닉네임 변경 전: ", changeNickname);
+      // console.log("닉네임 변경 전: ", changeNickname);
 
       // # 2.5.0. Axios의 응답 객체에서 직접 checkedEmail 추출
       const response = await defaultInstance.post("/user/nickname", {
@@ -73,7 +73,7 @@ const SettingsModalNicknameChange = ({ closeModal }) => {
         ...loginUserInfo,
         nickname: response.data.nickname,
       });
-      console.log("닉네임 변경 전: ", loginUserInfo.nickname);
+      // console.log("닉네임 변경 전: ", loginUserInfo.nickname);
 
       // # 2.5.3. 닉네임 변경 완료 후, 모달 창 닫기!
       closeModal();
@@ -83,7 +83,6 @@ const SettingsModalNicknameChange = ({ closeModal }) => {
         "닉네임 변경에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
-      console.log();
     }
   };
   // 2.6. 닉네임 변경 폼 제출 시

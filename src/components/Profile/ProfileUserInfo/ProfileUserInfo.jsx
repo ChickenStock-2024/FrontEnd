@@ -11,7 +11,7 @@ const ProfileUserInfo = () => {
   const profilePageInfo = useProfilePageInfoStore(
     (state) => state.profilePageInfo
   );
-  console.log(profilePageInfo);
+  // console.log(profilePageInfo);
 
   if (!profilePageInfo) {
     return <div>Loading...</div>; // profilePageInfo가 없을 때 대처

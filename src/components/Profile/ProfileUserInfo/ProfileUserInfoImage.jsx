@@ -33,9 +33,9 @@ const ProfileUserInfoImage = () => {
       const formInputImage = e.target.files[0];
       // formData.append("formInputImage", formInputImage);
       formData.append("file", formInputImage);
-      console.log("보낼 이미지: ", formInputImage);
+      // console.log("보낼 이미지: ", formInputImage);
       // console.log("formData : ", formData);
-      console.log("formData.file: ", formData.file);
+      // console.log("formData.file: ", formData.file);
 
       const reader = new FileReader();
       reader.onload = () => {
@@ -47,8 +47,8 @@ const ProfileUserInfoImage = () => {
 
       try {
         const response = await imgInstance.post("/user/img", formData);
-        console.log("프로필 이미지 변경 후 response:", response);
-        console.log("서버 응답:", response.data);
+        // console.log("프로필 이미지 변경 후 response:", response);
+        // console.log("서버 응답:", response.data);
         setProfilePageInfo({
           ...profilePageInfo,
           profileImg: response.data.imgUrl,

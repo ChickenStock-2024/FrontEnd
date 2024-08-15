@@ -10,7 +10,7 @@ import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 const HomeCenterIngCompetitionAfterLoginIsCompParticipant = () => {
   const nav = useNavigate();
   const onClick = () => {
-    nav("/trading/1");
+    nav("/trading/005930");
     // 대회페이지로 nav
   };
 
