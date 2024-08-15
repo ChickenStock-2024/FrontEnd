@@ -50,6 +50,7 @@ const kakaoLogin = () => {
         nickname: response.data.nickname,
         balance: response.data.balance,
         rating: response.data.rating,
+        kakaoUser: true,
       });
 
       setNotificationInfo({

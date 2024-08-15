@@ -22,6 +22,15 @@ const handleDate = (strDate) => {
 };
 
 const Home = () => {
+  const check = window.localStorage.getItem("checkKaKaoUser");
+  const checkObj = JSON.parse(check);
+  console.log(checkObj);
+  const checkKaKaoUser = checkObj.state.checkKaKaoUser;
+  console.log("checkKaKaoUser", checkKaKaoUser);
+
+  if (checkKaKaoUser === true) {
+    window.location.reload();
+  }
   const ingCompetition = useCompetitionInfoStore(
     (state) => state.competitionInfo.ingCompetition
   );

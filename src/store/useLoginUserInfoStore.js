@@ -8,7 +8,7 @@ const useLoginUserInfoStore = create(
       // 상태선언
       loginUserInfo: {
         loginId: null,
-        isLogined: false,
+        isLogined: null,
         isCompParticipant: null,
         nickname: "",
         rank: "",
@@ -16,6 +16,7 @@ const useLoginUserInfoStore = create(
         balance: null,
         rating: "",
         tier: "",
+        kakaoUser: null,
       },
 
       // LoginUserInfo 관련데이터, set, clear 함수로 변경가능
@@ -24,7 +25,7 @@ const useLoginUserInfoStore = create(
         set({
           loginUserInfo: {
             loginId: null,
-            isLogined: false,
+            isLogined: null,
             isCompParticipant: null,
             nickname: "",
             rank: "",
@@ -32,6 +33,7 @@ const useLoginUserInfoStore = create(
             balance: null,
             rating: "",
             tier: "",
+            kakaoUser: null,
           },
         }),
     }),
