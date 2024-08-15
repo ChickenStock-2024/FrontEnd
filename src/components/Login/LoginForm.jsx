@@ -135,6 +135,7 @@ const LoginForm = () => {
       // options
     );
     alert("카카오 로그인 후 완료~!!");
+    nav("/");
   };
   return (
     // <div className="flex flex-col w-full items-center justify-center pt-14 pb-20 gap-3 border-2 border-slate-200 rounded-xl">
