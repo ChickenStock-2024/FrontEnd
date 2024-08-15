@@ -60,7 +60,7 @@ const kakaoLogin = () => {
 
       try {
         // # 2.1. Axios의 응답 객체에서 직접 ingCompetition 추출
-        const response = await defaultInstance.get("/api/competition");
+        const response = await defaultInstance.get("/competition");
 
         console.log("현재 대회 개최 유무 response: ", response);
 
