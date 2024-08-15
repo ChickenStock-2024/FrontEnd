@@ -8,40 +8,43 @@ const holdings = {
   balance: "5600459",
   holding_list: [
     {
-      company_title: "삼성전자",
-      price: 54643524,
-      volume: 534,
+      companyName: "삼성전자",
+      price: 3546400,
+      volume: 53,
+      currentPrice: 77200,
     },
     {
-      company_title: "LG",
-      price: 546494,
+      companyName: "카카오",
+      price: 1546500,
       volume: 50,
+      currentPrice: 36800,
     },
   ],
 };
 
 const Account = () => {
   const stockInfo = useStockDataStore((state) => state.stockInfo);
-  const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  const accountId = useLoginUserInfoStore(
+    (state) => state.loginUserInfo.isLogined
+  );
   const [holding, setHolding] = useState();
 
-  useEffect(() => {
-    getAccountInfo();
-  }, []);
+  // useEffect(() => {
+  //   getAccountInfo(accountId);
+  // }, [accountId]);
 
-  const getAccountInfo = async () => {
-    try {
-      const response = await defaultInstance.get(
-        `account/${loginUserInfo.accountId}`
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getAccountInfo = async (accountId) => {
+  //   try {
+  //     const response = await defaultInstance.get(`account/${accountId}`);
+  //     console.log(response.data);
+  //     setHolding(response.data.stocks);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
-    <div className="overflow-y-auto max-h-[450px] border border-red-300">
+    <div className="overflow-y-auto max-h-[450px]">
       {/* 총 수익률 */}
       <div className="grid grid-cols-3 gap-2 items-center text-center text-sm p-3 mb-6">
         <div>
@@ -53,7 +56,7 @@ const Account = () => {
           <div>총 평가수익금</div>
         </div>
         <div>
-          <div>-10%</div>
+          <div>+20%</div>
           <div>총 평가수익률</div>
         </div>
       </div>
@@ -66,7 +69,6 @@ const Account = () => {
           <div>평단가</div>
         </div>
         <div>
-          <div>평가수익금</div>
           <div>보유수량</div>
         </div>
         <div>평가수익률</div>
@@ -75,20 +77,26 @@ const Account = () => {
       {holdings.holding_list.map((holding, index) => (
         <div key={index}>
           <div className="grid grid-cols-5 gap-2 items-center text-right text-sm p-3">
-            <div className="col-span-2 text-left">{holding.company_title}</div>
+            <div className="col-span-2 text-left">{holding.companyName}</div>
             <div>
               <div>
-                {(stockInfo.currentPrice * holding.volume).toLocaleString()}원
+                {(holding.currentPrice * holding.volume).toLocaleString()}원
               </div>
               <div>
                 {Math.round(holding.price / holding.volume).toLocaleString()}원
               </div>
             </div>
             <div>
-              <div>평가수익금</div>
               <div>{holding.volume}주</div>
             </div>
-            <div>평가수익률</div>
+            <div>
+              {(
+                ((holding.currentPrice * holding.volume) / holding.price) *
+                  100 -
+                100
+              ).toFixed(2)}
+              %
+            </div>
           </div>
           <hr className="mb-2" />
         </div>
