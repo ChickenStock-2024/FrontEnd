@@ -25,7 +25,7 @@ const ProfileHistoryTab = ({ handleDate }) => {
   if (!competitionItems) {
     return (
       <>
-        <div>"competitionItems" 가져오는 중!!</div>
+        <div>"유저의 대회 참여 내역을 불러오는 중입니다!!</div>
       </>
     );
   } else {
