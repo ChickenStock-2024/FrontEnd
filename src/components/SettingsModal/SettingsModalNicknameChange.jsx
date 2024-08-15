@@ -40,7 +40,7 @@ const SettingsModalNicknameChange = ({ closeModal }) => {
       const checkedNickname = response.data.nickname;
 
       alert("닉네임 중복 확인 완료~!!");
-      console.log("중복 확인 완료 닉네임: ", checkedNickname);
+      // console.log("중복 확인 완료 닉네임: ", checkedNickname);
 
       // 진행 상태 업데이트
       setChangeNickname({
