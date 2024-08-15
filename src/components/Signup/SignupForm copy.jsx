@@ -51,12 +51,11 @@ const SignupForm = () => {
     checkedNickname,
     checkedEmail,
   } = checkedData;
-  console.log("isNicknameChecked: ", isNicknameChecked);
+  // console.log("isNicknameChecked: ", isNicknameChecked);
 
   // # 3. 닉네임 중복 검사
   const handleNicknameCheck = () => {
     try {
-      console.log(checkedData);
       SignupFormNicknameCheckAxios(nickname, checkedData, setCheckedData);
       if (checkedData.isNicknameChecked === true) {
         alert("사용 가능한 닉네임입니다.");
@@ -64,7 +63,7 @@ const SignupForm = () => {
         alert("이미 사용 중인 닉네임입니다.");
       }
     } catch (error) {
-      console.error("닉네임 확인 중 오류:", error);
+      // console.error("닉네임 확인 중 오류:", error);
       alert("닉네임 확인 중 오류가 발생했습니다.");
     }
   };
@@ -96,9 +95,9 @@ const SignupForm = () => {
     } else {
       SignupFormAxios(userData, checkedData, setCheckedData);
       // SignupFormAxios({ userData });
-      console.log("isSuccessed: ", isSuccessed);
+      // console.log("isSuccessed: ", isSuccessed);
       if (!isSuccessed) {
-        console.log(isSuccessed);
+        // console.log(isSuccessed);
         alert("가입 정보를 다시 입력해주세요");
       } else {
         nav("/login");

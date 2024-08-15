@@ -41,18 +41,13 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
       // });
 
       // console.log(loginUserInfo.accountId);
-      nav("/trading/1");
+      nav("/trading/005930");
       // 대회로 nav
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
     } catch (error) {
       console.log(error);
-      setLoginUserInfo({
-        ...loginUserInfo,
-        accountId: 1,
-      });
 
-      console.log(loginUserInfo.accountId);
       alert(
         "계좌 생성에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)

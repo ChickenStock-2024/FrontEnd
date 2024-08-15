@@ -32,13 +32,13 @@ const kakaoLogin = () => {
   // // 1. 카카오 로그인 이후 유저 정보 가져오는 axios
   const getInfoAfterKakaoLogin = async () => {
     try {
-      console.log("getInfoAfterKakaoLogin 전");
+      // console.log("getInfoAfterKakaoLogin 전");
       // # 2.0. Axios의 응답 객체에서 직접 loginUserInfo 추출
       const response = await defaultInstance.get(
         `${import.meta.env.VITE_SERVER_ROOT}/api/user`
       );
 
-      console.log("getInfoAfterKakaoLogin response: ", response);
+      // console.log("getInfoAfterKakaoLogin response: ", response);
 
       // # 2.1. loginUserInfo 업데이트
       setLoginUserInfo({
@@ -61,7 +61,7 @@ const kakaoLogin = () => {
         // # 2.1. Axios의 응답 객체에서 직접 ingCompetition 추출
         const response = await defaultInstance.get("/competition");
 
-        console.log("현재 대회 개최 유무 response: ", response);
+        // console.log("현재 대회 개최 유무 response: ", response);
 
         // # 2.2. ingCompetition 상태 업데이트
         await setCompetitionInfo({

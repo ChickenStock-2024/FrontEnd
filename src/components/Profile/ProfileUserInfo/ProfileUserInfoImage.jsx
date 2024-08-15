@@ -33,9 +33,9 @@ const ProfileUserInfoImage = () => {
       const formInputImage = e.target.files[0];
       // formData.append("formInputImage", formInputImage);
       formData.append("file", formInputImage);
-      console.log("보낼 이미지: ", formInputImage);
+      // console.log("보낼 이미지: ", formInputImage);
       // console.log("formData : ", formData);
-      console.log("formData.file: ", formData.file);
+      // console.log("formData.file: ", formData.file);
 
       const reader = new FileReader();
       reader.onload = () => {

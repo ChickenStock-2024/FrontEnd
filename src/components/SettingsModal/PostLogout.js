@@ -9,7 +9,7 @@ const PostLogout = async (nav, clearLoginUserInfo, setCheckKaKaoUser) => {
     clearLoginUserInfo();
     localStorage.clear();
     sessionStorage.clear();
-    setCheckKaKaoUser({ checkKaKaoUser: false });
+    // setCheckKaKaoUser({ checkKaKaoUser: false });
 
     // # 1.2. 로그아웃 완료 알림
     alert("로그아웃 완료~!!");

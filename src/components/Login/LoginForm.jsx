@@ -55,7 +55,7 @@ const LoginForm = () => {
   // # 3. 로그인 axios
   const postLogin = async () => {
     try {
-      console.log("로그인 전: ", inputData);
+      // console.log("로그인 전: ", inputData);
 
       // # 2.0. Axios의 응답 객체에서 직접 checkedEmail 추출
       const response = await defaultInstance.post("/auth/login", {
@@ -64,13 +64,9 @@ const LoginForm = () => {
       });
       // # 2.1. 로그인 완료 알림
       alert("로그인 완료~!!");
-      console.log("로그인 후 로그인 유저 인포: ", response);
+      // console.log("로그인 후 로그인 유저 인포: ", response);
 
       // # 2.2. 로그인 상태 업데이트
-      console.log("loginUserInfo변경 전: ", loginUserInfo.loginId);
-      console.log("loginUserInfo변경 전: ", loginUserInfo.nickname);
-      console.log("loginUserInfo변경 전: ", loginUserInfo.isLogined);
-
       setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
@@ -84,13 +80,11 @@ const LoginForm = () => {
         kakaoNotification: response.data.kakaotalkNoti,
       });
 
-      console.log(loginUserInfo);
-      console.log(notificationInfo);
       try {
         const response = await defaultInstance.get("/competition");
         // # 3.1. ingCompetition 완료 알림
         alert("현재 대회 개최 유무 get 완료~!!");
-        console.log("현재 대회 개최 유무 response: ", response);
+        // console.log("현재 대회 개최 유무 response: ", response);
 
         // # 3.2. ingCompetition 상태 업데이트
         await setCompetitionInfo({
@@ -102,7 +96,7 @@ const LoginForm = () => {
           endAt: response.data.endAt,
         });
 
-        console.log("진행 대회 정보 조회 완료: ", competitionInfo);
+        // console.log("진행 대회 정보 조회 완료: ", competitionInfo);
 
         // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
         nav("/");
@@ -124,8 +118,7 @@ const LoginForm = () => {
 
   // 4. 카카오 로그인
   const clickKakao = () => {
-    console.log("카카오 로그인 전");
-
+    // console.log("카카오 로그인 전");
     window.location.href = `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`;
   };
 

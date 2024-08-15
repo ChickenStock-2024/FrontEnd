@@ -61,11 +61,11 @@ const Profile = () => {
     try {
       // # 2.0. Axios의 응답 객체에서 프로필 페이지 profilePageInfo 추출
       const response1 = await defaultInstance.get(`/user/${profilePageId}`);
-      console.log("프로필 페이지 profilePageInf response: ", response1);
+      // console.log("프로필 페이지 profilePageInf response: ", response1);
 
       // # 3.0. Axios의 응답 객체에서 직접 isRival 추출
       const response2 = await defaultInstance.get(`/rival/${profilePageId}`);
-      console.log("isRival response: ", response2);
+      // console.log("isRival response: ", response2);
       setProfilePageInfo({
         profilePageMemberId: response1.data.memberId,
         nickname: response1.data.nickname,
@@ -83,7 +83,7 @@ const Profile = () => {
           (error.response ? error.response.data.message : error.message)
       );
     }
-    // console.log("profilePageInfo", profilePageInfo);
+    console.log("profilePageInfo", profilePageInfo);
     // try {
     //   // // # 2.0. getUserInfo Axios
     //   // const response1 = await defaultInstance.get(`/user/${profilePageId}`);
@@ -125,7 +125,7 @@ const Profile = () => {
     try {
       console.log(profilePageInfo.isRival);
       const response = await defaultInstance.delete(`/rival/${profilePageId}`);
-      console.log("deleteRival response: ", response);
+      // console.log("deleteRival response: ", response);
       await setProfilePageInfo({
         ...profilePageInfo,
         isRival: "false",
@@ -144,7 +144,7 @@ const Profile = () => {
     try {
       console.log(profilePageInfo.isRival);
       const response = await defaultInstance.post(`/rival/${profilePageId}`);
-      console.log("postRival response: ", response);
+      // console.log("postRival response: ", response);
       await setProfilePageInfo({
         ...profilePageInfo,
         isRival: "true",
@@ -169,8 +169,8 @@ const Profile = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log("접속한 profilePageId: ", profilePageId);
-    console.log("접속한 유저 loginId: ", loginId);
+    // console.log("접속한 profilePageId: ", profilePageId);
+    // console.log("접속한 유저 loginId: ", loginId);
     clearProfilePageInfo();
     clearCompetitionItems();
     getUserInfo(profilePageId);
