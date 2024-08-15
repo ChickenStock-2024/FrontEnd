@@ -135,7 +135,9 @@ const LoginForm = () => {
       // options
     );
     // alert("카카오 로그인 후 완료~!!");
-    nav("/");
+    // window.location.reload();
+    // nav("/");
+    window.location.href = "/";
   };
 
   return (

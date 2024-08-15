@@ -22,29 +22,29 @@ const handleDate = (strDate) => {
 };
 
 const Home = () => {
-  const check = window.localStorage.getItem("checkKaKaoUser");
-  const checkObj = JSON.parse(check);
-  console.log(checkObj);
-  const checkKaKaoUser = checkObj.checkKaKaoUser;
-  console.log("checkKaKaoUser", checkKaKaoUser);
+  // const check = window.localStorage.getItem("checkKaKaoUser");
+  // const checkObj = JSON.parse(check);
+  // console.log(checkObj);
+  // const checkKaKaoUser = checkObj.checkKaKaoUser;
+  // console.log("checkKaKaoUser", checkKaKaoUser);
 
-  if (checkKaKaoUser === true) {
-    window.location.reload();
-  }
+  // if (checkKaKaoUser === true) {
+  //   window.location.reload();
+  // }
   const ingCompetition = useCompetitionInfoStore(
     (state) => state.competitionInfo.ingCompetition
   );
-  console.log("ingCompetition: ", ingCompetition);
+  // console.log("ingCompetition: ", ingCompetition);
 
   const isLogined = useLoginUserInfoStore(
     (state) => state.loginUserInfo.isLogined
   );
-  console.log("isLogined: ", isLogined);
+  // console.log("isLogined: ", isLogined);
 
   const isCompParticipant = useLoginUserInfoStore(
     (state) => state.loginUserInfo.isCompParticipant
   );
-  console.log("isCompParticipant: ", isCompParticipant);
+  // console.log("isCompParticipant: ", isCompParticipant);
 
   return (
     <div className="flex flex-col h-screen pt-24">
