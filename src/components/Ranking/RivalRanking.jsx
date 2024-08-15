@@ -37,9 +37,17 @@ const RivalRanking = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
+  const rank = memberList.findIndex(
+    (obj) => obj.memberId === myRanking.memberId
+  );
+
   return (
     <div className="min-w-max">
-      <RankingProfile parameter={`친구 ${totalCount}`} myRanking={myRanking} />
+      <RankingProfile
+        parameter={`친구 ${totalCount}`}
+        myRanking={myRanking}
+        rank={rank + 1}
+      />
       <RankingList memberList={memberList} />
 
       <div className="flex justify-center mt-4">
