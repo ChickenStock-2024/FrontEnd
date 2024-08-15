@@ -36,8 +36,8 @@ const RankingProfile = ({ parameter, myRanking }) => {
         <div>
           {/* 프사 부분 */}
           <img
-            className="rounded-full w-28 h-28"
-            src={myRanking.imgUrl}
+            className="rounded-full w-32 h-32"
+            src={`https://chickenstock.givendragon.site/resource/${myRanking.imgUrl}`}
             alt="userProfileImage"
           />
         </div>
@@ -55,7 +55,8 @@ const RankingProfile = ({ parameter, myRanking }) => {
           <h2 className="text-4xl font-bold">{myRanking.nickname}</h2>
           <span>대회 {myRanking.competitionCount}회 참여</span>
           <span>
-            {myRanking.profit}원 ({cumProfitRate}%)
+            {myRanking.profit && myRanking.profit.toLocaleString()}원 (
+            {cumProfitRate}%)
           </span>
         </div>
       </div>
