@@ -206,23 +206,6 @@ const Profile = () => {
               ) : (
                 <Button text={"라이벌 등록"} onClick={clickRivalPost} />
               )}
-
-              {/* {profilePageId == loginId ? (
-                ""
-              ) : (
-                <>
-                  <Button
-                    text={"라이벌 삭제"}
-                    color={"yellow3"}
-                    onClick={clickRivalDelete}
-                  />
-
-                  <Button text={"라이벌 등록"} onClick={clickRivalPost} />
-                </>
-              )} */}
-
-              {/* <Button text={"라이벌 등록"} color={"yellow3"} /> */}
-              {/* <button className="absolute bottom-10 right-40">라이벌 등록</button> */}
             </div>
           </div>
         </div>
