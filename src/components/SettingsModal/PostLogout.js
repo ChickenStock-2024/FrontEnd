@@ -13,14 +13,14 @@ const PostLogout = async (nav, clearLoginUserInfo, setCheckKaKaoUser) => {
 
     // # 1.2. 로그아웃 완료 알림
     alert("로그아웃 완료~!!");
-    console.log(response);
+    // console.log(response);
     nav("/");
   } catch (error) {
     console.log(error);
     localStorage.clear();
     sessionStorage.clear();
     alert(
-      "로그아웃에 실패했습니다: " +
+      "로그아웃 실패: " +
         (error.response ? error.response.data.message : error.message)
     );
     nav("/");

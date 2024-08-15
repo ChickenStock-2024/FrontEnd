@@ -70,7 +70,7 @@ const LoginForm = () => {
       setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
-        nickname: response.data.nickName,
+        nickname: response.data.nickname,
         isLogined: true,
       });
 
@@ -83,7 +83,7 @@ const LoginForm = () => {
       try {
         const response = await defaultInstance.get("/competition");
         // # 3.1. ingCompetition 완료 알림
-        alert("현재 대회 개최 유무 get 완료~!!");
+        // alert("현재 대회 개최 유무 get 완료~!!");
         // console.log("현재 대회 개최 유무 response: ", response);
 
         // # 3.2. ingCompetition 상태 업데이트

@@ -168,6 +168,11 @@ const SignupForm = () => {
       );
     }
   };
+  // 7. 카카오 로그인
+  const clickKakao = () => {
+    // console.log("카카오 로그인 전");
+    window.location.href = `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`;
+  };
   return (
     <div className="flex flex-col w-full items-center justify-center pt-14 pb-20 gap-3">
       {/* 로고 */}
@@ -283,14 +288,7 @@ const SignupForm = () => {
 
       {/* 카카오  회원가입 */}
       <div className="w-72 flex justify-center h-11 items-center">
-        <button
-          onClick={() => {
-            window.open(
-              "https://chickenstock.givendragon.site/api/auth/login/kakao",
-              "newWindow"
-            );
-          }}
-        >
+        <button onClick={clickKakao}>
           <img src={kakaoSignupImage} />
         </button>
       </div>

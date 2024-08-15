@@ -29,11 +29,11 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
   // # 1. account 생성 axios
   const postAccount = async () => {
     try {
-      console.log(
-        "대회 계좌 생성 전: ",
-        memberId,
-        competitionInfo.competitionId
-      );
+      // console.log(
+      //   "대회 계좌 생성 전: ",
+      //   memberId,
+      //   competitionInfo.competitionId
+      // );
 
       // # 1.1. Axios의 응답 객체에서 accountId 추출
       const response = await defaultInstance.post("/competition", {
@@ -47,7 +47,7 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
 
       setLoginUserInfo({
         ...loginUserInfo,
-        accountId: response.data.accountId,
+        accountId: response.data,
         isCompParticipant: true,
       });
 

@@ -76,14 +76,15 @@ const Profile = () => {
       });
 
       // # 3.1. getUserInfo 추출 완료 알림
-      alert("라이벌 데이터와 profilePageInfo 가져오기 완료~!!");
+      // alert("라이벌 데이터와 profilePageInfo 가져오기 완료~!!");
     } catch (error) {
       alert(
-        "라이벌 데이터와 profilePageInfo 가져오기에 실패했습니다: " +
+        // "라이벌 데이터와 profilePageInfo 가져오기에 실패했습니다: " +
+        "프로필 페이지 로딩에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
     }
-    console.log("profilePageInfo", profilePageInfo);
+    // console.log("profilePageInfo", profilePageInfo);
     // try {
     //   // // # 2.0. getUserInfo Axios
     //   // const response1 = await defaultInstance.get(`/user/${profilePageId}`);
@@ -112,10 +113,11 @@ const Profile = () => {
       );
       await setCompetitionItems(response3.data);
       // # 4.1. Axios getCompetitionAll 완료 알림
-      alert("대회 데이터 전체 가져오기 완료~!!");
+      // alert("대회 데이터 전체 가져오기 완료~!!");
     } catch (error) {
       alert(
-        "대회 데이터 전체 가져오기에 실패했습니다: " +
+        "프로필 페이지 로딩에 실패했습니다: " +
+          // "대회 데이터 전체 가져오기에 실패했습니다: " +
           (error.response ? error.response.data.message : error.message)
       );
     }
