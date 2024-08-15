@@ -125,20 +125,17 @@ const LoginForm = () => {
   };
 
   // 4. 카카오 로그인
-  // const clickKakao = () => {
-  //   console.log("카카오 로그인 전");
-  //   // window.open("http://localhost:5173/kakaoLogin", "popup=yes");
-  //   const options = "width=700, height=600, top=50, left=50, scrollbars=yes";
-  //   window.open(
-  //     `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`,
-  //     "_blank",
-  //     options
-  //   );
-  //   alert("카카오 로그인 완료~!!");
-  //   console.log("카카오 로그인 response: ", response);
-  //   alert("카카오 로그인 완료~!!");
-  //   window.close();
-  // };
+  const clickKakao = () => {
+    console.log("카카오 로그인 전");
+    // window.open("http://localhost:5173/kakaoLogin", "popup=yes");
+    // const options = "width=700, height=600, top=50, left=50, scrollbars=yes";
+    window.open(
+      `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`,
+      "_blank"
+      // options
+    );
+    alert("카카오 로그인 후 완료~!!");
+  };
   return (
     // <div className="flex flex-col w-full items-center justify-center pt-14 pb-20 gap-3 border-2 border-slate-200 rounded-xl">
     <div className="flex flex-col w-full items-center justify-center pt-14 pb-20 gap-3">
@@ -211,12 +208,10 @@ const LoginForm = () => {
       {/* 카카오로그인 */}
       <div className="w-72 flex justify-center h-11 items-center">
         <button
-          onClick={() => {
-            window.location.href = `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`;
-          }}
           // onClick={() => {
-          //   clickKakao();
+          //   window.location.href = `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`;
           // }}
+          onClick={clickKakao}
           // onClick={() => {
           //   window.open(
           //     "http://localhost:5173/kakaoLogin",
