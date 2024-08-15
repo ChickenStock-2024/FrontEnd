@@ -129,15 +129,15 @@ const LoginForm = () => {
     console.log("카카오 로그인 전");
     // window.open("http://localhost:5173/kakaoLogin", "popup=yes");
     // const options = "width=700, height=600, top=50, left=50, scrollbars=yes";
-    window.open(
-      `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`,
-      "_blank"
-      // options
-    );
+    // window.open(
+    //   `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`,
+    //   "_blank"
+    //   // options
+    // );
     // alert("카카오 로그인 후 완료~!!");
     // window.location.reload();
     // nav("/");
-    window.location.href = "/";
+    window.location.href = `${import.meta.env.VITE_SERVER_ROOT}/api/auth/login/kakao`;
   };
 
   return (
