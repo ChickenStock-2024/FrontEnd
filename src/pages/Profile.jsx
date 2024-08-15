@@ -123,14 +123,14 @@ const Profile = () => {
 
   const deleteRival = async () => {
     try {
-      console.log(profilePageInfo.isRival);
+      // console.log(profilePageInfo.isRival);
       const response = await defaultInstance.delete(`/rival/${profilePageId}`);
       // console.log("deleteRival response: ", response);
       await setProfilePageInfo({
         ...profilePageInfo,
-        isRival: "false",
+        isRival: false,
       });
-      console.log(profilePageInfo.isRival);
+      // console.log(profilePageInfo.isRival);
       alert("라이벌 삭제 완료");
     } catch (error) {
       alert(
@@ -142,14 +142,13 @@ const Profile = () => {
 
   const postRival = async () => {
     try {
-      console.log(profilePageInfo.isRival);
+      // console.log(profilePageInfo.isRival);
       const response = await defaultInstance.post(`/rival/${profilePageId}`);
       // console.log("postRival response: ", response);
       await setProfilePageInfo({
         ...profilePageInfo,
-        isRival: "true",
+        isRival: true,
       });
-      console.log(profilePageInfo.isRival);
 
       alert("라이벌 등록 완료");
     } catch (error) {
@@ -198,7 +197,7 @@ const Profile = () => {
             <div className="absolute bottom-10 right-40">
               {profilePageId == loginId ? (
                 ""
-              ) : profilePageInfo.isRival == "true" ? (
+              ) : profilePageInfo.isRival ? (
                 <Button
                   text={"라이벌 삭제"}
                   color={"yellow3"}
