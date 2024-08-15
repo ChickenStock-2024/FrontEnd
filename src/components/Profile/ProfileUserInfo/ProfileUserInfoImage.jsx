@@ -47,8 +47,8 @@ const ProfileUserInfoImage = () => {
 
       try {
         const response = await imgInstance.post("/user/img", formData);
-        console.log("프로필 이미지 변경 후 response:", response);
-        console.log("서버 응답:", response.data);
+        // console.log("프로필 이미지 변경 후 response:", response);
+        // console.log("서버 응답:", response.data);
         setProfilePageInfo({
           ...profilePageInfo,
           profileImg: response.data.imgUrl,
