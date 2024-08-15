@@ -82,7 +82,7 @@ const kakaoLogin = () => {
 
         // # 2.3. ingCompetition get 완료 후, 메인 페이지로 이동!
         // nav("/");
-
+        setCheckKaKaoUser({ checkKaKaoUser: true });
         window.close();
       } catch (error) {
         console.log(error);
@@ -90,7 +90,6 @@ const kakaoLogin = () => {
           "진행 대회 정보 조회에 실패했습니다: " +
             (error.response ? error.response.data.message : error.message)
         );
-        setCheckKaKaoUser({ checkKaKaoUser: true });
         window.close();
       }
 
