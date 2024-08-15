@@ -11,6 +11,8 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
   const memberId = useLoginUserInfoStore(
     (state) => state.loginUserInfo.loginId
   );
+  const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+
   const setLoginUserInfo = useLoginUserInfoStore(
     (state) => state.setLoginUserInfo
   );
@@ -38,15 +40,16 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
         memberId: memberId,
         competitionId: competitionInfo.competitionId,
       });
-      console.log("대회 계좌 생성 후: ", response.data);
+      console.log("대회 계좌 생성 후: ", response);
 
       // # 1.2. 계좌 생성 완료 알림
       alert("계좌 생성 완료~!!");
 
-      // setLoginUserInfo({
-      //   ...loginUserInfo,
-      //   accountId: response.data.account_id,
-      // });
+      setLoginUserInfo({
+        ...loginUserInfo,
+        accountId: response.data.accountId,
+        isCompParticipant: true,
+      });
 
       // console.log(loginUserInfo.accountId);
       nav("/trading/005930");
