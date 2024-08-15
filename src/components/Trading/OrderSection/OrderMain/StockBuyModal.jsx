@@ -1,19 +1,38 @@
 import React from "react";
 import { defaultInstance } from "../../../../api/axios";
+import useLoginUserInfoStore from "../../../../store/useLoginUserInfoStore";
+import useCompetitionInfoStore from "../../../../store/useCompetitionInfoStore";
 
-const StockBuyModal = ({ closeModal, price, quantity, isMarketPrice }) => {
-  console.log(price);
+const StockBuyModal = ({
+  closeModal,
+  price,
+  quantity,
+  isMarketPrice,
+  companyId,
+}) => {
+  const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  const competitionInfo = useCompetitionInfoStore(
+    (state) => state.competitionInfo
+  );
+
   const orderBuyLimit = async () => {
     try {
       const response = await defaultInstance.post("/account/buy/limit", {
         accountId: 1,
         memberId: 1,
-        companyId: 1,
+        companyId: companyId,
         competitionId: 1,
         unitCost: price,
         volume: quantity,
+        // accountId: 1,
+        // memberId: loginUserInfo.loginId,
+        // companyId: companyId,
+        // competitionId: competitionInfo.competitionId,
+        // unitCost: price,
+        // volume: quantity,
       });
       console.log(response.data);
+      alert("주문을 완료했습니다");
       closeModal();
     } catch (error) {
       console.log(error);
@@ -30,12 +49,13 @@ const StockBuyModal = ({ closeModal, price, quantity, isMarketPrice }) => {
       const response = await defaultInstance.post("/account/buy/market", {
         accountId: 1,
         memberId: 1,
-        companyId: 1,
+        companyId: companyId,
         competitionId: 1,
         unitCost: price,
         volume: quantity,
       });
       console.log(response.data);
+      alert("주문을 완료했습니다");
       closeModal();
     } catch (error) {
       console.log(error);

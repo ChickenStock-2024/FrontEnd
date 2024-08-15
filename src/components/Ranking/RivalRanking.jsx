@@ -19,7 +19,6 @@ const RivalRanking = () => {
       const response = await defaultInstance.get("/ranking/rival", {
         params: { offset: page },
       });
-      // console.log(response.data);
       setMemberList(response.data.memberList);
       setMyRanking(response.data.myRanking);
       setTotalCount(response.data.totalCount);
@@ -27,6 +26,8 @@ const RivalRanking = () => {
       console.log(error);
     }
   };
+
+  const totalPages = Math.ceil(totalCount / 10);
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -52,6 +53,7 @@ const RivalRanking = () => {
         <span className="px-4 py-2 font-bold ">{currentPage}</span>
         <button
           onClick={handleNextPage}
+          disabled={currentPage >= totalPages}
           className="px-4 py-2 rounded ml-2 hover:bg-yellow3"
         >
           다음
