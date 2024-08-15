@@ -83,14 +83,16 @@ const kakaoLogin = () => {
         // # 2.3. ingCompetition get 완료 후, 메인 페이지로 이동!
         // nav("/");
         setCheckKaKaoUser({ checkKaKaoUser: true });
-        window.close();
+        // nav("/");
+        // window.close();
       } catch (error) {
         console.log(error);
         alert(
           "진행 대회 정보 조회에 실패했습니다: " +
             (error.response ? error.response.data.message : error.message)
         );
-        window.close();
+        nav("/login");
+        // window.close();
       }
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
