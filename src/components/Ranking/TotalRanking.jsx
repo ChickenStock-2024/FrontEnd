@@ -37,9 +37,15 @@ const TotalRanking = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
+  const rank = myRanking.ranking;
+
   return (
     <div className="min-w-max">
-      <RankingProfile parameter={`전체 ${totalCount}`} myRanking={myRanking} />
+      <RankingProfile
+        parameter={`전체 ${totalCount}`}
+        myRanking={myRanking}
+        rank={rank}
+      />
       <RankingList memberList={memberList} />
 
       <div className="flex justify-center mt-4">

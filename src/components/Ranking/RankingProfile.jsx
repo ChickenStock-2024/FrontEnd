@@ -1,12 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import RankingProfileRank from "./RankingProfileRank";
-import { defaultInstance } from "../../api/axios";
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import { calculateTier } from "../../utils/tierCalculator";
 import TierBadge from "../TierBadge";
 
-const RankingProfile = ({ parameter, myRanking }) => {
+const RankingProfile = ({ parameter, myRanking, rank }) => {
   // const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
 
   // const [userInfo, setUserInfo] = useState({});
@@ -43,7 +41,7 @@ const RankingProfile = ({ parameter, myRanking }) => {
         </div>
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center">
-            <div className="w-8 h-8 mx-2">
+            <div className="w-8 h-8 mr-2">
               {/* 티어 계산해서 올바른 이미지 출력 */}
               <TierBadge tier={tier} />
             </div>
@@ -61,7 +59,7 @@ const RankingProfile = ({ parameter, myRanking }) => {
         </div>
       </div>
       {/* 내 순위를 계산해서 보내주기 */}
-      <RankingProfileRank rank={myRanking.ranking} parameter={parameter} />
+      <RankingProfileRank rank={rank} parameter={parameter} />
     </div>
   );
 };
