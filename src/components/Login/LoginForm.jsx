@@ -70,7 +70,7 @@ const LoginForm = () => {
       setLoginUserInfo({
         ...loginUserInfo,
         loginId: response.data.memberId,
-        nickname: response.data.nickName,
+        nickname: response.data.nickname,
         isLogined: true,
       });
 
