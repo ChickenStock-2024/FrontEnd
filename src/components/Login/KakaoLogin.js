@@ -89,7 +89,6 @@ const kakaoLogin = () => {
       }
 
       // alert(`안녕하세요, ${response.data.nickname}님`);
-      nav("/");
     } catch (error) {
       console.log(error);
       alert(
