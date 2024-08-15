@@ -242,7 +242,26 @@ const ProfileHistoryTabModal = ({
             </div>
             <div className="block text-right">
               <div>순위: {competitionItem.rank}위</div>
-              <div>레이팅 변동: {competitionItem.rating_change}</div>
+              <div className="flex flex-row justify-end">
+                레이팅 변동:
+                <div
+                  className={`ml-1 ${
+                    competitionItem.ratingChange < 0
+                      ? "text-blue-500"
+                      : competitionItem.ratingChange === 0
+                        ? "text-black"
+                        : "text-red-500"
+                  }`}
+                >
+                  {`${
+                    competitionItem.ratingChange < 0
+                      ? `▼${Math.abs(competitionItem.ratingChange)}`
+                      : competitionItem.ratingChange === 0
+                        ? "-"
+                        : `▲${competitionItem.ratingChange}`
+                  }`}
+                </div>
+              </div>
               <div>
                 수익률: {(competitionItem.balance - 1000000) / 10000}% (
                 {(competitionItem.balance - 1000000).toLocaleString()}원)
