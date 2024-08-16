@@ -47,10 +47,10 @@ const HomeCenterIngCompetitionAfterLoginIsCompParticipant = () => {
         <div className="text-xl font-bold">{title} 진행 중</div>{" "}
         <div className="flex flex-col gap-1">
           <p className="text-md">
-            수익률: {(loginUserInfo.balance - 1000000) / 10000}%
+            수익률: {(loginUserInfo.balance - 50000000) / 500000}%
           </p>
           <p className="text-md">
-            계좌 잔고: {(loginUserInfo.balance - 1000000).toLocaleString()}원
+            계좌 잔고: {loginUserInfo.balance.toLocaleString()}원
           </p>
         </div>
       </div>
