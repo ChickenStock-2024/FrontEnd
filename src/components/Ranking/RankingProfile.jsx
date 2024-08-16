@@ -25,7 +25,7 @@ const RankingProfile = ({ parameter, myRanking, rank }) => {
   // const tier = calculateTier(rating);
 
   const cumProfitRate =
-    (myRanking.profit / (myRanking.competitionCount * 1000000)) * 100 || 0;
+    (myRanking.profit / (myRanking.competitionCount * 50000000)) * 100 || 0;
   const tier = calculateTier(myRanking.rating);
 
   return (
