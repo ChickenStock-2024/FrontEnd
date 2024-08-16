@@ -17,19 +17,23 @@ const StockBuyModal = ({
 
   const orderBuyLimit = async () => {
     try {
+      console.log(loginUserInfo.accountId);
+      console.log(loginUserInfo.loginId);
+      console.log(companyId);
+      console.log(competitionInfo.competitionId);
       const response = await defaultInstance.post("/account/buy/limit", {
-        accountId: 1,
-        memberId: 1,
-        companyId: companyId,
-        competitionId: 1,
-        unitCost: price,
-        volume: quantity,
-        // accountId: 1,
-        // memberId: loginUserInfo.loginId,
+        // accountId: 37,
+        // memberId: 11,
         // companyId: companyId,
-        // competitionId: competitionInfo.competitionId,
+        // competitionId: 2,
         // unitCost: price,
         // volume: quantity,
+        accountId: loginUserInfo.accountId,
+        memberId: loginUserInfo.loginId,
+        companyId: companyId,
+        competitionId: competitionInfo.competitionId,
+        unitCost: price,
+        volume: quantity,
       });
       console.log(response.data);
       alert("주문을 완료했습니다");
@@ -47,10 +51,10 @@ const StockBuyModal = ({
   const orderBuyMarket = async () => {
     try {
       const response = await defaultInstance.post("/account/buy/market", {
-        accountId: 1,
-        memberId: 1,
+        accountId: loginUserInfo.accountId,
+        memberId: loginUserInfo.loginId,
         companyId: companyId,
-        competitionId: 1,
+        competitionId: competitionInfo.competitionId,
         unitCost: price,
         volume: quantity,
       });

@@ -18,16 +18,16 @@ const StockSellModal = ({
   const orderSellLimit = async () => {
     try {
       const response = await defaultInstance.post("/account/sell/limit", {
-        accountId: 1,
-        memberId: 1,
+        accountId: loginUserInfo.accountId,
+        memberId: loginUserInfo.loginId,
         companyId: companyId,
-        competitionId: 1,
+        competitionId: competitionInfo.competitionId,
         unitCost: price,
         volume: quantity,
-        // accountId: 1,
+        // accountId: loginUserInfo.accountId,
         // memberId: loginUserInfo.loginId,
         // companyId: companyId,
-        // competitionId: competitionInfo.competitionId,
+        // competitionId: competitionInfo.competitionId ,
         // unitCost: price,
         // volume: quantity,
       });
@@ -47,10 +47,10 @@ const StockSellModal = ({
   const orderSellMarket = async () => {
     try {
       const response = await defaultInstance.post("/account/sell/market", {
-        accountId: 1,
-        memberId: 1,
+        accountId: loginUserInfo.accountId,
+        memberId: loginUserInfo.loginId,
         companyId: companyId,
-        competitionId: 1,
+        competitionId: competitionInfo.competitionId,
         unitCost: price,
         volume: quantity,
       });
@@ -85,7 +85,7 @@ const StockSellModal = ({
         <div className="p-10">
           <div>
             <h2 className="text-2xl text-center font-bold mb-10 text-blue-500">
-              매수
+              매도
             </h2>
             <div className="mb-6">
               <div className="flex justify-between py-1">
@@ -103,7 +103,7 @@ const StockSellModal = ({
                 {(price * quantity).toLocaleString("ko-KR")} 원
               </div>
             </div>
-            <div className="text-center mb-8">구매하시겠습니까?</div>
+            <div className="text-center mb-8">판매하시겠습니까?</div>
           </div>
           <div className="flex justify-evenly gap-4">
             <button

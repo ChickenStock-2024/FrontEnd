@@ -34,7 +34,7 @@ const ExecutionList = () => {
       price: 36400,
       volume: "1",
       status: "매수체결",
-      created_at: "2024-08-14T12:54:20.1125",
+      created_at: "2024-08-14T10:01:20.1125",
     },
   ];
 
