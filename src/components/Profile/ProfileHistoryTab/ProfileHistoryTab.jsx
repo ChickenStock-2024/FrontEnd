@@ -66,7 +66,7 @@ const ProfileHistoryTab = ({ handleDate }) => {
                   </div>
                   <div>
                     수익률: {(competitionItem.balance - 50000000) / 500000}% (
-                    {(competitionItem.balance - 50000000).toLocaleString()}원)
+                    {competitionItem.balance.toLocaleString()}원)
                   </div>
                 </div>
               </div>
