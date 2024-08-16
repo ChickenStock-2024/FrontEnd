@@ -11,6 +11,9 @@ const StockBuyModal = ({
   companyId,
 }) => {
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  const setLoginUserInfo = useLoginUserInfoStore(
+    (state) => state.setLoginUserInfo
+  );
   const competitionInfo = useCompetitionInfoStore(
     (state) => state.competitionInfo
   );
@@ -22,7 +25,7 @@ const StockBuyModal = ({
       console.log(companyId);
       console.log(competitionInfo.competitionId);
       const response = await defaultInstance.post("/account/buy/limit", {
-        // accountId: 37,
+        // accountId: 11,
         // memberId: 11,
         // companyId: companyId,
         // competitionId: 2,
@@ -37,6 +40,18 @@ const StockBuyModal = ({
       });
       console.log(response.data);
       alert("주문을 완료했습니다");
+
+      // 잔액 바꾸기
+      const cost =
+        response.data.tradeRequest.unitCost *
+        response.data.tradeRequest.totalOrderVolume;
+
+      const newBalance = loginUserInfo.balance - cost;
+      setLoginUserInfo({
+        ...loginUserInfo,
+        balance: newBalance,
+      });
+
       closeModal();
     } catch (error) {
       console.log(error);
@@ -60,6 +75,16 @@ const StockBuyModal = ({
       });
       console.log(response.data);
       alert("주문을 완료했습니다");
+      // 잔액 바꾸기
+      const cost =
+        response.data.tradeRequest.unitCost *
+        response.data.tradeRequest.totalOrderVolume;
+
+      const newBalance = loginUserInfo.balance - cost;
+      setLoginUserInfo({
+        ...loginUserInfo,
+        balance: newBalance,
+      });
       closeModal();
     } catch (error) {
       console.log(error);
