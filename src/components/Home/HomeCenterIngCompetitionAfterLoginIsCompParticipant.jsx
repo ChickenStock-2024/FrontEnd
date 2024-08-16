@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +6,7 @@ import tierBadgeIcon from "../../assets/Gold.svg";
 
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
+import NotificationFcmTokenAxios from "../Notification/NotificationFcmTokenAxios";
 
 const HomeCenterIngCompetitionAfterLoginIsCompParticipant = () => {
   const nav = useNavigate();
@@ -17,7 +18,13 @@ const HomeCenterIngCompetitionAfterLoginIsCompParticipant = () => {
   // 데이터
   const title = useCompetitionInfoStore((state) => state.competitionInfo.title);
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
-
+  const memberId = useLoginUserInfoStore(
+    (state) => state.loginUserInfo.loginId
+  );
+  useEffect(() => {
+    // # 2.0.1. femToken Axios
+    NotificationFcmTokenAxios(memberId);
+  }, []);
   return (
     <div className="py-20 w-1/2 mx-auto">
       <div className="text-xl font-bold flex items-center">
