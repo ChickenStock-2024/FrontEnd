@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 import { defaultInstance } from "../../api/axios";
 
 import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
+import NotificationFcmTokenAxios from "../Notification/NotificationFcmTokenAxios";
 
 const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
   // const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
@@ -48,6 +49,7 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
       setLoginUserInfo({
         ...loginUserInfo,
         accountId: response.data,
+        balance: 50000000,
         isCompParticipant: true,
       });
 
@@ -65,6 +67,10 @@ const HomeCenterIngCompetitionAfterLoginNotCompParticipant = () => {
       );
     }
   };
+  useEffect(() => {
+    // # 2.0.1. femToken Axios
+    NotificationFcmTokenAxios(memberId);
+  }, []);
   return (
     <div className="py-20 w-1/2 mx-auto">
       <div className="my-5">

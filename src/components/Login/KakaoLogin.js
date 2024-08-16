@@ -6,6 +6,7 @@ import useLoginUserInfoStore from "../../store/useLoginUserInfoStore";
 import useCompetitionInfoStore from "../../store/useCompetitionInfoStore";
 import useNotificationInfoStore from "../../store/useNotificationInfoStore";
 // import useKakaoLoginCheckStore from "../../store/useKakaoLoginCheckStore";
+// import NotificationFcmTokenAxios from "../Notification/NotificationFcmTokenAxios";
 
 const kakaoLogin = () => {
   const nav = useNavigate();
@@ -43,12 +44,13 @@ const kakaoLogin = () => {
       // # 2.1. loginUserInfo 업데이트
       setLoginUserInfo({
         ...loginUserInfo,
-        loginId: response.data.memberId,
-        isLogined: true,
-        isCompParticipant: response.data.isCompParticipant,
-        nickname: response.data.nickname,
+        accountId: response.data.accountId,
         balance: response.data.balance,
+        isCompParticipant: response.data.isCompParticipant,
         rating: response.data.rating,
+        loginId: response.data.memberId,
+        nickname: response.data.nickname,
+        isLogined: true,
       });
 
       setNotificationInfo({
@@ -56,6 +58,7 @@ const kakaoLogin = () => {
         webNotification: response.data.webNoti,
         kakaoNotification: response.data.kakaotalkNoti,
       });
+      // NotificationFcmTokenAxios();
 
       try {
         // # 2.1. Axios의 응답 객체에서 직접 ingCompetition 추출

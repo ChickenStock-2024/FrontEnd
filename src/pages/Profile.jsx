@@ -185,8 +185,8 @@ const Profile = () => {
         <div className="relative">
           {/* <div className="bg-yellow3 h-28">{params.id}의 프로필 페이지~!!</div> */}
           <div className="bg-yellow3 h-28">
-            {profilePageId}번 유저의 프로필 페이지~!! 로그인 유저: {loginId}번
-            유저
+            {/* {profilePageId}번 유저의 프로필 페이지~!! 로그인 유저: {loginId}번
+            유저 */}
             {/* {loginUserInfo.isLogined}
             {loginUserInfo.loginId} */}
           </div>

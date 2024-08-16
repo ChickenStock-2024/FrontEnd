@@ -9,6 +9,8 @@ import useNotificationInfoStore from "../../store/useNotificationInfoStore";
 import LogoNameImage from "../../assets/logoName.svg";
 import KaKaoLoginImage from "../../assets/kakaoLogin.svg";
 
+// import NotificationFcmTokenAxios from "../Notification/NotificationFcmTokenAxios";
+
 const LoginForm = () => {
   const nav = useNavigate();
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
@@ -62,6 +64,7 @@ const LoginForm = () => {
         email: email,
         password: password,
       });
+      console.log("로그인 response: ", response);
       // # 2.1. 로그인 완료 알림
       alert("로그인 완료~!!");
       // console.log("로그인 후 로그인 유저 인포: ", response);
@@ -69,6 +72,10 @@ const LoginForm = () => {
       // # 2.2. 로그인 상태 업데이트
       setLoginUserInfo({
         ...loginUserInfo,
+        accountId: response.data.accountId,
+        balance: response.data.balance,
+        isCompParticipant: response.data.isCompParticipant,
+        rating: response.data.rating,
         loginId: response.data.memberId,
         nickname: response.data.nickname,
         isLogined: true,
@@ -99,6 +106,7 @@ const LoginForm = () => {
         // console.log("진행 대회 정보 조회 완료: ", competitionInfo);
 
         // # 3.3. ingCompetition get 완료 후, 메인 페이지로 이동!
+
         nav("/");
       } catch (error) {
         console.log(error);
