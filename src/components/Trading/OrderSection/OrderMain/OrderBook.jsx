@@ -28,9 +28,9 @@ const OrderBook = ({
 
   useEffect(() => {
     if (activeTabMarket === "buy" && bids.length > 0) {
-      setMarketPrice(parseInt(bids[0].price));
-    } else if (activeTabMarket === "sell" && offers.length > 0) {
       setMarketPrice(parseInt(offers[0].price));
+    } else if (activeTabMarket === "sell" && offers.length > 0) {
+      setMarketPrice(parseInt(bids[0].price));
     }
   }, [bids, offers, setMarketPrice, activeTabMarket]);
 

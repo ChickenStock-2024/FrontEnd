@@ -25,23 +25,23 @@ const holdings = {
 const Account = () => {
   const stockInfo = useStockDataStore((state) => state.stockInfo);
   const accountId = useLoginUserInfoStore(
-    (state) => state.loginUserInfo.isLogined
+    (state) => state.loginUserInfo.accountId
   );
   const [holding, setHolding] = useState();
 
-  // useEffect(() => {
-  //   getAccountInfo(accountId);
-  // }, [accountId]);
+  useEffect(() => {
+    getAccountInfo(accountId);
+  }, [accountId]);
 
-  // const getAccountInfo = async (accountId) => {
-  //   try {
-  //     const response = await defaultInstance.get(`account/${accountId}`);
-  //     console.log(response.data);
-  //     setHolding(response.data.stocks);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const getAccountInfo = async (accountId) => {
+    try {
+      const response = await defaultInstance.get(`account/${accountId}`);
+      console.log(response.data);
+      setHolding(response.data.stocks);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="overflow-y-auto max-h-[450px]">

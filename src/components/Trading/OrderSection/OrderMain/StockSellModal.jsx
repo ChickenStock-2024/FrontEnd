@@ -11,6 +11,9 @@ const StockSellModal = ({
   companyId,
 }) => {
   const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
+  const setLoginUserInfo = useLoginUserInfoStore(
+    (state) => state.setLoginUserInfo
+  );
   const competitionInfo = useCompetitionInfoStore(
     (state) => state.competitionInfo
   );
@@ -33,6 +36,16 @@ const StockSellModal = ({
       });
       console.log(response.data);
       alert("주문을 완료했습니다");
+
+      // 잔액 바꾸기
+      const cost = price * response.data.tradeRequest.totalOrderVolume;
+
+      const newBalance = loginUserInfo.balance + cost;
+      setLoginUserInfo({
+        ...loginUserInfo,
+        balance: newBalance,
+      });
+
       closeModal();
     } catch (error) {
       console.log(error);
@@ -56,6 +69,15 @@ const StockSellModal = ({
       });
       console.log(response.data);
       alert("주문을 완료했습니다");
+      // 잔액 바꾸기
+      const cost = price * response.data.tradeRequest.totalOrderVolume;
+
+      const newBalance = loginUserInfo.balance + cost;
+      setLoginUserInfo({
+        ...loginUserInfo,
+        balance: newBalance,
+      });
+
       closeModal();
     } catch (error) {
       console.log(error);
