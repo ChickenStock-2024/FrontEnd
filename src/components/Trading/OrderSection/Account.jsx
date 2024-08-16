@@ -48,15 +48,15 @@ const Account = () => {
       {/* 총 수익률 */}
       <div className="grid grid-cols-3 gap-2 items-center text-center text-sm p-3 mb-6">
         <div>
-          <div>1,200,000원</div>
+          <div>4,275,600원</div>
           <div>총 평가금액</div>
         </div>
         <div>
-          <div>200,000원</div>
+          <div>749,512원</div>
           <div>총 평가수익금</div>
         </div>
         <div>
-          <div>+20%</div>
+          <div>+17.53%</div>
           <div>총 평가수익률</div>
         </div>
       </div>

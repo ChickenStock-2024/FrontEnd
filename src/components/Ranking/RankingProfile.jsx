@@ -5,7 +5,7 @@ import { calculateTier } from "../../utils/tierCalculator";
 import TierBadge from "../TierBadge";
 
 const RankingProfile = ({ parameter, myRanking, rank }) => {
-  // const loginId = useLoginUserInfoStore((state) => state.loginUserInfo.loginId);
+  const loginUserInfo = useLoginUserInfoStore((state) => state.loginUserInfo);
 
   // const [userInfo, setUserInfo] = useState({});
   // useEffect(() => {
